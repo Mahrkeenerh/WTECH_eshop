@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link href="Styles/profile.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="header">
+    <h1 class="eshop_name">CAR STUFF 4 U</h1>
+    <form class="search_bar">
+        <input type="text" id="top_searchbar" name="top_searchbar" required>
+        <label for="top_searchbar">I'm looking for...</label>
+        <button>Search</button>
+    </form>
+    <img class="cart" src="../Icons/homepage/shopping_cart_30.png" alt="shopping cart">
+    <h3 class="login">Login</h3>
+</div>
+
+<div class="info_container">
+    <!--Personal info-->
+    <div class="personal_info">
+        <h2>Personal information:</h2>
+        <form>
+            <label for="first_name">First name:</label>
+            <input type="text" id="first_name" name="first_name">
+        </form>
+        <form>
+            <label for="last_name">Last name:</label>
+            <input type="text" id="last_name" name="last_name">
+        </form>
+        <form>
+            <label for="email">Email address:</label>
+            <input type="email" id="email" name="email">
+        </form>
+
+        <button id="change password">Change password</button>
+
+    </div>
+
+    <!--Shipping address-->
+    <div class="shipping">
+        <h2>Shipping address:</h2>
+        <form>
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state">
+        </form>
+        <form>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city">
+        </form>
+        <form>
+            <label for="street_n_num">Street and number:</label>
+            <input type="text" id="street_n_num" name="street_n_num">
+        </form>
+        <form>
+            <label for="postal_code">Postal code:</label>
+            <input type="number" id="postal_code" name="postal_code">
+        </form>
+        <button id="save_address">Save</button>
+        <button id="edit_address">Edit</button>
+    </div>
+
+</div>
+</body>
+</html>

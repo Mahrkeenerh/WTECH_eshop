@@ -1,0 +1,89 @@
+body {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    grid-template-rows: [header]70px [info]auto;
+}
+
+/*HEADER*/
+#header {
+    background: #dddddd;
+    display: grid;
+    margin: 0;
+    align-self: center;
+    align-content: center;
+}
+@media (min-width: 1000px) {
+    #header {
+        grid-template-columns: [eshop_name]280px [searchbar]auto [cart]60px [login]300px;
+    }
+}
+@media (min-width: 1200px) {
+    #header {
+    grid-template-columns: [eshop_name]280px [searchbar]auto [cart]200px [login]300px;
+    }
+}
+#header > *{
+    display: inline;
+    margin: 0;
+    padding: 10px;
+    align-self: center;
+}
+#header .eshop_name {
+    justify-self: left;
+    cursor: pointer;
+}
+#header .search_bar {
+    justify-self: center;
+}
+#header .cart {
+    justify-self: right;
+    cursor: pointer;
+}
+#header .login{
+    justify-self: center;
+    cursor: pointer;
+}
+#header .search_bar button {
+    cursor: pointer;
+}
+/*searchbar*/
+#header form {
+    width: 400px;
+    position: relative;
+}
+#header form input {
+    width: 75%;
+}
+#header form > label {
+    position: absolute;
+    left: 15px;
+    align-self: center;
+}
+#header input:focus + label {
+    display: none;
+}
+#header form input:valid ~ label{
+    display: none;
+}
+
+/*temp*/
+.info_container * {border: 1px solid black;}
+/*Info content*/
+.info_container {
+    max-width: 1400px;
+    display: grid;
+    grid-template-columns: [personal_info]500px [address]500px;
+    justify-self: center;
+}
+.info_container h2, .info_container form {
+    padding: 10px;
+}
+.info_container button {
+    margin: 10px;
+}
+
+/*Personal info*/
+.personal_info form * , .shipping form * {
+    display: block;
+}

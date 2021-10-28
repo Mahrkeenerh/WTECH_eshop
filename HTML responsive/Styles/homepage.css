@@ -10,9 +10,18 @@ body {
     background: #dddddd;
     display: grid;
     margin: 0;
-    grid-template-columns: [eshop_name]280px [searchbar]auto [cart]200px [login]300px;
     align-self: center;
     align-content: center;
+}
+@media (min-width: 1000px) {
+    #header {
+        grid-template-columns: [eshop_name]280px [searchbar]auto [cart]60px [login]300px;
+    }
+}
+@media (min-width: 1200px) {
+    #header {
+        grid-template-columns: [eshop_name]280px [searchbar]auto [cart]200px [login]300px;
+    }
 }
 #header > *{
     display: inline;
@@ -51,10 +60,10 @@ body {
     left: 15px;
     align-self: center;
 }
-input:focus + label {
+#header input:focus + label {
     display: none;
 }
-form input:valid ~ label{
+#header form input:valid ~ label{
   display: none;
 }
 
