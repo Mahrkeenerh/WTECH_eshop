@@ -10,7 +10,7 @@ body {
     background: #dddddd;
     display: grid;
     margin: 0;
-    grid-template-columns: [eshop_name]280px [searchbar]auto [cart]200px [login]100px;
+    grid-template-columns: [eshop_name]280px [searchbar]auto [cart]200px [login]300px;
     align-self: center;
     align-content: center;
 }
@@ -27,24 +27,28 @@ body {
 #header .search_bar {
     justify-self: center;
 }
-#header .cart, #header .login{
+#header .cart {
     justify-self: right;
+    cursor: pointer;
+}
+#header .login{
+    justify-self: center;
     cursor: pointer;
 }
 #header .search_bar button {
     cursor: pointer;
 }
 /*searchbar*/
-form > div {
+#header form {
     width: 400px;
     position: relative;
 }
-input {
+#header form input {
     width: 75%;
 }
-form > div > label {
+#header form > label {
     position: absolute;
-    left: 3px;
+    left: 15px;
     align-self: center;
 }
 input:focus + label {
@@ -104,7 +108,9 @@ input[type=radio] + label:hover {
     background: #a1e1e2;
 }
 input[type=radio]:checked + label {
-    border: 3px solid orange;
+    border-top: 3px solid orange;
+    border-right: 3px solid orange;
+    border-left: 3px solid orange;
 }
 .tabs .tab_content {
     width: 100%;
