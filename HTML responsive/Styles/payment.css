@@ -80,18 +80,18 @@ body a {
     display: inline-block;
     cursor: default;
 }
-#order_process > .content:hover {
+#order_process > .content:hover, #order_process > .shipping:hover {
     color: #a1e1e2;
 }
-#order_process > .content {
+#order_process > .content a:hover, #order_process > .shipping a:hover {
+    color: #a1e1e2;
+}
+#order_process > .content, #order_process > .shipping {
     cursor: pointer;
     color: black;
 }
-#order_process > .shipping {
-    color: black;
-}
 #order_process > .payment {
-    color: darkgrey;
+    color: black;
 }
 
 /*Content*/
@@ -99,69 +99,51 @@ body a {
     max-width: 1200px;
     justify-self: center;
     display:grid;
-    grid-template-columns: 5fr 5fr 2fr;
+    grid-template-columns: 3fr 1fr;
     grid-column-gap: 10px;
 }
 #content > * {
     padding: 20px;
 }
-/*Shipping info*/
-#shipping_info {
+/*Payment method*/
+#payment_options {
     border: 3px solid orange;
     border-radius: 5px;
 }
-#shipping_info form {
-    padding: 5px;
-}
-#shipping_info form > * {
-    display: block;
-    width: 75%;
-}
-#shipping_info button {
-    margin: 5px;
-    padding: 10px;
-    width: 30%;
-    cursor: pointer;
-}
-/*Delivery*/
-#delivery_options {
-    border: 3px solid orange;
-    border-radius: 5px;
-}
-#delivery_options form p {
+#payment_options form p {
     padding: 10px 5px;
     border-radius: 5px;
     background: #eaeaea;
 }
-#delivery_options form p input:hover, #delivery_options form p label:hover {
+#payment_options form p input:hover, #payment_options form p label:hover {
     cursor: pointer;
 }
-#delivery_options form p input {
+#payment_options form p input {
     float: right;
 }
-#delivery_options form p .price {
+#payment_options form p .price {
     background: white;
     padding: 5px;
     border-radius: 15px;
 }
-#delivery_options form p label {
+#payment_options form p label {
     padding: 3px;
 }
-#delivery_options form fieldset {
+#payment_options form fieldset {
     border: none;
 }
 /*Continue*/
-#continue {
+#finish {
     height: fit-content;
     border: 3px solid orange;
     border-radius: 5px;
 }
-#continue > * {
+#finish > * {
     align-self: center;
     text-align: center;
     margin-top: 5px;
     margin-bottom: 5px;
 }
-#continue button {
+#finish button {
     cursor: pointer;
 }

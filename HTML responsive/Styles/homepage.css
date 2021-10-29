@@ -4,6 +4,10 @@ body {
     padding: 0;
     grid-template-rows: [header]70px [categories]auto [products]auto;
 }
+body a {
+    text-decoration: none;
+    color: black;
+}
 
 /*HEADER*/
 #header {
@@ -12,10 +16,6 @@ body {
     margin: 0;
     align-self: center;
     align-content: center;
-}
-#header a {
-    text-decoration: none;
-    color: black;
 }
 @media (min-width: 1000px) {
     #header {
