@@ -7,11 +7,15 @@ body {
 
 /*HEADER*/
 #header {
-    background: #dddddd;
+    background: orange;
     display: grid;
     margin: 0;
     align-self: center;
     align-content: center;
+}
+#header a {
+    text-decoration: none;
+    color: black;
 }
 @media (min-width: 1000px) {
     #header {
@@ -67,20 +71,28 @@ body {
     display: none;
 }
 
-/*temp*/
-.info_container * {border: 1px solid black;}
 /*Info content*/
 .info_container {
+    border: 3px solid orange;
+    border-radius: 5px;
+    margin-top:50px;
+    padding: 10px;
     max-width: 1400px;
     display: grid;
     grid-template-columns: [personal_info]500px [address]500px;
     justify-self: center;
+}
+.info_container h2 {
+    margin: 0;
 }
 .info_container h2, .info_container form {
     padding: 10px;
 }
 .info_container button {
     margin: 10px;
+}
+.info_container form > input {
+    width: 75%;
 }
 
 /*Personal info*/

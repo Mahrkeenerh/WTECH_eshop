@@ -7,11 +7,15 @@ body {
 
 /*HEADER*/
 #header {
-    background: #dddddd;
+    background: orange;
     display: grid;
     margin: 0;
     align-self: center;
     align-content: center;
+}
+#header a {
+    text-decoration: none;
+    color: black;
 }
 @media (min-width: 1000px) {
     #header {
@@ -88,7 +92,8 @@ body {
     grid-template-rows: auto auto;
     justify-items: center;
     align-items: center;
-    border: 2px solid orange;
+    border: 3px solid orange;
+    border-radius: 5px;
     height: 200px;
 }
 .category label {
@@ -120,10 +125,13 @@ input[type=radio]:checked + label {
     border-top: 3px solid orange;
     border-right: 3px solid orange;
     border-left: 3px solid orange;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 .tabs .tab_content {
     width: 100%;
     border: 3px solid orange;
+    border-radius: 5px;
     order: 1;
     display: none;
 }
