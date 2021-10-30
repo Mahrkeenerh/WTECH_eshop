@@ -3,11 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <title>Categories</title>
-    <link href="homepage.css" rel="stylesheet">
+    <link href="Styles/category.css" rel="stylesheet">
 </head>
 <body>
 
-    <?php include "header.html" ?>
+
+<div id="header">
+    <h1 class="eshop_name"><a href="homepage.html">CAR STUFF 4 U</a></h1>
+    <form class="search_bar">
+            <input type="text" id="top_searchbar" name="top_searchbar" required>
+            <label for="top_searchbar">I'm looking for...</label>
+            <button>Search</button>
+    </form>
+    <img class="cart" src="../Icons/homepage/shopping_cart_30.png" alt="shopping cart">
+    <h3 class="login"><a href="login.html">Login</a></h3>
+</div>
+
+
+<div id="grid">
+
+    <div id="sidebar">
+        <div id="big">
+            <div class="filter_block">
+                <label class="category_title">Price:</label>
+                <br>
+                <input type="text" placeholder="0.01" id="min_price">
+                <label> - </label>
+                <input type="text" placeholder="999.99" id="max_price">
+            </div>
+            <div class="filter_block">
+                <label class="category_title">Manufacturer:</label>
+                <br>
+                <input type="checkbox" name="action" id="abc_inc">
+                <label for="abc_inc">abc_inc</label>
+                <br>
+                <input type="checkbox" name="action" id="makers">
+                <label for="makers">makers</label>
+                <br>
+                <input type="checkbox" name="action" id="creators">
+                <label for="creators">creators</label>
+                <br>
+                <input type="checkbox" name="action" id="aaasus">
+                <label for="aaasus">aaasus</label>
+            </div>
+            <div class="filter_block">
+                <label class="category_title">Color:</label>
+                <br>
+                <input type="checkbox" name="action" id="white">
+                <label for="white">white</label>
+                <br>
+                <input type="checkbox" name="action" id="black">
+                <label for="black">black</label>
+                <br>
+                <input type="checkbox" name="action" id="orange">
+                <label for="orange">orange</label>
+                <br>
+                <input type="checkbox" name="action" id="magenta">
+                <label for="magenta">magenta</label>
+            </div>
+            <div class="filter_block">
+                <label class="category_title">Material:</label>
+                <br>
+                <input type="checkbox" name="action" id="metal">
+                <label for="metal">metal</label>
+                <br>
+                <input type="checkbox" name="action" id="aluminium">
+                <label for="aluminium">aluminium</label>
+                <br>
+                <input type="checkbox" name="action" id="copper">
+                <label for="copper">copper</label>
+            </div>
+            <div class="filter_block">
+                <label class="category_title">Volume:</label>
+                <br>
+                <input type="text" placeholder="0.01" id="min_volume">
+                <label> - </label>
+                <input type="text" placeholder="999.99" id="max_volume">
+            </div>
+            <div class="button_block">
+                <input type=button value="Apply">
+            </div>
+        </div>
+        
+        <div id="smol">
+
+        </div>
+    </div>
+    
+    
+    <div id="main">
+        <div id="categories_path">
+            <a href="homepage.html"><h3 class="c_path">Home</h3></a>
+            <h3>>></h3>
+            <a href="category.html"><h3 class="c_path">Car parts</h3></a>
+            <h3>>></h3>
+            <a href="category.html"><h3 class="c_path">Braking</h3></a>
+            <h3>>></h3>
+            <a href="category.html"><h3 class="c_path">Brake discs</h3></a>
+        </div>
+
+        <div id="categories">
+            <a href="category.html">
+                <span class="category">
+                    <h2>Front brake discs</h2>
+                </span>
+            </a>
+            <a href="category.html">
+                <span class="category">
+                    <h2>Rear brake discs</h2>
+                </span>
+            </a>
+            <a href="category.html">
+                <span class="category">
+                    <h2>Different brake discs</h2>
+                </span>
+            </a>
+            <a href="category.html">
+                <span class="category">
+                    <h2>Different brake discs</h2>
+                </span>
+            </a>
+            <a href="category.html">
+                <span class="category">
+                    <h2>Different brake discs</h2>
+                </span>
+            </a>
+            <a href="category.html">
+                <span class="category">
+                    <h2>Different brake discs</h2>
+                </span>
+            </a>
+            <a href="category.html">
+                <span class="category">
+                    <h2>Different brake discs</h2>
+                </span>
+            </a>
+            <a href="category.html">
+                <span class="category">
+                    <h2>Different brake discs</h2>
+                </span>
+            </a>
+            <a href="category.html">
+                <span class="category">
+                    <h2>Different brake discs</h2>
+                </span>
+            </a>
+            <a href="category.html">
+                <span class="category">
+                    <h2>Different brake discs</h2>
+                </span>
+            </a>
+        </div>
+
+        <div id="sorting">
+            <div id="sort">
+                <h2>Order by: </h2>
+                <a href="category.html"><h3 class="s" style="font-weight:100;">cheapest</h3></a>
+                <a href="category.html"><h3 class="s" style="font-weight:100;">expensive</h3></a>
+                <a href="category.html"><h2 class="s" style="font-weight:900;">top rated</h2></a>
+            </div>
+            
+            <div id="order">
+                <h2>per page: </h2>
+                <a href="category.html"><h3 class="o" style="font-weight:100;">20</h3></a>
+                <h2>/</h2>
+                <a href="category.html"><h3 class="o" style="font-weight:100;">50</h3></a>
+                <h2>/</h2>
+                <a href="category.html"><h2 class="o" style="font-weight:900;">100</h2></a>
+            </div>
+        </div>
+    
+        <div id="items">
+            <div id="item">
+                <div id="item_image">
+                    <img src="../Items/brakepads_200.jpg" alt="brakepads"
+                        srcset="../Items/brakepads_100.jpg 100w,
+                        ../Items/brakepads_200.jpg 200w"
+                        sizes="(max-width: 750px) 100px,
+                                200px">
+                </div>
+                <div id="item_text">
+                    <h2>BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER</h2>
+                    <label>Brand -	BRUMBO, Height [mm] -	39.5, Fitting Position	- Front Axle, Diameter [mm] -	291, Brake Disc Type -	Solid, Brake Disc Thickness [mm]	- 10, Minimum Thickness [mm]	- 8, Number of...</label>
+                </div>
+                <div id="item_buy">
+                    <div class="text_grid">
+                        <h2>192.90 €</h2>
+                        <s>220.50 €</s>
+                    </div>
+                    <div class="button_grid">
+                        <input type=button value="Add to cart">
+                    </div>
+                </div>
+            </div>
+            <div id="item">
+                <div id="item_image">
+                    <img src="../Items/brakepads_200.jpg" alt="brakepads"
+                        srcset="../Items/brakepads_100.jpg 100w,
+                        ../Items/brakepads_200.jpg 200w"
+                        sizes="(max-width: 750px) 100px,
+                                200px">
+                </div>
+                <div id="item_text">
+                    <h2>BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER</h2>
+                    <label>Brand -	BRUMBO, Height [mm] -	39.5, Fitting Position	- Front Axle, Diameter [mm] -	291, Brake Disc Type -	Solid, Brake Disc Thickness [mm]	- 10, Minimum Thickness [mm]	- 8, Number of...</label>
+                </div>
+                <div id="item_buy">
+                    <div class="text_grid">
+                        <h2>192.90 €</h2>
+                        <s>220.50 €</s>
+                    </div>
+                    <div class="button_grid">
+                        <input type=button value="Add to cart">
+                    </div>
+                </div>
+            </div>
+            <div id="item">
+                <div id="item_image">
+                    <img src="../Items/brakepads_200.jpg" alt="brakepads"
+                        srcset="../Items/brakepads_100.jpg 100w,
+                        ../Items/brakepads_200.jpg 200w"
+                        sizes="(max-width: 750px) 100px,
+                                200px">
+                </div>
+                <div id="item_text">
+                    <h2>BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER</h2>
+                    <label>Brand -	BRUMBO, Height [mm] -	39.5, Fitting Position	- Front Axle, Diameter [mm] -	291, Brake Disc Type -	Solid, Brake Disc Thickness [mm]	- 10, Minimum Thickness [mm]	- 8, Number of...</label>
+                </div>
+                <div id="item_buy">
+                    <div class="text_grid">
+                        <h2>192.90 €</h2>
+                        <s>220.50 €</s>
+                    </div>
+                    <div class="button_grid">
+                        <input type=button value="Add to cart">
+                    </div>
+                </div>
+            </div>
+            <div id="item">
+                <div id="item_image">
+                    <img src="../Items/brakepads_200.jpg" alt="brakepads"
+                        srcset="../Items/brakepads_100.jpg 100w,
+                        ../Items/brakepads_200.jpg 200w"
+                        sizes="(max-width: 750px) 100px,
+                                200px">
+                </div>
+                <div id="item_text">
+                    <h2>BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER</h2>
+                    <label>Brand -	BRUMBO, Height [mm] -	39.5, Fitting Position	- Front Axle, Diameter [mm] -	291, Brake Disc Type -	Solid, Brake Disc Thickness [mm]	- 10, Minimum Thickness [mm]	- 8, Number of...</label>
+                </div>
+                <div id="item_buy">
+                    <div class="text_grid">
+                        <h2>192.90 €</h2>
+                        <s>220.50 €</s>
+                    </div>
+                    <div class="button_grid">
+                        <input type=button value="Add to cart">
+                    </div>
+                </div>
+            </div>
+            <div id="item">
+                <div id="item_image">
+                    <img src="../Items/brakepads_200.jpg" alt="brakepads"
+                        srcset="../Items/brakepads_100.jpg 100w,
+                        ../Items/brakepads_200.jpg 200w"
+                        sizes="(max-width: 750px) 100px,
+                                200px">
+                </div>
+                <div id="item_text">
+                    <h2>BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER</h2>
+                    <label>Brand -	BRUMBO, Height [mm] -	39.5, Fitting Position	- Front Axle, Diameter [mm] -	291, Brake Disc Type -	Solid, Brake Disc Thickness [mm]	- 10, Minimum Thickness [mm]	- 8, Number of...</label>
+                </div>
+                <div id="item_buy">
+                    <div class="text_grid">
+                        <h2>192.90 €</h2>
+                        <s>220.50 €</s>
+                    </div>
+                    <div class="button_grid">
+                        <input type=button value="Add to cart">
+                    </div>
+                </div>
+            </div>
+            <div id="item">
+                <div id="item_image">
+                    <img src="../Items/brakepads_200.jpg" alt="brakepads"
+                        srcset="../Items/brakepads_100.jpg 100w,
+                        ../Items/brakepads_200.jpg 200w"
+                        sizes="(max-width: 750px) 100px,
+                                200px">
+                </div>
+                <div id="item_text">
+                    <h2>BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER</h2>
+                    <label>Brand -	BRUMBO, Height [mm] -	39.5, Fitting Position	- Front Axle, Diameter [mm] -	291, Brake Disc Type -	Solid, Brake Disc Thickness [mm]	- 10, Minimum Thickness [mm]	- 8, Number of...</label>
+                </div>
+                <div id="item_buy">
+                    <div class="text_grid">
+                        <h2>192.90 €</h2>
+                        <s>220.50 €</s>
+                    </div>
+                    <div class="button_grid">
+                        <input type=button value="Add to cart">
+                    </div>
+                </div>
+            </div>
+            <div id="item">
+                <div id="item_image">
+                    <img src="../Items/brakepads_200.jpg" alt="brakepads"
+                        srcset="../Items/brakepads_100.jpg 100w,
+                        ../Items/brakepads_200.jpg 200w"
+                        sizes="(max-width: 750px) 100px,
+                                200px">
+                </div>
+                <div id="item_text">
+                    <h2>BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER</h2>
+                    <label>Brand -	BRUMBO, Height [mm] -	39.5, Fitting Position	- Front Axle, Diameter [mm] -	291, Brake Disc Type -	Solid, Brake Disc Thickness [mm]	- 10, Minimum Thickness [mm]	- 8, Number of...</label>
+                </div>
+                <div id="item_buy">
+                    <div class="text_grid">
+                        <h2>192.90 €</h2>
+                        <s>220.50 €</s>
+                    </div>
+                    <div class="button_grid">
+                        <input type=button value="Add to cart">
+                    </div>
+                </div>
+            </div>
+            <div id="item">
+                <div id="item_image">
+                    <img src="../Items/brakepads_200.jpg" alt="brakepads"
+                        srcset="../Items/brakepads_100.jpg 100w,
+                        ../Items/brakepads_200.jpg 200w"
+                        sizes="(max-width: 750px) 100px,
+                                200px">
+                </div>
+                <div id="item_text">
+                    <h2>BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER</h2>
+                    <label>Brand -	BRUMBO, Height [mm] -	39.5, Fitting Position	- Front Axle, Diameter [mm] -	291, Brake Disc Type -	Solid, Brake Disc Thickness [mm]	- 10, Minimum Thickness [mm]	- 8, Number of...</label>
+                </div>
+                <div id="item_buy">
+                    <div class="text_grid">
+                        <h2>192.90 €</h2>
+                        <s>220.50 €</s>
+                    </div>
+                    <div class="button_grid">
+                        <input type=button value="Add to cart">
+                    </div>
+                </div>
+            </div>
+            <div id="item">
+                <div id="item_image">
+                    <img src="../Items/brakepads_200.jpg" alt="brakepads"
+                        srcset="../Items/brakepads_100.jpg 100w,
+                        ../Items/brakepads_200.jpg 200w"
+                        sizes="(max-width: 750px) 100px,
+                                200px">
+                </div>
+                <div id="item_text">
+                    <h2>BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER</h2>
+                    <label>Brand -	BRUMBO, Height [mm] -	39.5, Fitting Position	- Front Axle, Diameter [mm] -	291, Brake Disc Type -	Solid, Brake Disc Thickness [mm]	- 10, Minimum Thickness [mm]	- 8, Number of...</label>
+                </div>
+                <div id="item_buy">
+                    <div class="text_grid">
+                        <h2>192.90 €</h2>
+                        <s>220.50 €</s>
+                    </div>
+                    <div class="button_grid">
+                        <input type=button value="Add to cart">
+                    </div>
+                </div>
+            </div>
+            <div id="item">
+                <div id="item_image">
+                    <img src="../Items/brakepads_200.jpg" alt="brakepads"
+                        srcset="../Items/brakepads_100.jpg 100w,
+                        ../Items/brakepads_200.jpg 200w"
+                        sizes="(max-width: 750px) 100px,
+                                200px">
+                </div>
+                <div id="item_text">
+                    <h2>BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER</h2>
+                    <label>Brand -	BRUMBO, Height [mm] -	39.5, Fitting Position	- Front Axle, Diameter [mm] -	291, Brake Disc Type -	Solid, Brake Disc Thickness [mm]	- 10, Minimum Thickness [mm]	- 8, Number of...</label>
+                </div>
+                <div id="item_buy">
+                    <div class="text_grid">
+                        <h2>192.90 €</h2>
+                        <s>220.50 €</s>
+                    </div>
+                    <div class="button_grid">
+                        <input type=button value="Add to cart">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
 
 </body>
 </html>
