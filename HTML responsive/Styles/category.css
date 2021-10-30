@@ -76,7 +76,7 @@ body a {
 #grid {
     display: grid;
 }
-@media (min-width: 750px) {
+@media (min-width: 850px) {
     #grid {
         display: grid;
         grid-template-columns: 250px 1fr;
@@ -203,10 +203,12 @@ body a {
 #item_buy .button_grid input[type=button] {
     cursor: pointer;
     padding: 5px 10px;
+    width: 125px;
+    height: 50px;
     font-size: 20px;
 }
 
-@media (min-width: 750px) {
+@media (min-width: 850px) {
     #item {
         display: grid;
         grid-template-columns: 220px 5fr 175px;
@@ -214,8 +216,5 @@ body a {
     #item_image {
         width: 200px;
         height: 200px;
-    }
-    #item_buy .button_grid {
-        margin: 30px 10px 10px 10px;
     }
 }
