@@ -1,0 +1,116 @@
+body {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    grid-template-rows: [header]70px [body]auto;
+}
+body a {
+    text-decoration: none;
+    color: black;
+}
+
+/*HEADER*/
+#header {
+    background: orange;
+    display: grid;
+    margin: 0;
+    align-self: center;
+    align-content: center;
+}
+@media (min-width: 1000px) {
+    #header {
+        grid-template-columns: [eshop_name]280px [searchbar]auto [cart]60px [login]300px;
+    }
+}
+@media (min-width: 1200px) {
+    #header {
+        grid-template-columns: [eshop_name]280px [searchbar]auto [cart]200px [login]300px;
+    }
+}
+#header > *{
+    display: inline;
+    margin: 0;
+    padding: 10px;
+    align-self: center;
+}
+#header .eshop_name {
+    justify-self: left;
+    cursor: pointer;
+}
+#header .search_bar {
+    justify-self: center;
+}
+#header .cart {
+    justify-self: right;
+    cursor: pointer;
+}
+#header .login{
+    justify-self: center;
+    cursor: pointer;
+}
+#header .search_bar button {
+    cursor: pointer;
+}
+/*searchbar*/
+#header form {
+    width: 400px;
+    position: relative;
+}
+#header form input {
+    width: 75%;
+}
+#header form > label {
+    position: absolute;
+    left: 15px;
+    align-self: center;
+}
+#header input:focus + label {
+    display: none;
+}
+#header form input:valid ~ label{
+  display: none;
+}
+
+/*body grid*/
+#grid {
+    display: grid;
+    width: 300px;
+    justify-self: center;
+}
+
+#grid h1 {
+    justify-self: center;
+}
+#grid input[type=text], #grid input[type=password] {
+    width: 300px;
+    height: 20px;
+    border-radius: 5px;
+    justify-self: center;
+}
+#grid input[type=button], #grid .register_button {
+    width: 125px;
+    height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    justify-self: center;
+}
+#grid label {
+    padding-left: 5px;
+    justify-self: center;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+#grid .left_label {
+    justify-self: left;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+#grid .forgot_pass {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+#grid .forgot_pass:hover {
+    cursor: pointer;
+    color: #a1e1e2;
+}

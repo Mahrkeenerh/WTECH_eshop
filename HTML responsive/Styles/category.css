@@ -99,6 +99,7 @@ body a {
 #sidebar input[type=text] {
     width: 43%;
     text-align: center;
+    border-radius: 5px;
 }
 #sidebar input[type=checkbox] {
     width: 10%;
