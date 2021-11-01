@@ -176,32 +176,32 @@ body a {
     color: #a1e1e2;
 }
 
-#item {
+.item {
     display: grid;
     background-color: orange;
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
 }
-#item_image {
+.item_image {
     width: 100px;
     height: 100px;
 }
 
-#item_buy {
+.item_buy {
     display: grid;
 }
-#item_buy s, #item_buy h2 {
+.item_buy s, .item_buy h2 {
     display: flex;
     justify-content: right;
     margin: 10px;
 }
-#item_buy .button_grid {
+.item_buy .button_grid {
     display: flex;
     justify-content: right;
     margin: 0 10px 10px 10px;
 }
-#item_buy .button_grid input[type=button] {
+.item_buy .button_grid input[type=button] {
     cursor: pointer;
     padding: 5px 10px;
     width: 125px;
@@ -210,11 +210,11 @@ body a {
 }
 
 @media (min-width: 850px) {
-    #item {
+    .item {
         display: grid;
         grid-template-columns: 220px 5fr 175px;
     }
-    #item_image {
+    .item_image {
         width: 200px;
         height: 200px;
     }
