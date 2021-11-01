@@ -1,0 +1,157 @@
+body {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    grid-template-rows: [header]70px [body]auto;
+}
+body a {
+    text-decoration: none;
+    color: black;
+}
+
+/*HEADER*/
+#header {
+    background: orange;
+    display: grid;
+    margin: 0;
+    align-self: center;
+    align-content: center;
+}
+@media (min-width: 1000px) {
+    #header {
+        grid-template-columns: [eshop_name]280px [searchbar]auto [cart]60px [login]300px;
+    }
+}
+@media (min-width: 1200px) {
+    #header {
+        grid-template-columns: [eshop_name]280px [searchbar]auto [cart]200px [login]300px;
+    }
+}
+#header > *{
+    display: inline;
+    margin: 0;
+    padding: 10px;
+    align-self: center;
+}
+#header .eshop_name {
+    justify-self: left;
+    cursor: pointer;
+}
+#header .search_bar {
+    justify-self: center;
+}
+#header .cart {
+    justify-self: right;
+    cursor: pointer;
+}
+#header .login{
+    justify-self: center;
+    cursor: pointer;
+}
+#header .search_bar button {
+    cursor: pointer;
+}
+/*searchbar*/
+#header form {
+    width: 400px;
+    position: relative;
+}
+#header form input {
+    width: 75%;
+}
+#header form > label {
+    position: absolute;
+    left: 15px;
+    align-self: center;
+}
+#header input:focus + label {
+    display: none;
+}
+#header form input:valid ~ label{
+    display: none;
+}
+
+
+/* rest of the stuff */
+#top {
+    display: grid;
+}
+@media (min-width: 1100px) {
+    #top {
+        grid-template-columns: 510px auto 200px;
+    }
+}
+#item_image {
+    justify-self: center;
+    width: 200px;
+    height: 200px;
+}
+@media (min-width: 600px) {
+    #item_image {
+        width: 500px;
+        height: 500px;
+    }
+}
+#item_title {
+    padding: 0 5px;
+}
+#buttons {
+    margin-top: 20px;
+    margin-right: 10px;
+}
+#buttons h1, #buttons s {
+    display: flex;
+    justify-content: right;
+    margin: 10px;
+}
+#buttons input[type=button]:hover{
+    cursor: pointer;
+}
+#buttons .add_cart_button {
+    display: flex;
+    justify-content: right;
+}
+#buttons .add_button {
+    font-size: 25px;
+    padding: 5px 10px;
+    margin-top: 10px;
+}
+#buttons .middle_buttons {
+    padding-top: 10px;
+    display: flex;
+    justify-content: right;
+}
+#buttons .middle_buttons > * {
+    margin-left: 20px;
+}
+
+#description {
+    padding: 10px;
+    font-size: 20px;
+}
+
+#contents {
+    font-size: 20px;
+    padding: 10px;
+}
+
+#contents td {
+    border-bottom: 1px solid black;
+}
+#contents table {
+    width: 100%
+}
+
+/* Footer */
+#footer {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#footer .footer_link:hover{
+    cursor: pointer;
+    color: #a1e1e2;
+}
+#footer label {
+    margin-left: 5px;
+    padding-bottom: 10px;
+}
