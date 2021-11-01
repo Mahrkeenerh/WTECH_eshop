@@ -311,3 +311,18 @@ input[type=radio]:checked + label {
 .product .old_product_price {
     text-decoration: line-through;
 }
+
+
+/* Footer */
+#footer {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#footer .footer_link:hover{
+    cursor: pointer;
+    color: #a1e1e2;
+}
+#footer label {
+    margin-left: 5px;
+    padding-bottom: 10px;
+}

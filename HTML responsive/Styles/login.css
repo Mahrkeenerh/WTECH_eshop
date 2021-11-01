@@ -184,3 +184,18 @@ body a {
     cursor: pointer;
     color: #a1e1e2;
 }
+
+
+/* Footer */
+#footer {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+#footer .footer_link:hover{
+    cursor: pointer;
+    color: #a1e1e2;
+}
+#footer label {
+    margin-left: 5px;
+    padding-bottom: 10px;
+}
