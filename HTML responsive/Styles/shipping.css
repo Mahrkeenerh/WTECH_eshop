@@ -153,6 +153,9 @@ body a {
 #order_process > .content:hover {
     color: #a1e1e2;
 }
+#order_process > .content a:hover, #order_process > .shipping a:hover {
+    color: #a1e1e2;
+}
 #order_process > .content {
     cursor: pointer;
     color: black;

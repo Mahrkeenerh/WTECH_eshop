@@ -142,6 +142,22 @@ body a {
 }
 
 
+/*Order process*/
+#order_process {
+    display: block;
+    margin-left: 20px;
+}
+#order_process > * {
+    display: inline-block;
+    cursor: default;
+}
+#order_process > .content {
+    color: black;
+}
+#order_process > .payment, #order_process > .shipping {
+    color: darkgrey;
+}
+
 /* Main */
 
 
