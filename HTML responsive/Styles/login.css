@@ -145,7 +145,6 @@ body a {
 #grid {
     display: grid;
     width: 300px;
-    height: 375px;
     justify-self: center;
 }
 
@@ -187,17 +186,8 @@ body a {
 }
 
 
-body {
-    min-height: 100vh;
-}
 /* Footer */
-#footer_container {
-    position: relative;
-    min-height: 50px;
-}
 #footer {
-    position: absolute;
-    bottom: 20px;
     margin-left: 20px;
     margin-top: 20px;
 }
