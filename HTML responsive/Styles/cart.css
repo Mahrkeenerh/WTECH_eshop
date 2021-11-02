@@ -198,12 +198,21 @@ body a {
 }
 .item_buy .button_grid label {
     margin: 5px 10px;
+    font-size: 20px;
 }
 .item_buy .button_grid input[type=button] {
     cursor: pointer;
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     font-size: 15px;
+}
+.item_buy .button_grid img {
+    width: 32px;
+    height: 32px;
+    margin-left: 25px;
+}
+.item_buy .button_grid img:hover {
+    cursor: pointer;
 }
 
 @media (min-width: 850px) {
@@ -224,7 +233,7 @@ body a {
     font-size: 30px;
 }
 #buttons label {
-    font-size: 20px;
+    font-size: 25px;
 }
 #buttons input {
     font-size: 20px;
