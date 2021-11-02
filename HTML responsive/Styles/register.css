@@ -182,7 +182,7 @@ body a {
 /* Footer */
 #footer {
     margin-left: 20px;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 #footer .footer_link:hover{
     cursor: pointer;
