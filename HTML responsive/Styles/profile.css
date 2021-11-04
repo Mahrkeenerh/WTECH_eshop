@@ -157,15 +157,29 @@ body button:hover, body [type=button]:hover {
 }
 
 /*Info content*/
-.info_container {
-    border: 3px solid orange;
-    border-radius: 5px;
-    margin-top:50px;
-    padding: 10px;
-    max-width: 1400px;
-    display: grid;
-    grid-template-columns: [personal_info]500px [address]500px;
-    justify-self: center;
+@media (min-width: 320px) {
+    .info_container {
+        border: 3px solid orange;
+        border-radius: 5px;
+        margin-top:10px;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: auto;
+        justify-self: center;
+        width: 90%;
+    }
+}
+@media (min-width: 700px) {
+    .info_container {
+        grid-template-columns: [personal_info]1fr [address]1fr;
+    }
+}
+@media (min-width: 1050px) {
+    .info_container {
+        max-width: 1400px;
+        grid-template-columns: [personal_info]500px [address]500px;
+        width: auto;
+    }
 }
 .info_container h2 {
     margin: 0;
