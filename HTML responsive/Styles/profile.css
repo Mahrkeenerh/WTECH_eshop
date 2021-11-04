@@ -19,6 +19,19 @@ body a {
     text-decoration: none;
     color: black;
 }
+/*buttons style*/
+body button, body [type=button] {
+    border-radius: 5px;
+    border: 2px solid grey;
+    background: white;
+    color: darkgrey;
+    font-weight: bold;
+}
+body button:hover, body [type=button]:hover {
+    border: 2px solid #a1e1e2;
+    background: white;
+    color: black;
+}
 
 /*HEADER*/
 #header {
@@ -161,7 +174,9 @@ body a {
     padding: 10px;
 }
 .info_container button {
+    cursor: pointer;
     margin: 10px;
+    padding: 10px;
 }
 .info_container form > input {
     width: 75%;

@@ -19,6 +19,19 @@ body a {
     text-decoration: none;
     color: black;
 }
+/*buttons style*/
+body button, body [type=button] {
+    border-radius: 5px;
+    border: 2px solid grey;
+    background: white;
+    color: darkgrey;
+    font-weight: bold;
+}
+body button:hover, body [type=button]:hover {
+    border: 2px solid #a1e1e2;
+    background: white;
+    color: black;
+}
 
 /*HEADER*/
 #header {
@@ -195,7 +208,7 @@ body a {
 #shipping_info button {
     margin: 5px;
     padding: 10px;
-    width: 30%;
+    width: 130px;
     cursor: pointer;
 }
 /*Delivery*/
@@ -239,6 +252,8 @@ body a {
 }
 #continue button {
     cursor: pointer;
+    font-size: 20px;
+    padding: 10px;
 }
 
 

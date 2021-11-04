@@ -19,6 +19,19 @@ body a {
     text-decoration: none;
     color: black;
 }
+/*buttons style*/
+body button, body [type=button] {
+    border-radius: 5px;
+    border: 2px solid grey;
+    background: white;
+    color: darkgrey;
+    font-weight: bold;
+}
+body button:hover, body [type=button]:hover {
+    border: 2px solid #a1e1e2;
+    background: white;
+    color: black;
+}
 
 /*HEADER*/
 #header {
@@ -291,13 +304,14 @@ input[type=radio]:checked + label {
 }
 .product {
     display: grid;
-    grid-template-rows: [image]120px [product_name]60px [price]1fr [old_price]1fr [buy]1fr;
+    grid-template-rows: [image]120px [product_name]55px [price]20px [old_price]20px [buy]auto;
     width: 200px;
-    height: 250px;
+    height: 260px;
     justify-items: center;
     align-items: center;
     margin: 10px;
-    background: #dddddd;
+    background: orange;
+    border-radius: 5px;
 }
 .product .product_name {
     overflow: hidden;
@@ -310,10 +324,13 @@ input[type=radio]:checked + label {
 .product .product_name:hover, .product button:hover {
     cursor: pointer;
 }
-.product .old_product_price {
-    text-decoration: line-through;
+.product .product_price {
+    color: red;
+    font-weight: bold;
 }
-
+.product button{
+    padding: 5px;
+}
 
 /* Footer */
 #footer {
