@@ -1,11 +1,11 @@
 @media (min-width: 320px) {
     body {
-        grid-template-rows: [header]140px [categories]auto [products]auto;
+        grid-template-rows: [header]120px [categories]auto [products]auto [footer]auto;
     }
 }
 @media (min-width: 760px) {
     body {
-        grid-template-rows: [header]70px [categories]auto [products]auto;
+        grid-template-rows: [header]60px [categories]auto [products]auto [footer]auto;
     }
 }
 body {
@@ -40,6 +40,7 @@ body button:hover, body [type=button]:hover {
     margin: 0;
     align-self: center;
     align-content: center;
+    height: 100%;
 }
 @media (min-width: 320px) {
     #header {

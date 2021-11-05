@@ -1,11 +1,11 @@
 @media (min-width: 320px) {
     body {
-        grid-template-rows: [header]140px [categories]auto [products]auto;
+        grid-template-rows: [header]120px [categories]auto [products]auto;
     }
 }
 @media (min-width: 760px) {
     body {
-        grid-template-rows: [header]70px [categories]auto [products]auto;
+        grid-template-rows: [header]60px [categories]auto [products]auto;
     }
 }
 body {
@@ -40,6 +40,7 @@ body button:hover, body [type=button]:hover {
     margin: 0;
     align-self: center;
     align-content: center;
+    height: 100%;
 }
 @media (min-width: 320px) {
     #header {
@@ -168,10 +169,16 @@ body button:hover, body [type=button]:hover {
         justify-self: center;
         width: 90%;
     }
+    .info_container form > input {
+        width: 90%;
+    }
 }
 @media (min-width: 700px) {
     .info_container {
         grid-template-columns: [personal_info]1fr [address]1fr;
+    }
+    .info_container form > input {
+        width: 75%;
     }
 }
 @media (min-width: 1050px) {
@@ -191,9 +198,6 @@ body button:hover, body [type=button]:hover {
     cursor: pointer;
     margin: 10px;
     padding: 10px;
-}
-.info_container form > input {
-    width: 75%;
 }
 
 /*Personal info*/
