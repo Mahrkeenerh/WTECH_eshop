@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>12</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>516</x>
+      <y>276</y>
+      <w>360</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>Users
+--
+id:                         bigint
+email:                 varchar(64)
+password_hash:        varchar(265)
+first_name:            varchar(64)
+last_name:             varchar(64)
+state:                 varchar(64)
+city:                  varchar(64)
+street_and_number:    varchar(256)
+postal_code:           varchar(64)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>144</x>
+      <y>276</y>
+      <w>180</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Admins
+--
+id:       bigint
+user_id:  bigint</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1080</x>
+      <y>264</y>
+      <w>312</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Orders
+--
+id:                    bigint
+user_id:               bigint
+shipping_type:    varchar(64)
+shipping_price:        float8
+payment_type:     varchar(64)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1116</x>
+      <y>540</y>
+      <w>228</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Order_items
+--
+id:            bigint
+order_id:      bigint
+amount:       integer
+unit_price:    float8
+item_id:       bigint</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>516</x>
+      <y>528</y>
+      <w>312</w>
+      <h>204</h>
+    </coordinates>
+    <panel_attributes>Items
+--
+id:                    bigint
+name:            varchar(256)
+category_id:           bigint
+image_100:              bytea
+image_200:              bytea
+image_500:              bytea
+price:                 float8
+sale:                 integer
+description:    varchar(8192)
+info_json:      varchar(8192)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>108</x>
+      <y>540</y>
+      <w>216</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>Categories
+--
+id:           bigint
+name:    varchar(64)
+parent:       bigint
+image:         bytea</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>288</y>
+      <w>228</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..1
+m2=1
+refer to &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>864</x>
+      <y>288</y>
+      <w>240</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+make &gt;</panel_attributes>
+    <additional_attributes>10.0;20.0;180.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1212</x>
+      <y>372</y>
+      <w>156</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..*
+m2=1
+consist of v</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>816</x>
+      <y>552</y>
+      <w>324</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+&lt; are represented by</panel_attributes>
+    <additional_attributes>10.0;20.0;250.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>564</y>
+      <w>228</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=*
+&lt; belong to</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>108</x>
+      <y>444</y>
+      <w>240</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=*
+m2=1
+belong to &gt;</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;20.0;170.0;20.0;170.0;80.0</additional_attributes>
+  </element>
+</diagram>
