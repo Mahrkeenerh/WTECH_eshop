@@ -22,14 +22,14 @@ body a {
 /*buttons style*/
 body button, body [type=button] {
     border-radius: 5px;
-    border: 2px solid grey;
+    border: 2px solid black;
     background: white;
-    color: darkgrey;
+    color: black;
     font-weight: bold;
 }
 body button:hover, body [type=button]:hover {
     border: 2px solid #a1e1e2;
-    background: white;
+    background: #a1e1e2;
     color: black;
 }
 
