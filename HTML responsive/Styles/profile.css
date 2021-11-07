@@ -139,6 +139,9 @@ body button:hover, body [type=button]:hover {
 #header .search_bar button {
     cursor: pointer;
 }
+#header .search_bar input[type=text] {
+    border-radius: 5px;
+}
 /*searchbar*/
 @media (min-width: 320px) {
     #header form {
@@ -198,6 +201,9 @@ body button:hover, body [type=button]:hover {
     cursor: pointer;
     margin: 10px;
     padding: 10px;
+}
+.info_container input[type=text], .info_container input[type=email] {
+    border-radius: 5px;
 }
 
 /*Personal info*/

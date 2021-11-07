@@ -139,6 +139,9 @@ body button:hover, body [type=button]:hover {
 #header .search_bar button {
     cursor: pointer;
 }
+#header .search_bar input[type=text] {
+    border-radius: 5px;
+}
 /*searchbar*/
 @media (min-width: 320px) {
     #header form {
@@ -240,12 +243,16 @@ body button:hover, body [type=button]:hover {
 #shipping_info form {
     padding: 5px;
 }
+#shipping_info input[type=text], #shipping_info input[type=email] {
+    border-radius: 5px;
+}
 #shipping_info form > * {
     display: block;
     width: 75%;
 }
 #shipping_info button {
     margin: 5px;
+    margin-top: 20px;
     padding: 10px;
     cursor: pointer;
 }
