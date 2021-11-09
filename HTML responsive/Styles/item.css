@@ -162,6 +162,18 @@ body button:hover, body [type=button]:hover {
 
 
 /* rest of the stuff */
+#categories_parent {
+    display: grid;
+    padding: 0 10px;
+}
+#categories_path > * {
+    display: inline-block;
+    margin-right: 5px;
+}
+#categories_path .c_path:hover {
+    cursor: pointer;
+    color: #a1e1e2;
+}
 #top {
     display: grid;
 }
@@ -175,14 +187,18 @@ body button:hover, body [type=button]:hover {
     width: 200px;
     height: 200px;
 }
+#item_title {
+    padding: 0 5px;
+    font-size: 8px;
+}
 @media (min-width: 600px) {
     #item_image {
         width: 500px;
         height: 500px;
     }
-}
-#item_title {
-    padding: 0 5px;
+    #item_title {
+        font-size: 15px;
+    }
 }
 #buttons {
     margin-top: 20px;

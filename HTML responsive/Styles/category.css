@@ -203,6 +203,14 @@ body button:hover, body [type=button]:hover {
     padding: 7px 10px;
     font-size: 20px;
 }
+#sidebar label::after {
+    content: "\a";
+    white-space: pre;
+}
+#sidebar .no_break::after {
+    content: "";
+    white-space: normal;
+}
 
 
 /*main*/
