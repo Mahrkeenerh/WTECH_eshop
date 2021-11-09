@@ -316,6 +316,21 @@ body button:hover, body [type=button]:hover {
     }
 }
 
+#pageing_parent {
+    display: grid;
+}
+#pageing {
+    justify-self: center;
+}
+#pageing > * {
+    display: inline-block;
+    margin-right: 5px;
+}
+#pageing .p_path:hover {
+    cursor: pointer;
+    color: #a1e1e2;
+}
+
 
 /* Footer */
 #footer {
