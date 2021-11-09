@@ -163,6 +163,7 @@ header .search_bar input[type=text] {
 /*Main categories*/
 @media (min-width: 320px) {
     #main_categories {
+        grid-row-gap: 10px;
         grid-template-columns: repeat(1, 180px);
         grid-template-rows: 40px;
     }
@@ -175,11 +176,15 @@ header .search_bar input[type=text] {
 }
 @media (min-width: 400px) {
     #main_categories {
+        grid-column-gap: 30px;
+        grid-row-gap: 10px;
         grid-template-columns: repeat(2, 180px);
     }
 }
 @media (min-width: 600px) {
     #main_categories {
+        grid-column-gap: 5px;
+        grid-row-gap: 10px;
         grid-template-columns: repeat(3, 180px);
         grid-template-rows: 200px;
     }
@@ -190,20 +195,24 @@ header .search_bar input[type=text] {
         display: block;
     }
 }
-@media (min-width: 800px) {
+@media (min-width: 700px) {
     #main_categories {
-        grid-template-columns: repeat(4, 180px);
+        grid-column-gap: 50px;
+        grid-row-gap: 30px;
+        grid-template-columns: repeat(3, auto);
     }
 }
-@media (min-width: 1000px) {
+@media (min-width: 1010px) {
     #main_categories {
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
         grid-template-columns: repeat(5, 180px);
     }
 }
 #main_categories {
     display: grid;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
+    /*grid-column-gap: 10px;*/
+    /*grid-row-gap: 10px;*/
     justify-self: center;
     justify-items: center;
     align-self: center;
@@ -230,19 +239,21 @@ header .search_bar input[type=text] {
 /*Product tabs*/
 @media (min-width: 320px) {
     .tabs {
-        width: 300px;
+        width: auto;
+        max-width: 500px;
     }
 }
 @media (min-width: 500px) {
     .tabs {
-        width: 450px;
+        max-width: 750px;
     }
 }
-@media (min-width: 800px) {
+@media (min-width: 780px) {
     .tabs {
+        max-width: none;
         width: 750px;
     }
-}@media (min-width: 1100px) {
+}@media (min-width: 1010px) {
     .tabs {
         width: 1000px;
     }
@@ -292,12 +303,12 @@ input[type=radio]:checked + label {
         grid-template-columns: 1fr 1fr;
     }
 }
-@media (min-width: 800px) {
+@media (min-width: 750px) {
     .tab_content .products_container {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
-@media (min-width: 1100px) {
+@media (min-width: 1010px) {
     .tab_content .products_container {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
