@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class TestController extends Controller
@@ -13,6 +15,18 @@ class TestController extends Controller
      */
     public function index()
     {
+        User::create([
+            'id'=>2, 
+            'email'=>'abcd@gmail.com', 
+            'password_hash'=>'abcdefgh', 
+            'first_name'=>'Abcd',
+            'last_name'=>'Junn',
+            'state'=>'unknown12',
+            'city'=>'Jes',
+            'street_and_number'=>'STREET AND NUMBER 3',
+            'postal_code'=>'123 45'
+        ]);
+
         return view('test');
     }
 
