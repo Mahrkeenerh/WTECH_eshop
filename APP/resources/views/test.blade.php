@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+    <link href="Styles/homepage.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<!--Header-->
+<header>
+    <h1 class="eshop_name"><a href="homepage.html">CAR STUFF 4 U</a></h1>
+    <form class="search_bar">
+        <input type="text" id="top_searchbar" name="top_searchbar" placeholder="I'm looking for..." required>
+        <button>Search</button>
+    </form>
+    <a href="cart.html" class="cart"><img src="../Icons/homepage/shopping_cart_30.png" alt="shopping cart"></a>
+    <h3 class="login"><a href="login.html">Login</a></h3>
+</header>
+
+</body>
+</html>
