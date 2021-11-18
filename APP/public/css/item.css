@@ -1,0 +1,85 @@
+/* rest of the stuff */
+#categories_parent {
+    display: grid;
+    padding: 0 10px;
+}
+#categories_path > * {
+    display: inline-block;
+    margin-right: 5px;
+}
+#categories_path .c_path:hover {
+    cursor: pointer;
+    color: #a1e1e2;
+}
+#top {
+    display: grid;
+}
+@media (min-width: 1100px) {
+    #top {
+        grid-template-columns: 510px auto 200px;
+    }
+}
+#item_image {
+    justify-self: center;
+    width: 200px;
+    height: 200px;
+}
+#item_title {
+    padding: 0 5px;
+    font-size: 8px;
+}
+@media (min-width: 600px) {
+    #item_image {
+        width: 500px;
+        height: 500px;
+    }
+    #item_title {
+        font-size: 15px;
+    }
+}
+#buttons {
+    margin-top: 20px;
+    margin-right: 10px;
+}
+#buttons h1, #buttons s {
+    display: flex;
+    justify-content: right;
+    margin: 10px;
+}
+#buttons input[type=button]:hover{
+    cursor: pointer;
+}
+#buttons .add_cart_button {
+    display: flex;
+    justify-content: right;
+}
+#buttons .add_button {
+    font-size: 25px;
+    padding: 5px 10px;
+    margin-top: 10px;
+}
+#buttons .middle_buttons {
+    padding-top: 10px;
+    display: flex;
+    justify-content: right;
+}
+#buttons .middle_buttons > * {
+    margin-left: 20px;
+}
+
+#description {
+    padding: 10px;
+    font-size: 20px;
+}
+
+#contents {
+    font-size: 20px;
+    padding: 10px;
+}
+
+#contents td {
+    border-bottom: 1px solid black;
+}
+#contents table {
+    width: 100%
+}

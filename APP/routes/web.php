@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +22,8 @@ use App\Http\Controllers\CategoryController;
 Route::resource('/', HomepageController::class);
 
 Route::resource('/category', CategoryController::class);
+Route::resource('/item', ItemController::class);
+Route::resource('/cart', CartController::class);
+Route::resource('/profile', ProfileController::class);
 
 Route::resource('test', TestController::class);

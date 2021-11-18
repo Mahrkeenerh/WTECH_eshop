@@ -1,0 +1,108 @@
+/*Order process*/
+#order_process {
+    display: block;
+    margin-left: 20px;
+}
+#order_process > * {
+    display: inline-block;
+    cursor: default;
+}
+#order_process > .content {
+    color: black;
+}
+#order_process > .payment, #order_process > .shipping {
+    color: darkgrey;
+}
+
+/* Main */
+/*body grid*/
+#grid {
+    display: grid;
+    margin: 10px;
+}
+@media (min-width: 850px) {
+    #grid {
+        display: grid;
+        grid-template-columns: auto 250px;
+    }
+}
+
+.item {
+    display: grid;
+    background-color: orange;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+.item_image {
+    width: 100px;
+    height: 100px;
+}
+
+.item_buy {
+    display: grid;
+}
+.item_buy s, .item_buy h2 {
+    display: flex;
+    justify-content: right;
+    margin: 10px;
+}
+.item_buy .button_grid {
+    display: flex;
+    justify-content: right;
+    margin: 0 10px 10px 10px;
+}
+.item_buy .button_grid label {
+    margin: 5px 10px;
+    font-size: 20px;
+}
+.item_buy .button_grid input[type=button] {
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    font-size: 15px;
+}
+.item_buy .button_grid img {
+    width: 32px;
+    height: 32px;
+    margin-left: 25px;
+}
+.item_buy .button_grid img:hover {
+    cursor: pointer;
+}
+
+@media (min-width: 850px) {
+    .item {
+        display: grid;
+        grid-template-columns: 220px 5fr 175px;
+    }
+    .item_image {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+#buttons {
+    height: fit-content;
+    border: 3px solid orange;
+    border-radius: 5px;
+    margin: 10px;
+}
+#buttons > * {
+    align-self: center;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#buttons button {
+    display: block;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px;
+    margin: 10px auto;
+}
+@media (min-width: 850px) {
+    #buttons button {
+        margin: 10px;
+    }
+}

@@ -1,0 +1,50 @@
+/*Info content*/
+@media (min-width: 320px) {
+    .info_container {
+        border: 3px solid orange;
+        border-radius: 5px;
+        margin-top:10px;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: auto;
+        justify-self: center;
+        width: 90%;
+    }
+    .info_container form > input {
+        width: 90%;
+    }
+}
+@media (min-width: 700px) {
+    .info_container {
+        grid-template-columns: [personal_info]1fr [address]1fr;
+    }
+    .info_container form > input {
+        width: 75%;
+    }
+}
+@media (min-width: 1050px) {
+    .info_container {
+        max-width: 1400px;
+        grid-template-columns: [personal_info]500px [address]500px;
+        width: auto;
+    }
+}
+.info_container h2 {
+    margin: 0;
+}
+.info_container h2, .info_container form {
+    padding: 10px;
+}
+.info_container button {
+    cursor: pointer;
+    margin: 10px;
+    padding: 10px;
+}
+.info_container input[type=text], .info_container input[type=email] {
+    border-radius: 5px;
+}
+
+/*Personal info*/
+.personal_info form * , .shipping form * {
+    display: block;
+}
