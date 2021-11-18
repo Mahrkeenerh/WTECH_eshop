@@ -1,0 +1,153 @@
+/*Order process*/
+#order_process {
+    display: block;
+    margin-left: 20px;
+}
+#order_process > * {
+    display: inline-block;
+    cursor: default;
+}
+#order_process > .content:hover {
+    color: #a1e1e2;
+}
+#order_process > .content a:hover, #order_process > .shipping a:hover {
+    color: #a1e1e2;
+}
+#order_process > .content {
+    cursor: pointer;
+    color: black;
+}
+#order_process > .shipping {
+    color: black;
+}
+#order_process > .payment {
+    color: darkgrey;
+}
+
+/*Content*/
+@media (min-width: 320px) {
+    #content {
+        justify-self: center;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        margin: 0 10px 0 10px;
+        width: 95%;
+        max-width: 500px;
+    }
+    #shipping_info button {
+        width: 100px;
+    }
+}
+@media (min-width: 800px) {
+    #content {
+        justify-self: center;
+        display:grid;
+        grid-template-columns: auto auto;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        margin: 0 10px 0 10px;
+        max-width: none;
+    }
+    #continue {
+        grid-column: 2/3;
+    }
+    #shipping_info button {
+        width: 130px;
+    }
+}
+@media (min-width: 1150px) {
+    #content {
+        max-width: 1200px;
+        justify-self: center;
+        display:grid;
+        grid-template-columns: 5fr 5fr 2fr;
+        grid-column-gap: 10px;
+        margin: 0 10px 0 10px;
+    }
+    #continue {
+        grid-column: 3/4;
+    }
+}
+#content > * {
+    padding: 20px;
+}
+/*Shipping info*/
+#shipping_info {
+    border: 3px solid orange;
+    border-radius: 5px;
+}
+#shipping_info form {
+    padding: 5px;
+}
+#shipping_info input[type=text], #shipping_info input[type=email] {
+    border-radius: 5px;
+}
+#shipping_info form > * {
+    display: block;
+    width: 75%;
+}
+#shipping_info button {
+    margin: 5px;
+    margin-top: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+/*Delivery*/
+#delivery_options {
+    border: 3px solid orange;
+    border-radius: 5px;
+}
+#delivery_options form p {
+    display: grid;
+    grid-template-columns: [label]auto [check]30px;
+    align-items: center;
+    padding: 15px 5px;
+    border-radius: 5px;
+    background: #eaeaea;
+}
+#delivery_options form p input:hover, #delivery_options form p label:hover {
+    cursor: pointer;
+}
+#delivery_options form p input {
+    grid-column: 2/3;
+    grid-row: 1/3;
+}
+#delivery_options form p .price {
+    grid-column: 1/2;
+    grid-row: 2/3;
+    width: 50px;
+    padding: 5px 10px;
+    border-radius: 15px;
+    text-align: center;
+    background: white;
+}
+#delivery_options form p label {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    padding: 3px;
+}
+#delivery_options form fieldset {
+    border: none;
+}
+/*Continue*/
+#continue {
+    height: fit-content;
+    border: 3px solid orange;
+    border-radius: 5px;
+}
+#continue > * {
+    align-self: center;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#continue button {
+    display: block;
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}

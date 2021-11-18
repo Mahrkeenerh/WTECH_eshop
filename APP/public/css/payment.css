@@ -1,0 +1,105 @@
+/*Order process*/
+#order_process {
+    display: block;
+    margin-left: 20px;
+}
+#order_process > * {
+    display: inline-block;
+    cursor: default;
+}
+#order_process > .content:hover, #order_process > .shipping:hover {
+    color: #a1e1e2;
+}
+#order_process > .content a:hover, #order_process > .shipping a:hover {
+    color: #a1e1e2;
+}
+#order_process > .content, #order_process > .shipping {
+    cursor: pointer;
+    color: black;
+}
+#order_process > .payment {
+    color: black;
+}
+
+/*Content*/
+@media (min-width: 320px) {
+    #content {
+        display:grid;
+        justify-self: center;
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        margin: 0 10px 0 10px;
+        width: 90%;
+    }
+}
+@media (min-width: 600px) {
+    #content {
+        grid-template-columns: auto 210px;
+        grid-template-rows: auto;
+    }
+}
+@media (min-width: 800px) {
+    #content {
+        grid-template-columns: 490px 210px;
+        width: auto;
+        max-width: 1200px;
+    }
+}
+#content > * {
+    padding: 20px;
+}
+/*Payment method*/
+#payment_options {
+    border: 3px solid orange;
+    border-radius: 5px;
+}
+#payment_options form p {
+    padding: 10px 5px;
+    border-radius: 5px;
+    background: #eaeaea;
+}
+#payment_options form p input:hover, #payment_options form p label:hover {
+    cursor: pointer;
+}
+#payment_options form p input {
+    float: right;
+}
+#payment_options form p .price {
+    background: white;
+    padding: 5px;
+    border-radius: 15px;
+}
+#payment_options form p label {
+    padding: 3px;
+}
+#payment_options form fieldset {
+    border: none;
+}
+#payment_options button {
+    margin: 10px;
+    padding: 10px;
+    width: 130px;
+    cursor: pointer;
+}
+/*Continue*/
+#finish {
+    height: fit-content;
+    border: 3px solid orange;
+    border-radius: 5px;
+}
+#finish > * {
+    align-self: center;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#finish button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 10px;
+}
