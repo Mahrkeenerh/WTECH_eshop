@@ -1,0 +1,186 @@
+/*Main categories*/
+@media (min-width: 320px) {
+    #main_categories {
+        grid-row-gap: 10px;
+        grid-template-columns: repeat(1, 180px);
+        grid-template-rows: 40px;
+    }
+    #main_categories .category {
+        height: 40px;
+    }
+    #main_categories .category img {
+        display: none;
+    }
+}
+@media (min-width: 400px) {
+    #main_categories {
+        grid-column-gap: 30px;
+        grid-row-gap: 10px;
+        grid-template-columns: repeat(2, 180px);
+    }
+}
+@media (min-width: 600px) {
+    #main_categories {
+        grid-column-gap: 5px;
+        grid-row-gap: 10px;
+        grid-template-columns: repeat(3, 180px);
+        grid-template-rows: 200px;
+    }
+    #main_categories .category {
+        height: 200px;
+    }
+    #main_categories .category img {
+        display: block;
+    }
+}
+@media (min-width: 700px) {
+    #main_categories {
+        grid-column-gap: 50px;
+        grid-row-gap: 30px;
+        grid-template-columns: repeat(3, auto);
+    }
+}
+@media (min-width: 1010px) {
+    #main_categories {
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        grid-template-columns: repeat(5, 180px);
+    }
+}
+#main_categories {
+    display: grid;
+    /*grid-column-gap: 10px;*/
+    /*grid-row-gap: 10px;*/
+    justify-self: center;
+    justify-items: center;
+    align-self: center;
+    margin: 50px 0 50px;
+}
+#main_categories .category:hover {
+    cursor: pointer;
+    background: #a1e1e2;
+}
+#main_categories .category {
+    width: 170px;
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    align-items: center;
+    border: 3px solid orange;
+    border-radius: 5px;
+}
+.category label {
+    text-align: center;
+    cursor: pointer;
+}
+
+/*Product tabs*/
+@media (min-width: 320px) {
+    .tabs {
+        width: auto;
+        max-width: 500px;
+    }
+}
+@media (min-width: 500px) {
+    .tabs {
+        max-width: 750px;
+    }
+}
+@media (min-width: 780px) {
+    .tabs {
+        max-width: none;
+        width: 750px;
+    }
+}@media (min-width: 1010px) {
+    .tabs {
+        width: 1000px;
+    }
+}
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-self: center;
+    margin-bottom: 50px;
+    /*padding*/
+}
+.tabs input[type=radio] {
+    display: none;
+}
+input[type=radio] + label {
+    margin: auto 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+input[type=radio] + label:hover {
+    background: #a1e1e2;
+}
+input[type=radio]:checked + label {
+    border-top: 3px solid orange;
+    border-right: 3px solid orange;
+    border-left: 3px solid orange;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.tabs .tab_content {
+    width: 100%;
+    border: 3px solid orange;
+    border-radius: 5px;
+    order: 1;
+    display: none;
+}
+.tabs input[type="radio"]:checked + label + .tab_content {
+    display: block;
+}
+@media (min-width: 320px) {
+    .tab_content .products_container {
+        grid-template-columns: 1fr;
+    }
+}
+@media (min-width: 500px) {
+    .tab_content .products_container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (min-width: 750px) {
+    .tab_content .products_container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media (min-width: 1010px) {
+    .tab_content .products_container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+.tab_content .products_container {
+    display: grid;
+    justify-items: center;
+}
+.product {
+    display: grid;
+    grid-template-rows: [image]120px [product_name]55px [price]20px [old_price]20px [buy]auto;
+    width: 200px;
+    height: 260px;
+    justify-items: center;
+    align-items: center;
+    margin: 10px;
+    background: orange;
+    border-radius: 5px;
+}
+.product .product_name {
+    overflow: hidden;
+    display: block;
+    max-width: 190px;
+    max-height: 47px;
+    text-align: center;
+    text-overflow: ellipsis;
+}
+.product .product_name:hover, .product button:hover {
+    cursor: pointer;
+}
+.product .product_price {
+    color: red;
+    font-weight: bold;
+}
+.product button{
+    padding: 5px;
+}
