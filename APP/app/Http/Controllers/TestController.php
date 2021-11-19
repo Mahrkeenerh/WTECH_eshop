@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Item;
 
 use Illuminate\Http\Request;
 
@@ -15,16 +15,26 @@ class TestController extends Controller
      */
     public function index()
     {
-        User::create([
-            'id'=>2, 
-            'email'=>'abcd@gmail.com', 
-            'password_hash'=>'abcdefgh', 
-            'first_name'=>'Abcd',
-            'last_name'=>'Junn',
-            'state'=>'unknown12',
-            'city'=>'Jes',
-            'street_and_number'=>'STREET AND NUMBER 3',
-            'postal_code'=>'123 45'
+        $description = "Mounting guide: Lorem ipsum dolor sit. Recommendations: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+        $info_json = '{
+            "Brand": "BRUMBO",
+            "Height [mm]": 39.5,
+            "Fitting Position": "Front Axle",
+            "Diameter [mm]": 291,
+            "Brake Disc Type": "Solid",
+            "Brake Disc Thickness [mm]": 10,
+            "Minimum Thickness [mm]": 8,
+            "Number of Holes": 6,
+            "Bolt Hole Circle Ø [mm]": 100
+        }';
+        Item::create([
+            'id'=>1, 
+            'name'=>'second ITEM EVER 0010', 
+            'category_id'=>1, 
+            'price'=>563.45, 
+            'sale'=>50, 
+            'description'=>$description, 
+            'info_json'=>$info_json
         ]);
 
         return view('test');

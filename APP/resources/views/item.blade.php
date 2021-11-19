@@ -13,13 +13,31 @@
 
 <div id="categories_parent">
     <nav id="categories_path">
-        <a href="homepage"><h3 class="c_path">Home</h3></a>
-        <h3>>></h3>
-        <a href="category"><h3 class="c_path">Car parts</h3></a>
-        <h3>>></h3>
-        <a href="category"><h3 class="c_path">Braking</h3></a>
-        <h3>>></h3>
-        <a href="category"><h3 class="c_path">Brake discs</h3></a>
+        <a href="/"><h3 class="c_path">Home</h3></a>
+        @php
+            $id_arr = array();
+            $name_arr = array();
+            $current_id = $item->category_id;
+
+            function find_category($categories, $id) {
+                foreach ($categories as $category) {
+                    if ($category->id == $id)
+                        return $category;
+                }
+            }
+
+            while(!is_null($current_id)) {
+                $current_category = find_category($categories, $current_id);
+                array_push($id_arr, $current_id);
+                array_push($name_arr, $current_category->name);
+                $current_id = $current_category->parent;
+            }
+        @endphp
+
+        @for ($i = count($name_arr) - 1; $i >= 0; $i--)
+            <h3>>></h3>
+            <a href="/category/{{$id_arr[$i]}}"><h3 class="c_path">{{$name_arr[$i]}}</h3></a>
+        @endfor
     </nav>
 </div>
 
@@ -31,14 +49,16 @@
              sizes="(min-width: 600px) 500px, 200px">
     </div>
     <div id="item_title">
-{{--        <h1>{{$item->name}}</h1>--}}
-        <h1>BRUMBO FRONT VENTED BRAKE DISCS - 260MM DIAMETER, AIR COOLED EXTRA LONG LIFE COMFORT+</h1>
+        <h1>{{$item->name}}</h1>
     </div>
     <div id="buttons">
-{{--        <h1>{{$item.price}} €</h1>--}}
-        <h1>192.90 €</h1>
-{{--        <s>$item.old_price €</s>--}}
-        <s>220.50 €</s>
+        @php
+            $new_price = round($item->price / 100 * (100 - $item->sale), 2);
+        @endphp
+        <h1>{{$new_price}} €</h1>
+        @if($new_price != $item->price)
+            <s>{{$item->price}} €</s>
+        @endif
         <div class="middle_buttons">
             <input type=button value="-">
             <label id="item_count">1</label>
@@ -52,56 +72,22 @@
 
 <div id="description">
     <h2>Description</h2>
-{{--    <label>{{$item->description}}</label>--}}
-    <label>Mounting guide: Lorem ipsum dolor sit. Recommendations: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</label>
+    <label>{{$item->description}}</label>
 </div>
 
 <div id="contents">
     <h2>Product info:</h2>
 
     <table>
-{{--        @foreach($item->info_json as $info)--}}
-{{--            <tr>--}}
-{{--                <td>{{$info->label}}</td>--}}
-{{--                <td>{{$info->value}}</td>--}}
-{{--            </tr>--}}
-{{--        @endfor--}}
-        <tr>
-            <td>Brand</td>
-            <td>BRUMBO</td>
-        </tr>
-        <tr>
-            <td>Height [mm]</td>
-            <td>39.5</td>
-        </tr>
-        <tr>
-            <td>Fitting Position</td>
-            <td>Front Axle</td>
-        </tr>
-        <tr>
-            <td>Diameter [mm]</td>
-            <td>291</td>
-        </tr>
-        <tr>
-            <td>Brake Disc Type</td>
-            <td>Solid</td>
-        </tr>
-        <tr>
-            <td>Brake Disc Thickness [mm]</td>
-            <td>10</td>
-        </tr>
-        <tr>
-            <td>Minimum Thickness [mm]</td>
-            <td>8</td>
-        </tr>
-        <tr>
-            <td>Number of Holes</td>
-            <td>5</td>
-        </tr>
-        <tr>
-            <td>Bolt Hole Circle Ø [mm]</td>
-            <td>100</td>
-        </tr>
+        @php
+            $item_info_json = json_decode($item->info_json);
+        @endphp
+        @foreach ($item_info_json as $key=>$value)
+            <tr>
+                <td>{{$key}}</td>
+                <td>{{$value}}</td>
+            </tr>
+        @endforeach
     </table>
 </div>
 
