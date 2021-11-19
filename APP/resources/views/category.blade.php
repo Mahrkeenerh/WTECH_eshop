@@ -70,7 +70,7 @@
 
     <div id="main">
         <nav id="categories_path">
-            <a href="homepage"><h3 class="c_path">Home</h3></a>
+            <a href="/"><h3 class="c_path">Home</h3></a>
             <h3>>></h3>
             <a href="category"><h3 class="c_path">Car parts</h3></a>
             <h3>>></h3>
