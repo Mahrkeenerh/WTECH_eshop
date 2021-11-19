@@ -31,10 +31,13 @@
              sizes="(min-width: 600px) 500px, 200px">
     </div>
     <div id="item_title">
+{{--        <h1>{{$item->name}}</h1>--}}
         <h1>BRUMBO FRONT VENTED BRAKE DISCS - 260MM DIAMETER, AIR COOLED EXTRA LONG LIFE COMFORT+</h1>
     </div>
     <div id="buttons">
+{{--        <h1>{{$item.price}} €</h1>--}}
         <h1>192.90 €</h1>
+{{--        <s>$item.old_price €</s>--}}
         <s>220.50 €</s>
         <div class="middle_buttons">
             <input type=button value="-">
@@ -49,6 +52,7 @@
 
 <div id="description">
     <h2>Description</h2>
+{{--    <label>{{$item->description}}</label>--}}
     <label>Mounting guide: Lorem ipsum dolor sit. Recommendations: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</label>
 </div>
 
@@ -56,6 +60,12 @@
     <h2>Product info:</h2>
 
     <table>
+{{--        @foreach($item->info_json as $info)--}}
+{{--            <tr>--}}
+{{--                <td>{{$info->label}}</td>--}}
+{{--                <td>{{$info->value}}</td>--}}
+{{--            </tr>--}}
+{{--        @endfor--}}
         <tr>
             <td>Brand</td>
             <td>BRUMBO</td>

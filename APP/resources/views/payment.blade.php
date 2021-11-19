@@ -51,6 +51,7 @@
     <!--Continue to payment-->
     <div id="finish">
         <h2>Total:</h2>
+{{--        <h2>{{$order->price}} €</h2>--}}
         <h2>12345.67 €</h2>
         <button id="pay_n_finish">Pay and finish</button>
     </div>

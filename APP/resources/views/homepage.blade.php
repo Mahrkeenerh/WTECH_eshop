@@ -55,13 +55,17 @@
         <!--Products-->
         <div class="products_container">
 
+{{--            @foreach($best_items as $item)--}}
             @for($i = 0; $i < 5; $i++)
                 <div class="product">
                     <img src="{{URL::asset('icons/homepage/category_tires_100.png')}}" alt="Image of product">
                     <a href="item">
+{{--                        <label class="product_name" title="{{$item->name}}">{{$item->name}}</label>--}}
                         <label class="product_name" title="FIRD CUSTOMIC FRONT LED HEADLIGHTS">FIRD CUSTOMIC FRONT LED HEADLIGHTS</label>
                     </a>
+{{--                    <label class="product_price">{{$item->price}} €</label>--}}
                     <label class="product_price">59.90 €</label>
+{{--                    <s class="old_product_price">{{$item->old_price}} €</s>--}}
                     <s class="old_product_price">105.90 €</s>
                     <button>Add to cart</button>
                 </div>
@@ -78,13 +82,17 @@
         <!--Products-->
         <div class="products_container">
 
+{{--            @foreach($new_items as $item)--}}
             @for($i = 0; $i < 7; $i++)
                 <div class="product">
                     <img src="{{URL::asset('icons/homepage/category_tires_100.png')}}" alt="Image of product">
                     <a href="item">
+{{--                        <label class="product_name" title="{{$item->name}}">{{$item->name}}</label>--}}
                         <label class="product_name" title="BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER">BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER</label>
                     </a>
+{{--                    <label class="product_price">{{$item->price}} €</label>--}}
                     <label class="product_price">59.90 €</label>
+{{--                    <s class="old_product_price">{{$item->old_price}} €</s>--}}
                     <s class="old_product_price">105.90 €</s>
                     <button>Add to cart</button>
                 </div>
@@ -101,13 +109,17 @@
         <!--Products-->
         <div class="products_container">
 
+{{--            @foreach($discount_items as $item)--}}
             @for($i = 0; $i < 4; $i++)
                 <div class="product">
                     <img src="{{URL::asset('icons/homepage/category_tires_100.png')}}" alt="Image of product">
                     <a href="item">
+{{--                        <label class="product_name" title="{{$item->name}}">{{$item->name}}</label>--}}
                         <label class="product_name" title="TOTUL 5W30 FULLY SYNTHETIC DURATION PRO ENGINE OIL - 1L">TOTUL 5W30 FULLY SYNTHETIC DURATION PRO ENGINE OIL - 1L</label>
                     </a>
+{{--                    <label class="product_price">{{$item->price}} €</label>--}}
                     <label class="product_price">59.90 €</label>
+{{--                    <s class="old_product_price">{{$item->old_price}} €</s>--}}
                     <s class="old_product_price">105.90 €</s>
                     <button>Add to cart</button>
                 </div>
@@ -124,13 +136,17 @@
         <!--Products-->
         <div class="products_container">
 
+{{--            @foreach($season_items as $item)--}}
             @for($i = 0; $i < 8; $i++)
                 <div class="product">
                     <img src="{{URL::asset('icons/homepage/category_tires_100.png')}}" alt="Image of product">
                     <a href="item">
+{{--                        <label class="product_name" title="{{$item->name}}">{{$item_name}}</label>--}}
                         <label class="product_name" title="Glass cleaner 750ml">Glass cleaner 750ml</label>
                     </a>
+{{--                    <label class="product_price">{{$item->price}} €</label>--}}
                     <label class="product_price">59.90 €</label>
+{{--                    <s class="old_product_price">{{$item->old_price}} €</s>--}}
                     <s class="old_product_price">105.90 €</s>
                     <button>Add to cart</button>
                 </div>

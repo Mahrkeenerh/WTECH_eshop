@@ -22,38 +22,63 @@
     <div id="shipping_info">
         <form>
             <label for="first_name">First name:</label>
+{{--            @if($user)--}}
+{{--            <input type="text" id="first_name" name="first_name" value="{{$user->first_name}}">--}}
+{{--            @endif--}}
             <input type="text" id="first_name" name="first_name">
         </form>
         <form>
             <label for="last_name">Last name:</label>
+{{--            @if($user)--}}
             <input type="text" id="last_name" name="last_name">
+{{--            <input type="text" id="last_name" name="last_name" value="{{$user->last_name}}">--}}
+{{--            @endif--}}
         </form>
         <form>
             <label for="email_address">Email address:</label>
+{{--            @if($user)--}}
             <input type="email" id="email_address" name="email_address">
+{{--            <input type="email" id="email_address" name="email_address" value="{{$user->email_address}}">--}}
+{{--            @endif--}}
         </form>
         <form>
             <label for="state">State:</label>
+{{--            @if($user)--}}
             <input type="text" id="state" name="state">
+{{--            <input type="text" id="state" name="state" value="{{$user->state}}">--}}
+{{--            @endif--}}
         </form>
         <form>
             <label for="city">City:</label>
+{{--            @if($user)--}}
             <input type="text" id="city" name="city">
+{{--            <input type="text" id="city" name="city" value="{{$user->city}}">--}}
+{{--            @endif--}}
         </form>
         <form>
             <label for="street_n_num">Street and number:</label>
+{{--            @if($user)--}}
             <input type="text" id="street_n_num" name="street_n_num">
+{{--            <input type="text" id="street_n_num" name="street_n_num" value="{{$user->street_n_num}}">--}}
+{{--            @endif--}}
         </form>
         <form>
             <label for="postal_code">Postal code:</label>
+{{--            @if($user)--}}
             <input type="text" id="postal_code" name="postal_code">
+{{--            <input type="text" id="postal_code" name="postal_code" value="{{$user->postal_code}}">--}}
+{{--            @endif--}}
         </form>
 
         <a href="cart">
             <button id="back">Back</button>
         </a>
-        <button id="register">Register</button>
+{{--        @if($user)--}}
         <!--    <button id="Save address">Save address</button>-->
+{{--        @else--}}
+        <button id="register">Register</button>
+{{--        @endif--}}
+
 
     </div>
 
@@ -85,6 +110,7 @@
     <!--Continue to payment-->
     <div id="continue">
         <h2>Total:</h2>
+{{--        <h2>{{$order->price}} €</h2>--}}
         <h2>12345.67 €</h2>
         <a href="payment">
             <button id="continue_to_payment">Continue to payment</button>
