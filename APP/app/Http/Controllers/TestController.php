@@ -28,9 +28,9 @@ class TestController extends Controller
             "Bolt Hole Circle Ø [mm]": 100
         }';
         Item::create([
-            'id'=>1, 
-            'name'=>'second ITEM EVER 0010', 
-            'category_id'=>1, 
+            'id'=>2, 
+            'name'=>'third ITEM EVER 0010', 
+            'category_id'=>0, 
             'price'=>563.45, 
             'sale'=>50, 
             'description'=>$description, 

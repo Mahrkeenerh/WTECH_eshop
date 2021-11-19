@@ -71,32 +71,54 @@
     <div id="main">
         <nav id="categories_path">
             <a href="/"><h3 class="c_path">Home</h3></a>
+            @php
+            $id_arr = array();
+            $name_arr = array();
+            $current_id = $category->id;
+
+            function find_category($categories, $id) {
+                foreach ($categories as $category) {
+                    if ($category->id == $id)
+                        return $category;
+                }
+            }
+
+            while(!is_null($current_id)) {
+                $current_category = find_category($categories, $current_id);
+                array_push($id_arr, $current_id);
+                array_push($name_arr, $current_category->name);
+                $current_id = $current_category->parent;
+            }
+        @endphp
+
+        @for ($i = count($name_arr) - 1; $i >= 1; $i--)
             <h3>>></h3>
-            <a href="category"><h3 class="c_path">Car parts</h3></a>
-            <h3>>></h3>
-            <a href="category"><h3 class="c_path">Braking</h3></a>
-            <h3>>></h3>
-            <a href="category"><h3 class="c_path">Brake discs</h3></a>
+            <a href="/category/{{$id_arr[$i]}}"><h3 class="c_path">{{$name_arr[$i]}}</h3></a>
+        @endfor
         </nav>
 
+        @php
+            $child_arr = array();
+            $all_id_arr = array();
+
+            array_push($all_id_arr, $category->id);
+
+            foreach ($categories as $child) {
+                if (!is_null($child->parent) && $child->parent == $category->id) {
+                    array_push($child_arr, $child);
+                    array_push($all_id_arr, $child->id);
+                }
+            }
+        @endphp
+
         <div id="categories">
-            <a href="category">
-                <span class="category">
-                    <h2>Front brake discs</h2>
-                </span>
-            </a>
-            <a href="category">
-                <span class="category">
-                    <h2>Rear brake discs</h2>
-                </span>
-            </a>
-            @for($i = 0; $i < 8; $i++)
-                <a href="category">
+            @foreach ($child_arr as $child)
+                <a href="/category/{{$child->id}}">
                     <span class="category">
-                        <h2>Different brake discs</h2>
+                        <h2>{{$child->name}}</h2>
                     </span>
                 </a>
-            @endfor
+            @endforeach
         </div>
 
         <div id="sorting">
@@ -119,7 +141,56 @@
 
         <div id="items">
 
-            @for($i = 0; $i < 7; $i++)
+            @php
+                $filtered_items = array();
+
+                foreach ($items as $item) {
+                    if (in_array($item->category_id, $all_id_arr)) {
+                        array_push($filtered_items, $item);
+                    }
+                }
+            @endphp
+
+            @foreach ($filtered_items as $item)
+                <div class="item">
+                    <a href="/item/{{$item->id}}">
+                    <span class="item_image">
+                        <img src="{{URL::asset('images/items_200/' . $item->id . '.jpg')}}" alt={{$item->name}}
+                            srcset="{{URL::asset('images/items_100/' . $item->id . '.jpg')}} 100w,
+                            {{URL::asset('images/items_200/' . $item->id . '.jpg')}} 200w"
+                            sizes="(min-width: 850px) 200px, 100px">
+                    </span>
+                    </a>
+                    <a href="/item/{{$item->id}}">
+                    <span class="item_text">
+                        <h2>{{$item->name}}</h2>
+                        @if (strlen($item->description) > 200)
+                            <label>{{substr($item->description, 0, 200)}}...</label>
+                        @else
+                            <label>{{$item->description}}</label>
+                        @endif
+                        
+                    </span>
+                    </a>
+                    <div class="item_buy">
+                        <div class="text_grid">
+                            @php
+                                $new_price = round($item->price / 100 * (100 - $item->sale), 2);
+                            @endphp
+
+                            <h2>{{$new_price}} €</h2>
+                            @if($new_price != $item->price)
+                                <s>{{$item->price}} €</s>
+                            @endif
+                        </div>
+                        <div class="button_grid">
+                            <input type=button value="Add to cart">
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+            {{-- @for($i = 0; $i < 7; $i++)
                 <div class="item">
                     <a href="item">
                     <span class="item_image">
@@ -145,7 +216,7 @@
                         </div>
                     </div>
                 </div>
-            @endfor
+            @endfor --}}
 
         </div>
 

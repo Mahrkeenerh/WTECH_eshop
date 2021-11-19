@@ -21,8 +21,9 @@
 
             function find_category($categories, $id) {
                 foreach ($categories as $category) {
-                    if ($category->id == $id)
+                    if ($category->id == $id) {
                         return $category;
+                    }
                 }
             }
 
@@ -43,9 +44,9 @@
 
 <div id="top">
     <div id="item_image">
-        <img src="{{URL::asset('icons/items/brakepads_500.jpg')}}" alt="brakepads"
-             srcset="{{URL::asset('icons/items/brakepads_500.jpg')}} 500w,
-            {{URL::asset('icons/items/brakepads_200.jpg')}} 200w"
+        <img src="{{URL::asset('images/items_500/' . $item->id . '.jpg')}}" alt={{$item->name}}
+             srcset="{{URL::asset('images/items_500/' . $item->id . '.jpg')}} 500w,
+            {{URL::asset('images/items_200/' . $item->id . '.jpg')}} 200w"
              sizes="(min-width: 600px) 500px, 200px">
     </div>
     <div id="item_title">
@@ -55,10 +56,12 @@
         @php
             $new_price = round($item->price / 100 * (100 - $item->sale), 2);
         @endphp
+
         <h1>{{$new_price}} €</h1>
         @if($new_price != $item->price)
             <s>{{$item->price}} €</s>
         @endif
+        
         <div class="middle_buttons">
             <input type=button value="-">
             <label id="item_count">1</label>
