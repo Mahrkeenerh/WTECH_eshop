@@ -35,3 +35,5 @@ Route::resource('/login', LoginController::class);
 Route::resource('/register', RegisterController::class);
 
 Route::resource('test', TestController::class);
+
+require __DIR__.'/auth.php';
