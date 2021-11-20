@@ -40,6 +40,15 @@ class ItemController extends Controller
         //
     }
 
+    private function find_category($categories, $id)
+    {
+        foreach ($categories as $category) {
+            if ($category->id == $id)
+                return $category;
+        }
+        return null;
+    }
+
     /**
      * Display the specified resource.
      *
@@ -49,8 +58,22 @@ class ItemController extends Controller
     public function show($id)
     {
         $item = Item::where('id', $id)->first();
+        $current_category = Category::where('id', $item->category_id)->first();
+
+        // All categories
         $categories = Category::all();
-        return view('item', compact('item', 'categories'));
+
+        // Filter parent categories
+        $parent_categories = array();
+        $parent = $this->find_category($categories, $current_category->parent);
+        while ($parent != null)
+        {
+            array_push($parent_categories, $parent);
+            $parent = $this->find_category($categories, $parent->parent);
+        }
+        $parent_categories = array_reverse($parent_categories, false);
+
+        return view('item', compact('item', 'current_category', 'parent_categories'));
     }
 
     /**

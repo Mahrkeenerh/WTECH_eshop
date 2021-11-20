@@ -12,7 +12,8 @@
 
 <div id="grid">
 
-    <div id="sidebar">
+{{--    <div id="sidebar">--}}
+    <form id="sidebar">
         <div id="big">
             <div class="filter_block">
                 <label class="category_title">Price:</label>
@@ -22,6 +23,10 @@
             </div>
             <div class="filter_block">
                 <label class="category_title">Manufacturer:</label>
+{{--                @foreach ($manufacturers as $manufacturer)--}}
+{{--                    <input type="checkbox" name="action" id="{{$manufacturer}}">--}}
+{{--                    <label for="{{$manufacturer}}">{{$manufacturer}}</label>--}}
+{{--                @endforeach--}}
                 <input type="checkbox" name="action" id="abc_inc">
                 <label for="abc_inc">abc_inc</label>
                 <input type="checkbox" name="action" id="makers">
@@ -33,6 +38,10 @@
             </div>
             <div class="filter_block">
                 <label class="category_title">Color:</label>
+{{--                @foreach ($colors as $color)--}}
+{{--                    <input type="checkbox" name="action" id="{{$color}}">--}}
+{{--                    <label for="{{$color}}">{{$color}}</label>--}}
+{{--                @endforeach--}}
                 <input type="checkbox" name="action" id="white">
                 <label for="white">white</label>
                 <input type="checkbox" name="action" id="black">
@@ -44,6 +53,10 @@
             </div>
             <div class="filter_block">
                 <label class="category_title">Material:</label>
+{{--                @foreach ($materials as $material)--}}
+{{--                    <input type="checkbox" name="action" id="{{$material}}">--}}
+{{--                    <label for="{{$material}}">{{$material}}</label>--}}
+{{--                @endforeach--}}
                 <input type="checkbox" name="action" id="metal">
                 <label for="metal">metal</label>
                 <input type="checkbox" name="action" id="aluminium">
@@ -57,15 +70,17 @@
                 <label class="no_break"> - </label>
                 <input type="text" placeholder="999.99" id="max_volume">
             </div>
-            <div class="button_block">
-                <input type=button value="Apply">
-            </div>
+            <button>Apply</button>
+{{--            <div class="button_block">--}}
+{{--                <input type=button value="Apply">--}}
+{{--            </div>--}}
         </div>
 
         <div id="smol">
 
         </div>
-    </div>
+    </form>
+{{--    </div>--}}
 
 
     <div id="main">
@@ -99,11 +114,11 @@
 
             <div id="order">
                 <h2>per page: </h2>
-                <a href="category"><h3 class="o" style="font-weight:100;">20</h3></a>
+                <a href="{{URL::current()."?per_page=20"}}"><h3 class="o" style="font-weight:100;">20</h3></a>
                 <h2>/</h2>
-                <a href="category"><h3 class="o" style="font-weight:100;">50</h3></a>
+                <a href="{{URL::current()."?per_page=50"}}"><h3 class="o" style="font-weight:100;">50</h3></a>
                 <h2>/</h2>
-                <a href="category"><h2 class="o" style="font-weight:900;">100</h2></a>
+                <a href="{{URL::current()."?per_page=100"}}"><h2 class="o" style="font-weight:900;">100</h2></a>
             </div>
         </div>
 

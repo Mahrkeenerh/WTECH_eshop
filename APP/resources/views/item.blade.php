@@ -14,31 +14,12 @@
 <div id="categories_parent">
     <nav id="categories_path">
         <a href="/"><h3 class="c_path">Home</h3></a>
-        @php
-            $id_arr = array();
-            $name_arr = array();
-            $current_id = $item->category_id;
-
-            function find_category($categories, $id) {
-                foreach ($categories as $category) {
-                    if ($category->id == $id) {
-                        return $category;
-                    }
-                }
-            }
-
-            while(!is_null($current_id)) {
-                $current_category = find_category($categories, $current_id);
-                array_push($id_arr, $current_id);
-                array_push($name_arr, $current_category->name);
-                $current_id = $current_category->parent;
-            }
-        @endphp
-
-        @for ($i = count($name_arr) - 1; $i >= 0; $i--)
+        @foreach ($parent_categories as $category)
             <h3>>></h3>
-            <a href="/category/{{$id_arr[$i]}}"><h3 class="c_path">{{$name_arr[$i]}}</h3></a>
-        @endfor
+            <a href="/category/{{$category->id}}"><h3 class="c_path">{{$category->name}}</h3></a>
+        @endforeach
+        <h3>>></h3>
+        <a href="/category/{{$current_category->id}}"><h3 class="c_path">{{$current_category->name}}</h3></a>
     </nav>
 </div>
 
@@ -61,7 +42,7 @@
         @if($new_price != $item->price)
             <s>{{$item->price}} €</s>
         @endif
-        
+
         <div class="middle_buttons">
             <input type=button value="-">
             <label id="item_count">1</label>

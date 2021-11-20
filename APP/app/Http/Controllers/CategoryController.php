@@ -40,6 +40,19 @@ class CategoryController extends Controller
         //
     }
 
+    private function getFilterCategories($items, $category_name)
+    {
+        $filter_category = array();
+        foreach ($items as $item)
+        {
+            $item_info_json = json_decode($item->info_json, true);
+            array_push($filter_category, $item_info_json[$category_name]);
+        }
+        $filter_category = array_unique($filter_category, SORT_STRING);
+
+        return $filter_category;
+    }
+
     private function find_category($categories, $id)
     {
         foreach ($categories as $category) {
@@ -88,10 +101,23 @@ class CategoryController extends Controller
             array_push($child_categories_id, $category->id);
         }
 
-        // Filter items only from current or child categories
-        $items = Item::whereIn('category_id', $child_categories_id)->orWhere('category_id', $current_category->id)->paginate(3);
+        if ($request->per_page != 100 || $request->per_page != 50)
+        {
+            $per_page = 2;
+        }
+        else
+        {
+            $per_page = $request->per_page;
+        }
 
-        return view('category', compact('current_category', 'parent_categories', 'child_categories', 'items'));
+        // Filter items only from current or child categories
+        $items = Item::whereIn('category_id', $child_categories_id)->orWhere('category_id', $current_category->id)->paginate($per_page);
+
+//        $manufacturers = $this->getFilterCategories($items, 'Manufacturer');
+//        $colors = $this->getFilterCategories($items, 'Color');
+//        $materials = $this->getFilterCategories($items, 'Material');
+
+        return view('category', compact('current_category', 'parent_categories', 'child_categories', 'items', $per_page));
     }
 
     /**
