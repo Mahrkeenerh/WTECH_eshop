@@ -94,7 +94,7 @@
                 <h2>Order by: </h2>
                 <a href="category"><h3 class="s" style="font-weight:100;">cheapest</h3></a>
                 <a href="category"><h3 class="s" style="font-weight:100;">expensive</h3></a>
-                <a href="category"><h2 class="s" style="font-weight:900;">top rated</h2></a>
+                <a href="category"><h2 class="s" style="font-weight:900;">best selling first</h2></a>
             </div>
 
             <div id="order">
@@ -180,12 +180,8 @@
 
         <div id="pageing_parent">
             <nav id="pageing">
-                <label>Page: </label>
-                <a href="category"><h3 class="p_path" style="font-weight:100;">1</h3></a>
-                <a href="category"><h3 class="p_path" style="font-weight:100;">2</h3></a>
-                <a href="category"><h3 class="p_path" style="font-weight:900;">3</h3></a>
-                <a href="category"><h3 class="p_path" style="font-weight:100;">4</h3></a>
-                <a href="category"><h3 class="p_path" style="font-weight:100;">5</h3></a>
+{{--                <label>Page: </label>--}}
+                {{$items->links('pagination::bootstrap-4')}}
             </nav>
         </div>
     </div>

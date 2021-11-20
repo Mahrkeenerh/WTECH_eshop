@@ -55,7 +55,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $current_category = Category::where('id', $id)->first();
 
@@ -82,16 +82,14 @@ class CategoryController extends Controller
             }
         }
 
-        $items = Item::all();
-        // Filter items; only from current or child categories
-        foreach ($items as $key=>$item)
+        $child_categories_id = array();
+        foreach($child_categories as $category)
         {
-            if ($this->find_category($child_categories, $item->category_id) == null
-                && $item->category_id != $current_category->id)
-                {
-                    $items->forget($key);
-                }
+            array_push($child_categories_id, $category->id);
         }
+
+        // Filter items only from current or child categories
+        $items = Item::whereIn('category_id', $child_categories_id)->orWhere('category_id', $current_category->id)->paginate(3);
 
         return view('category', compact('current_category', 'parent_categories', 'child_categories', 'items'));
     }
