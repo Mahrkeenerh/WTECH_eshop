@@ -71,51 +71,19 @@
     <div id="main">
         <nav id="categories_path">
             <a href="/"><h3 class="c_path">Home</h3></a>
-            @php
-            $id_arr = array();
-            $name_arr = array();
-            $current_id = $category->id;
-
-            function find_category($categories, $id) {
-                foreach ($categories as $category) {
-                    if ($category->id == $id)
-                        return $category;
-                }
-            }
-
-            while(!is_null($current_id)) {
-                $current_category = find_category($categories, $current_id);
-                array_push($id_arr, $current_id);
-                array_push($name_arr, $current_category->name);
-                $current_id = $current_category->parent;
-            }
-        @endphp
-
-        @for ($i = count($name_arr) - 1; $i >= 1; $i--)
+            @foreach ($parent_categories as $category)
+                <h3>>></h3>
+                <a href="/category/{{$category->id}}"><h3 class="c_path">{{$category->name}}</h3></a>
+            @endforeach
             <h3>>></h3>
-            <a href="/category/{{$id_arr[$i]}}"><h3 class="c_path">{{$name_arr[$i]}}</h3></a>
-        @endfor
+            <a href="/category/{{$current_category->id}}"><h3 class="c_path">{{$current_category->name}}</h3></a>
         </nav>
 
-        @php
-            $child_arr = array();
-            $all_id_arr = array();
-
-            array_push($all_id_arr, $category->id);
-
-            foreach ($categories as $child) {
-                if (!is_null($child->parent) && $child->parent == $category->id) {
-                    array_push($child_arr, $child);
-                    array_push($all_id_arr, $child->id);
-                }
-            }
-        @endphp
-
         <div id="categories">
-            @foreach ($child_arr as $child)
-                <a href="/category/{{$child->id}}">
+            @foreach ($child_categories as $category)
+                <a href="/category/{{$category->id}}">
                     <span class="category">
-                        <h2>{{$child->name}}</h2>
+                        <h2>{{$category->name}}</h2>
                     </span>
                 </a>
             @endforeach
@@ -141,17 +109,7 @@
 
         <div id="items">
 
-            @php
-                $filtered_items = array();
-
-                foreach ($items as $item) {
-                    if (in_array($item->category_id, $all_id_arr)) {
-                        array_push($filtered_items, $item);
-                    }
-                }
-            @endphp
-
-            @foreach ($filtered_items as $item)
+            @foreach ($items as $item)
                 <div class="item">
                     <a href="/item/{{$item->id}}">
                     <span class="item_image">
@@ -169,7 +127,7 @@
                         @else
                             <label>{{$item->description}}</label>
                         @endif
-                        
+
                     </span>
                     </a>
                     <div class="item_buy">
