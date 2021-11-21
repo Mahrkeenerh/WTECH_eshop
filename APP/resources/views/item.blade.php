@@ -49,7 +49,10 @@
             <input type=button value="+">
         </div>
         <div class="add_cart_button">
-            <input class="add_button" type=button value="Add to cart">
+            <form action="/cart/add_to_cart/{{$item->id}}" method="GET">
+                <button type="submit">Add to cart</button>
+            </form>
+{{--            <input class="add_button" type=button value="Add to cart">--}}
         </div>
     </div>
 </div>

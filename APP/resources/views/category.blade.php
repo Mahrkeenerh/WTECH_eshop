@@ -159,7 +159,13 @@
                             @endif
                         </div>
                         <div class="button_grid">
-                            <input type=button value="Add to cart">
+                            <form action="/cart/add_to_cart/{{$item->id}}" method="GET">
+                                <button type="submit">Add to cart</button>
+{{--                            <input type=button value="Add to cart">--}}
+                            </form>
+{{--                            <a href="/cart/add_to_cart/{{$item->id}}">--}}
+{{--                                <button>Add to cart</button>--}}
+{{--                            </a>--}}
                         </div>
                     </div>
                 </div>

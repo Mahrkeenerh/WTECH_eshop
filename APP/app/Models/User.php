@@ -25,4 +25,9 @@ class User extends Authenticatable
         'postal_code'
     ];
     use HasFactory;
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
 }

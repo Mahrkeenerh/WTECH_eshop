@@ -12,31 +12,31 @@
 <!--Main categories-->
 <div id="main_categories">
 
-    <a href="category">
+    <a href="/category/1">
         <div class="category">
             <img src="{{URL::asset('icons/homepage/category_car_parts_100.png')}}" alt="Car parts image">
             <label>Car parts</label>
         </div>
     </a>
-    <a href="category">
+    <a href="/category/2">
         <div class="category">
             <img src="{{URL::asset('icons/homepage/category_oils_fluids_100.png')}}" alt="Oils & fluids image">
             <label>Oils & fluids</label>
         </div>
     </a>
-    <a href="category">
+    <a href="/category/3">
         <div class="category">
             <img src="{{URL::asset('icons/homepage/category_filters_100.png')}}" alt="Filters image">
             <label>Filters</label>
         </div>
     </a>
-    <a href="category">
+    <a href="/category/4">
         <div class="category">
             <img src="{{URL::asset('icons/homepage/category_tires_100.png')}}" alt="Car tires image">
             <label>Car tires</label>
         </div>
     </a>
-    <a href="category">
+    <a href="/category/5">
         <div class="category">
             <img src="{{URL::asset('icons/homepage/category_autocosmetics_100.png')}}" alt="Autocosmetics & Accessories image">
             <label>Autocosmetics & Accessories</label>

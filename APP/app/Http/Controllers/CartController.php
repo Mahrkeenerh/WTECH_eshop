@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
+use App\Models\Item;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -13,9 +15,37 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart');
+        $cart = session()->get('cart');
+
+        return view('cart', compact('cart'));
     }
 
+    public function addToCart (Request $request, $id)
+    {
+        $item = Item::find($id);
+        $oldCart = session()->has('cart') ? session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($item, $item->id);
+
+        session()->put('cart', $cart);
+        return redirect()->route('cart');
+    }
+
+    public function removeFromCart (Request $request, $id)
+    {
+        $item = Item::find($id);
+        $oldCart = session()->has('cart') ? session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->remove($item, $id);
+
+        if ($cart->totalQty == 0)
+        {
+            $cart = null;
+        }
+
+        session()->put('cart', $cart);
+        return redirect()->route('cart');
+    }
     /**
      * Show the form for creating a new resource.
      *

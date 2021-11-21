@@ -46,14 +46,16 @@
     justify-content: right;
     margin: 10px;
 }
-#buttons input[type=button]:hover{
+/*#buttons input[type=button]:hover{*/
+#buttons button:hover{
     cursor: pointer;
 }
 #buttons .add_cart_button {
     display: flex;
     justify-content: right;
 }
-#buttons .add_button {
+/*#buttons .add_button {*/
+#buttons button {
     font-size: 25px;
     padding: 5px 10px;
     margin-top: 10px;

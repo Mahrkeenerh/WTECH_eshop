@@ -27,7 +27,9 @@ Route::get('/', [HomepageController::class, 'index']);
 
 Route::resource('/category', CategoryController::class);
 Route::resource('/item', ItemController::class);
-Route::resource('/cart', CartController::class);
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::get('/cart/add_to_cart/{id}', [CartController::class, 'addToCart']);
+Route::get('/cart/remove_from_cart/{id}', [CartController::class, 'removeFromCart']);
 Route::resource('/profile', ProfileController::class);
 Route::resource('/shipping', ShippingController::class);
 Route::resource('/payment', PaymentController::class);

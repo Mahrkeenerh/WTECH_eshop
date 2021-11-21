@@ -4,7 +4,7 @@
         <input type="text" id="top_searchbar" name="top_searchbar" placeholder="I'm looking for..." required>
         <button>Search</button>
     </form>
-    <a href="cart" class="cart"><img src="{{URL::asset('icons/homepage/shopping_cart_30.png')}}" alt="shopping cart"></a>
+    <a href="{{route('cart')}}" class="cart"><img src="{{URL::asset('icons/homepage/shopping_cart_30.png')}}" alt="shopping cart"></a>
 
     @auth
     <span class="login">
