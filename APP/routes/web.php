@@ -23,7 +23,7 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::resource('/', HomepageController::class);
+Route::get('/', [HomepageController::class, 'index']);
 
 Route::resource('/category', CategoryController::class);
 Route::resource('/item', ItemController::class);
