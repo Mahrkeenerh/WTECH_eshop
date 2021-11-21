@@ -1,21 +1,32 @@
 /*body grid*/
-#grid {
+/*#grid {*/
+#register {
     display: grid;
     width: 300px;
     justify-self: center;
 }
-
-#grid h1 {
+/*#grid h1 {*/
+body h2 {
     justify-self: center;
 }
-#grid input[type=text], #grid input[type=password] {
+#errors {
+    justify-self: center;
+}
+#errors li {
+    justify-self: center;
+    font-weight: bold;
+    color: #d82626;
+    list-style: none;
+}
+/*#grid input[type=text], #grid input[type=password] {*/
+#register input[type=text], #register input[type=password] {
     width: 300px;
     height: 20px;
     border-radius: 5px;
     justify-self: center;
 }
 /*#grid input[type=button] {*/
-#grid button {
+#register button {
     width: 125px;
     height: 50px;
     font-size: 20px;
@@ -24,14 +35,25 @@
     justify-self: center;
     margin-top: 25px;
 }
-#grid label {
+/*#grid label {*/
+#register label {
     padding-left: 5px;
     justify-self: center;
     margin-top: 20px;
     margin-bottom: 5px;
 }
-#grid .left_label {
+/*#grid .left_label {*/
+#register .left_label {
     justify-self: left;
     margin-top: 10px;
     margin-bottom: 0;
+}
+#register a {
+    justify-self: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+#register a:hover {
+    cursor: pointer;
+    color: #a1e1e2;
 }

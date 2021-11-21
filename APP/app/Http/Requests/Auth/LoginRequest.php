@@ -57,7 +57,7 @@ class LoginRequest extends FormRequest
                 'email' => __('auth.falied'),
             ]);
         }
-        
+
         Auth::login($user);
 //        Auth::login($user, $this->boolean('remember'));
 
