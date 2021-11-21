@@ -99,6 +99,11 @@ header .cart {
 }
 header .login{
     justify-self: center;
+}
+header .login a {
+    padding: 5px;
+}
+header .login h3, header .login form button {
     cursor: pointer;
 }
 header .search_bar button {

@@ -8,7 +8,7 @@
 
     @auth
     <span class="login">
-    <h3 style="display: inline; font-size: 0.8em;"><a href="/profile/{{Auth::user()->id}}">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</a></h3>
+    <h3 style="display: inline; font-size: 0.8em;"><a href="/profile">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</a></h3>
     <form method="POST" action="{{ route('logout') }}" style="display: inline">
         @csrf
         <button type="submit">Logout</button>
@@ -21,7 +21,6 @@
     </span>
 
     @else
-{{--    <h3 class="login"><a href="/login">Login</a></h3>--}}
-    <button class="login"><a href="/login">Login</a></button>
+    <h3 class="login"><a href="/login" type="button">Login</a></h3>
     @endauth
 </header>
