@@ -90,8 +90,10 @@
                 <h3>>></h3>
                 <a href="/category/{{$category->id}}"><h3 class="c_path">{{$category->name}}</h3></a>
             @endforeach
+            @if($current_category)
             <h3>>></h3>
             <a href="/category/{{$current_category->id}}"><h3 class="c_path">{{$current_category->name}}</h3></a>
+            @endif
         </nav>
 
         <div id="categories">

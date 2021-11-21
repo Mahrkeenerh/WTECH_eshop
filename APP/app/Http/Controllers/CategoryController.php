@@ -14,9 +14,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // return view('category');
+        $items = Item::where('name', 'ilike', '%'.$request->top_searchbar.'%')->orWhere('description', 'ilike', '%'.$request->top_searchbar.'%')
+            ->orWhere('info_json', 'ilike', '%'.$request->top_searchbar.'%')->paginate(3);
+
+        return view('category', compact('items'))->with('current_category', null)->with('parent_categories', array())
+        ->with('child_categories', array());
     }
 
     /**

@@ -1,6 +1,6 @@
 <header>
     <h1 class="eshop_name"><a href="/">CAR STUFF 4 U</a></h1>
-    <form class="search_bar">
+    <form class="search_bar" action="/category" method="GET">
         <input type="text" id="top_searchbar" name="top_searchbar" placeholder="I'm looking for..." required>
         <button>Search</button>
     </form>
