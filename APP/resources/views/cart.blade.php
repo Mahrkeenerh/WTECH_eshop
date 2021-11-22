@@ -35,13 +35,15 @@
             <a href="{{ route('item.show', ['id' => $stored_item['item']->id]) }}">
                 <span class="item_text">
                     <h2>{{$stored_item['item']->name}}</h2>
-                <label>{{$stored_item['item']->label}}</label>
+                <label>{{$stored_item['item']->description}}</label>
                 </span>
             </a>
             <div class="item_buy">
                 <div class="text_grid">
-                    <h2>{{$stored_item['item']->price}} €</h2>
-                    <s>{{$stored_item['item']->old_price/100*$stored_item['item']->sale}} €</s>
+                    <h2>{{$stored_item['item']->new_price}} €</h2>
+                    @if ($stored_item['item']->new_price < $stored_item['item']->old_price)
+                    <s>{{$stored_item['item']->old_price}} €</s>
+                    @endif
                 </div>
                 <div class="button_grid">
                     <input type=button value="-">

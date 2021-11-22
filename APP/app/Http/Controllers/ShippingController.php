@@ -36,6 +36,7 @@ class ShippingController extends Controller
      */
     public function store(Request $request)
     {
+        $cart = session()->get('cart');
         $shippingInfo = new ShippingInfo(
             $request->first_name,
             $request->last_name,
@@ -44,10 +45,12 @@ class ShippingController extends Controller
             $request->city,
             $request->street_and_number,
             $request->postal_code,
-            $request->option
+            $request->delivery_option
         );
+        $cart->setShippingInfo($shippingInfo);
 
         session()->put('shippingInfo', $shippingInfo);
+        session()->put('cart', $cart);
 
         return redirect()->route('payment');
     }

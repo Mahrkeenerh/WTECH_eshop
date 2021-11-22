@@ -55,26 +55,32 @@
     border: 3px solid orange;
     border-radius: 5px;
 }
-#payment_options form p {
+/*#payment_options form p {*/
+#payment_options p {
     padding: 10px 5px;
     border-radius: 5px;
     background: #eaeaea;
 }
-#payment_options form p input:hover, #payment_options form p label:hover {
+/*#payment_options form p input:hover, #payment_options form p label:hover {*/
+#payment_options p input:hover, #payment_options p label:hover {
     cursor: pointer;
 }
-#payment_options form p input {
+/*#payment_options form p input {*/
+#payment_options p input {
     float: right;
 }
-#payment_options form p .price {
+/*#payment_options form p .price {*/
+#payment_options p .price {
     background: white;
     padding: 5px;
     border-radius: 15px;
 }
-#payment_options form p label {
+/*#payment_options form p label {*/
+#payment_options p label {
     padding: 3px;
 }
-#payment_options form fieldset {
+/*#payment_options form fieldset {*/
+#payment_options fieldset {
     border: none;
 }
 #payment_options button {

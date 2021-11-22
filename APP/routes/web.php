@@ -59,6 +59,8 @@ Route::post('/shipping', [ShippingController::class, 'store'])
 // Payment
 Route::get('/payment', [PaymentController::class, 'index'])
     ->name('payment');
+Route::post('/payment', [PaymentController::class, 'store'])
+    ->name('payment.finish');
 
 Route::resource('db', TestController::class);
 

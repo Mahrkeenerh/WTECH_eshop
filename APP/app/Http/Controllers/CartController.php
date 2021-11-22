@@ -46,6 +46,23 @@ class CartController extends Controller
         session()->put('cart', $cart);
         return redirect()->route('cart');
     }
+
+    public function removeOne (Request $request, $id)
+    {
+        $item = Item::find($id);
+        $oldCart = session()->has('cart') ? session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->removeOne($item, $id);
+
+        if ($cart->totalQty == 0)
+        {
+            $cart = null;
+        }
+
+        session()->put('cart', $cart);
+        return redirect()->route('cart');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

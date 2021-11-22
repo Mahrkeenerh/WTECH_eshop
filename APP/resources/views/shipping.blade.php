@@ -38,9 +38,9 @@
 
         <label for="email_address">Email address:</label>
         @auth
-            <input type="email" id="email_address" name="email_address" required value="{{ Auth::user()->email }}">
+            <input type="email" id="email" name="email" required value="{{ Auth::user()->email }}">
         @else
-            <input type="email" id="email_address" name="email_address" required>
+            <input type="email" id="email" name="email" required>
         @endauth
 
         <label for="state">State:</label>
@@ -106,7 +106,11 @@
     <!--Continue to payment-->
     <div id="continue">
         <h2>Total:</h2>
+        @if (session()->has('cart'))
         <h2>{{ session()->get('cart')->totalPrice}} €</h2>
+        @else
+        <h2>0.00 €</h2>
+        @endif
             <button id="continue_to_payment" type="submit">Continue to payment</button>
     </div>
 
