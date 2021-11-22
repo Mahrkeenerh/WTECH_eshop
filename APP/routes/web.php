@@ -22,20 +22,41 @@ use App\Http\Controllers\RegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Homepage
+Route::get('/', [HomepageController::class, 'index'])
+    ->name('home');
 
-Route::get('/', [HomepageController::class, 'index']);
+// Category
+Route::get('/category', [CategoryController::class, 'index'])
+    ->name('category');
+Route::get('/category/{id}', [CategoryController::class, 'show'])
+    ->name('category.show');
 
-Route::resource('/category', CategoryController::class);
-Route::resource('/item', ItemController::class);
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
-Route::get('/cart/add_to_cart/{id}', [CartController::class, 'addToCart']);
-Route::get('/cart/remove_from_cart/{id}', [CartController::class, 'removeFromCart']);
-Route::resource('/profile', ProfileController::class);
+// Item
+Route::get('/item/{id}', [ItemController::class, 'show'])
+    ->name('item.show');
+
+// Cart
+Route::get('/cart', [CartController::class, 'index'])
+    ->name('cart');
+Route::get('/cart/add_to_cart/{id}', [CartController::class, 'addToCart'])
+    ->name('cart.add');
+Route::get('/cart/remove_from_cart/{id}', [CartController::class, 'removeFromCart'])
+    ->name('cart.remove');
+Route::get('/cart/remove_one/{id}', [CartController::class, 'removeOne'])
+    ->name('cart.remove_one');
+
+// Profile
+Route::get('/profile', [ProfileController::class, 'index'])
+    ->name('profile');
+
+// Shipping
 Route::resource('/shipping', ShippingController::class);
+
+// Payment
 Route::resource('/payment', PaymentController::class);
-Route::resource('/login', LoginController::class);
-Route::resource('/register', RegisterController::class);
 
 Route::resource('test', TestController::class);
 
+// Login, Register
 require __DIR__.'/auth.php';

@@ -23,7 +23,7 @@
     <div id="items">
         @foreach($cart->items as $stored_item)
         <div class="item">
-            <a href="item/{{$stored_item['item']->id}}">
+            <a href="{{ route('item.show', ['id' => $stored_item['item']->id]) }}">
                 <span class="item_image">
                     <img src="{{URL::asset('images/items_200/'.$stored_item['item']->id.'.jpg')}}" alt="brakepads"
                          srcset="{{URL::asset('images/items_100/'.$stored_item['item']->id.'.jpg')}} 100w,
@@ -32,7 +32,7 @@
                             100px">
                 </span>
             </a>
-            <a href="item/{{$stored_item['item']->id}}">
+            <a href="{{ route('item.show', ['id' => $stored_item['item']->id]) }}">
                 <span class="item_text">
                     <h2>{{$stored_item['item']->name}}</h2>
                 <label>{{$stored_item['item']->label}}</label>
@@ -48,7 +48,7 @@
                     <label class="item_count">{{$stored_item['qty']}}</label>
 {{--                    <label class="item_count">1</label>--}}
                     <input type=button value="+">
-                    <a class="delete" href="/cart/remove_from_cart/{{$stored_item['item']->id}}">
+                    <a class="delete" href="{{ route('cart.remove', ['id' => $stored_item['item']->id]) }}">
                         <img class="delete" src="{{URL::asset('icons/delete_smol.png')}}" alt="remove">
                     </a>
                 </div>
@@ -61,7 +61,7 @@
         <h2>Total:</h2>
         <h2>{{$cart->totalPrice}} €</h2>
 {{--        <h2>12345.67 €</h2>--}}
-        <a href="shipping">
+        <a href="{{ route('shipping') }}">
             <button>Continue to shipping</button>
         </a>
     </div>

@@ -13,13 +13,13 @@
 
 <div id="categories_parent">
     <nav id="categories_path">
-        <a href="/"><h3 class="c_path">Home</h3></a>
+        <a href="{{ route('home') }}"><h3 class="c_path">Home</h3></a>
         @foreach ($parent_categories as $category)
             <h3>>></h3>
-            <a href="/category/{{$category->id}}"><h3 class="c_path">{{$category->name}}</h3></a>
+            <a href="{{ route('category.show', ['id' => $category->id]) }}"><h3 class="c_path">{{$category->name}}</h3></a>
         @endforeach
         <h3>>></h3>
-        <a href="/category/{{$current_category->id}}"><h3 class="c_path">{{$current_category->name}}</h3></a>
+        <a href="{{ route('category.show', ['id' => $current_category->id]) }}"><h3 class="c_path">{{$current_category->name}}</h3></a>
     </nav>
 </div>
 
@@ -49,7 +49,7 @@
             <input type=button value="+">
         </div>
         <div class="add_cart_button">
-            <form action="/cart/add_to_cart/{{$item->id}}" method="GET">
+            <form action="{{ route('cart.add', ['id' => $item->id]) }}" method="GET">
                 <button type="submit">Add to cart</button>
             </form>
 {{--            <input class="add_button" type=button value="Add to cart">--}}

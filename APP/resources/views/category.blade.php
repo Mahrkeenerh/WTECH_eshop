@@ -85,20 +85,20 @@
 
     <div id="main">
         <nav id="categories_path">
-            <a href="/"><h3 class="c_path">Home</h3></a>
+            <a href="{{ route('home') }}"><h3 class="c_path">Home</h3></a>
             @foreach ($parent_categories as $category)
                 <h3>>></h3>
-                <a href="/category/{{$category->id}}"><h3 class="c_path">{{$category->name}}</h3></a>
+                <a href="{{ route('category.show', ['id' => $category->id]) }}"><h3 class="c_path">{{$category->name}}</h3></a>
             @endforeach
             @if($current_category)
             <h3>>></h3>
-            <a href="/category/{{$current_category->id}}"><h3 class="c_path">{{$current_category->name}}</h3></a>
+            <a href="{{ route('category.show', ['id' => $current_category->id]) }}"><h3 class="c_path">{{$current_category->name}}</h3></a>
             @endif
         </nav>
 
         <div id="categories">
             @foreach ($child_categories as $category)
-                <a href="/category/{{$category->id}}">
+                <a href="{{ route('category.show', ['id' => $category->id]) }}">
                     <span class="category">
                         <h2>{{$category->name}}</h2>
                     </span>
@@ -110,8 +110,11 @@
             <div id="sort">
                 <h2>Order by: </h2>
                 <a href="category"><h3 class="s" style="font-weight:100;">cheapest</h3></a>
+{{--                <a href="{{ route('category.cheap') }}"><h3 class="s" style="font-weight:100;">cheapest</h3></a>--}}
                 <a href="category"><h3 class="s" style="font-weight:100;">expensive</h3></a>
+{{--                <a href="{{ route('category.expensive') }}"><h3 class="s" style="font-weight:100;">expensive</h3></a>--}}
                 <a href="category"><h2 class="s" style="font-weight:900;">best selling first</h2></a>
+{{--                <a href="{{ route('category.best') }}"><h2 class="s" style="font-weight:900;">best selling first</h2></a>--}}
             </div>
 
             <div id="order">
@@ -128,7 +131,7 @@
 
             @foreach ($items as $item)
                 <div class="item">
-                    <a href="/item/{{$item->id}}">
+                    <a href="{{ route('item.show', ['id' => $item->id]) }}">
                     <span class="item_image">
                         <img src="{{URL::asset('images/items_200/' . $item->id . '.jpg')}}" alt={{$item->name}}
                             srcset="{{URL::asset('images/items_100/' . $item->id . '.jpg')}} 100w,
@@ -136,7 +139,7 @@
                             sizes="(min-width: 850px) 200px, 100px">
                     </span>
                     </a>
-                    <a href="/item/{{$item->id}}">
+                    <a href="{{ route('item.show', ['id' => $item->id]) }}">
                     <span class="item_text">
                         <h2>{{$item->name}}</h2>
                         @if (strlen($item->description) > 200)
@@ -159,7 +162,7 @@
                             @endif
                         </div>
                         <div class="button_grid">
-                            <form action="/cart/add_to_cart/{{$item->id}}" method="GET">
+                            <form action="{{ route('cart.add', ['id' => $item->id]) }}" method="GET">
                                 <button type="submit">Add to cart</button>
 {{--                            <input type=button value="Add to cart">--}}
                             </form>
