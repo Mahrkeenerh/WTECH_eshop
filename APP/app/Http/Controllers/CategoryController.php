@@ -493,23 +493,96 @@ class CategoryController extends Controller
         }
 
         // Filter items only from current or child categories
-        $items = Item::whereIn('category_id', $child_categories_id)
-            ->orWhere('category_id', $current_category->id);
+        $items = Item::where(function ($query) use ($child_categories_id, $current_category) {
+            $query->whereIn('category_id', $child_categories_id)
+                ->orWhere('category_id', $current_category->id);
+        });
+
+        $where_used = FALSE;
         
         if (Session::has('min_price')) $items = $items->where('new_price', '>=', Session::get('min_price'));
         if (Session::has('max_price')) $items = $items->where('new_price', '<=', Session::get('max_price'));
-        if (Session::has('abc_inc')) $items = $items->orWhere('info_json', 'ilike', '%abc_inc%');
-        if (Session::has('makers')) $items = $items->orWhere('info_json', 'ilike', '%makers%');
-        if (Session::has('creators')) $items = $items->orWhere('info_json', 'ilike', '%creators%');
-        if (Session::has('aaasus')) $items = $items->orWhere('info_json', 'ilike', '%aaasus%');
-        if (Session::has('white')) $items = $items->orWhere('info_json', 'ilike', '%white%');
-        if (Session::has('black')) $items = $items->orWhere('info_json', 'ilike', '%black%');
-        if (Session::has('orange')) $items = $items->orWhere('info_json', 'ilike', '%orange%');
-        if (Session::has('magenta')) $items = $items->orWhere('info_json', 'ilike', '%magenta%');
-        if (Session::has('metal')) $items = $items->orWhere('info_json', 'ilike', '%metal%');
-        if (Session::has('aluminium')) $items = $items->orWhere('info_json', 'ilike', '%aluminium%');
-        if (Session::has('copper')) $items = $items->orWhere('info_json', 'ilike', '%copper%');
-        
+
+        if (Session::has('abc_inc')) {
+            if ($where_used) $items = $items->orWhere('info_json', 'ilike', '%abc_inc%');
+            else {
+                $items = $items->where('info_json', 'ilike', '%abc_inc%');
+                $where_used = TRUE;
+            }
+        }
+        if (Session::has('makers')) {
+            if ($where_used) $items = $items->orWhere('info_json', 'ilike', '%makers%');
+            else {
+                $items = $items->where('info_json', 'ilike', '%makers%');
+                $where_used = TRUE;
+            }
+        }
+        if (Session::has('creators')) {
+            if ($where_used) $items = $items->orWhere('info_json', 'ilike', '%creators%');
+            else {
+                $items = $items = $items->where('info_json', 'ilike', '%creators%');
+                $where_used = TRUE;
+            }
+        }
+        if (Session::has('aaasus')) {
+            if ($where_used) $items = $items->orWhere('info_json', 'ilike', '%aaasus%');
+            else {
+                $items = $items->where('info_json', 'ilike', '%aaasus%');
+                $where_used = TRUE;
+            }
+        }
+
+        if (Session::has('white')) {
+            if ($where_used) $items = $items->orWhere('info_json', 'ilike', '%white%');
+            else {
+                $items = $items->where('info_json', 'ilike', '%white%');
+                $where_used = TRUE;
+            }
+        }
+        if (Session::has('black')) {
+            if ($where_used) $items = $items = $items->orWhere('info_json', 'ilike', '%black%');
+            else {
+                $items = $items->where('info_json', 'ilike', '%black%');
+                $where_used = TRUE;
+            }
+        }
+        if (Session::has('orange')) {
+            if ($where_used) $items = $items->orWhere('info_json', 'ilike', '%orange%');
+            else {
+                $items = $items = $items->where('info_json', 'ilike', '%orange%');
+                $where_used = TRUE;
+            }
+        }
+        if (Session::has('magenta')) {
+            if ($where_used) $items = $items->orWhere('info_json', 'ilike', '%magenta%');
+            else {
+                $items = $items->where('info_json', 'ilike', '%magenta%');
+                $where_used = TRUE;
+            }
+        }
+
+        if (Session::has('metal')) {
+            if ($where_used) $items = $items->orWhere('info_json', 'ilike', '%metal%');
+            else {
+                $items = $items->where('info_json', 'ilike', '%metal%');
+                $where_used = TRUE;
+            }
+        }
+        if (Session::has('aluminium')) {
+            if ($where_used) $items = $items->orWhere('info_json', 'ilike', '%aluminium%');
+            else {
+                $items = $items->where('info_json', 'ilike', '%aluminium%');
+                $where_used = TRUE;
+            }
+        }
+        if (Session::has('copper')) {
+            if ($where_used) $items = $items->orWhere('info_json', 'ilike', '%copper%');
+            else {
+                $items = $items->where('info_json', 'ilike', '%copper%');
+                $where_used = TRUE;
+            }
+        }
+
         $items = $items->orderBy($order_column, $order_type)->paginate($per_page);
 
 //        $manufacturers = $this->getFilterCategories($items, 'Manufacturer');

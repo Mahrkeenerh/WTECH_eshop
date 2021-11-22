@@ -84,7 +84,8 @@ class PaymentController extends Controller
             ]);
         }
 
-        session()->flush();
+        session()->forget('cart');
+        session()->forget('shippingInfo');
 
         return redirect()->route('home');
     }
