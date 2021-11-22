@@ -31,6 +31,25 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
+    public function addToCartQuantity (Request $request, $id)
+    {
+        if ($request->item_amount == null)
+        {
+            return redirect()->route('item', ['id' => $id]);
+        }
+        $item = Item::find($id);
+        $oldCart = session()->has('cart') ? session()->get('cart') : null;
+        $cart = new Cart($oldCart);
+
+        for($i = 0; $i < $request->item_amount; $i++)
+        {
+            $cart->add($item, $item->id);
+        }
+
+        session()->put('cart', $cart);
+        return redirect()->route('cart');
+    }
+
     public function removeFromCart (Request $request, $id)
     {
         $item = Item::find($id);
