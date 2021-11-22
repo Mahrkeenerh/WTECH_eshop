@@ -110,46 +110,46 @@
             <div id="sort">
                 <h2>Order by: </h2>
                 @if ($order_by == "cheap")
-                    <a href="{{URL::current()."?per_page=$per_page&&order_by=cheap"}}"><h2 class="s" style="font-weight:900;">cheapest</h2></a>
+                    <a href="{{URL::current()."?top_searchbar=$top_searchbar&&per_page=$per_page&&order_by=cheap"}}"><h2 class="s" style="font-weight:900;">cheapest</h2></a>
                 @else
-                    <a href="{{URL::current()."??per_page=$per_page&&order_by=cheap"}}"><h3 class="s" style="font-weight:100;">cheapest</h3></a>
+                    <a href="{{URL::current()."?top_searchbar=$top_searchbar&&per_page=$per_page&&order_by=cheap"}}"><h3 class="s" style="font-weight:100;">cheapest</h3></a>
                 @endif
 
                 @if ($order_by == "expensive")
-                    <a href="{{URL::current()."?per_page=$per_page&&order_by=expensive"}}"><h2 class="s" style="font-weight:900;">expensive</h2></a>
+                    <a href="{{URL::current()."?top_searchbar=$top_searchbar&&per_page=$per_page&&order_by=expensive"}}"><h2 class="s" style="font-weight:900;">expensive</h2></a>
                 @else
-                    <a href="{{URL::current()."?per_page=$per_page&&order_by=expensive"}}"><h3 class="s" style="font-weight:100;">expensive</h3></a>
+                    <a href="{{URL::current()."?top_searchbar=$top_searchbar&&per_page=$per_page&&order_by=expensive"}}"><h3 class="s" style="font-weight:100;">expensive</h3></a>
                 @endif
 
                 @if ($order_by == "id")
-                    <a href="{{URL::current()."?per_page=$per_page&&order_by=id"}}"><h2 class="s" style="font-weight:900;">best selling</h2></a>
+                    <a href="{{URL::current()."?top_searchbar=$top_searchbar&&per_page=$per_page"}}"><h2 class="s" style="font-weight:900;">best selling</h2></a>
                 @else
-                    <a href="{{URL::current()."?per_page=$per_page&&order_by=id"}}"><h3 class="s" style="font-weight:100;">best selling</h3></a>
+                    <a href="{{URL::current()."?top_searchbar=$top_searchbar&&per_page=$per_page"}}"><h3 class="s" style="font-weight:100;">best selling</h3></a>
                 @endif
             </div>
 
             <div id="order">
                 <h2>per page: </h2>
                 @if ($per_page == 5)
-                    <a href="{{URL::current()."?per_page=5&&order_by=$order_by"}}"><h2 class="o" style="font-weight:900;">5</h2></a>
+                    <a href="{{URL::current()."?top_searchbar=$top_searchbar&&order_by=$order_by"}}"><h2 class="o" style="font-weight:900;">5</h2></a>
                 @else
-                    <a href="{{URL::current()."?per_page=5&&order_by=$order_by"}}"><h3 class="o" style="font-weight:100;">5</h3></a>
+                    <a href="{{URL::current()."?top_searchbar=$top_searchbar&&order_by=$order_by"}}"><h3 class="o" style="font-weight:100;">5</h3></a>
                 @endif
 
                 <h2>/</h2>
 
                 @if ($per_page == 10)
-                    <a href="{{URL::current()."?per_page=10&&order_by=$order_by"}}"><h2 class="o" style="font-weight:900;">10</h2></a>
+                    <a href="{{URL::current()."?top_searchbar=$top_searchbar&&per_page=10&&order_by=$order_by"}}"><h2 class="o" style="font-weight:900;">10</h2></a>
                 @else
-                    <a href="{{URL::current()."?per_page=10&&order_by=$order_by"}}"><h3 class="o" style="font-weight:100;">10</h3></a>
+                    <a href="{{URL::current()."?top_searchbar=$top_searchbar&&per_page=10&&order_by=$order_by"}}"><h3 class="o" style="font-weight:100;">10</h3></a>
                 @endif
                 
                 <h2>/</h2>
 
                 @if ($per_page == 25)
-                    <a href="{{URL::current()."?per_page=25&&order_by=$order_by"}}"><h2 class="o" style="font-weight:900;">25</h2></a>
+                    <a href="{{URL::current()."?top_searchbar=$top_searchbar&&per_page=25&&order_by=$order_by"}}"><h2 class="o" style="font-weight:900;">25</h2></a>
                 @else
-                    <a href="{{URL::current()."?per_page=25&&order_by=$order_by"}}"><h3 class="o" style="font-weight:100;">25</h3></a>
+                    <a href="{{URL::current()."?top_searchbar=$top_searchbar&&per_page=25&&order_by=$order_by"}}"><h3 class="o" style="font-weight:100;">25</h3></a>
                 @endif
             </div>
         </div>

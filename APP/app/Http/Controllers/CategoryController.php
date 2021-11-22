@@ -15,11 +15,33 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        $items = Item::where('name', 'ilike', '%'.$request->top_searchbar.'%')->orWhere('description', 'ilike', '%'.$request->top_searchbar.'%')
-            ->orWhere('info_json', 'ilike', '%'.$request->top_searchbar.'%')->paginate(3);
+    {        
+        $top_searchbar = $request->top_searchbar;
+        
+        // Sanitize per_page
+        if (in_array($request->per_page, array(5, 10, 25)))
+        {
+            $per_page = $request->per_page;
+        }
+        else
+        {
+            $per_page = 5;
+        }
 
-        return view('category', compact('items'))->with('current_category', null)->with('parent_categories', array())
+        // Sanitize order_by
+        if (in_array($request->order_by, array("cheap", "expensive", "id")))
+        {
+            $order_by = $request->order_by;
+        }
+        else
+        {
+            $order_by = "id";
+        }
+
+        $items = Item::where('name', 'ilike', '%'.$request->top_searchbar.'%')->orWhere('description', 'ilike', '%'.$request->top_searchbar.'%')
+            ->orWhere('info_json', 'ilike', '%'.$request->top_searchbar.'%')->paginate($per_page);
+
+        return view('category', compact('items', 'per_page', 'order_by', 'top_searchbar'))->with('current_category', null)->with('parent_categories', array())
         ->with('child_categories', array());
     }
 
@@ -106,24 +128,26 @@ class CategoryController extends Controller
             }
         }
 
+        $top_searchbar = $request->top_searchbar;
+        
         // Sanitize per_page
-        if ($request->per_page != 25 && $request->per_page != 10)
-        {
-            $per_page = 5;
-        }
-        else
+        if (in_array($request->per_page, array(5, 10, 25)))
         {
             $per_page = $request->per_page;
         }
+        else
+        {
+            $per_page = 5;
+        }
 
         // Sanitize order_by
-        if ($request->order_by != "cheap" && $request->order_by != "expensive")
+        if (in_array($request->order_by, array("cheap", "expensive", "id")))
         {
-            $order_by = "id";
+            $order_by = $request->order_by;
         }
         else
         {
-            $order_by = $request->order_by;
+            $order_by = "id";
         }
 
         // Filter items only from current or child categories ->paginate($per_page)
@@ -150,7 +174,7 @@ class CategoryController extends Controller
 //        $colors = $this->getFilterCategories($items, 'Color');
 //        $materials = $this->getFilterCategories($items, 'Material');
 
-        return view('category', compact('current_category', 'parent_categories', 'child_categories', 'items', 'per_page', 'order_by'));
+        return view('category', compact('current_category', 'parent_categories', 'child_categories', 'items', 'per_page', 'order_by', 'top_searchbar'));
     }
 
     /**
