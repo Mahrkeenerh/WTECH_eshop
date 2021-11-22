@@ -38,18 +38,12 @@
         @if($item->new_price != $item->old_price)
             <s>{{$item->old_price}} €</s>
         @endif
-
-        <div class="middle_buttons">
-            <input type=button value="-">
-            <label id="item_count">1</label>
-            <input type=button value="+">
-        </div>
-        <div class="add_cart_button">
-            <form action="{{ route('cart.add', ['id' => $item->id]) }}" method="GET">
-                <button type="submit">Add to cart</button>
-            </form>
-{{--            <input class="add_button" type=button value="Add to cart">--}}
-        </div>
+        <form action="{{ route('cart.add.quantity', ['id' => $item->id]) }}" method="POST">
+            @csrf
+            <label for="item_amount">Amount:</label>
+            <input type="number" min="1" max="1000" id="item_amount" name="item_amount" value="1">
+            <button type="submit">Add to cart</button>
+        </form>
     </div>
 </div>
 

@@ -43,6 +43,8 @@ Route::get('/cart', [CartController::class, 'index'])
     ->name('cart');
 Route::get('/cart/add_to_cart/{id}', [CartController::class, 'addToCart'])
     ->name('cart.add');
+Route::post('/cart/add_to_cart/{id}', [CartController::class, 'addToCartQuantity'])
+    ->name('cart.add.quantity');
 Route::get('/cart/remove_from_cart/{id}', [CartController::class, 'removeFromCart'])
     ->name('cart.remove');
 Route::get('/cart/remove_one/{id}', [CartController::class, 'removeOne'])
