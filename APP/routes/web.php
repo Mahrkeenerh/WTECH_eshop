@@ -51,10 +51,12 @@ Route::get('/profile', [ProfileController::class, 'index'])
     ->name('profile');
 
 // Shipping
-Route::resource('/shipping', ShippingController::class);
+Route::get('/shipping', [ShippingController::class, 'index'])
+    ->name('shipping');
 
 // Payment
-Route::resource('/payment', PaymentController::class);
+Route::get('/payment', [PaymentController::class, 'index'])
+    ->name('payment');
 
 Route::resource('test', TestController::class);
 
