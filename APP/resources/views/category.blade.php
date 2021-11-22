@@ -152,13 +152,9 @@
                     </a>
                     <div class="item_buy">
                         <div class="text_grid">
-                            @php
-                                $new_price = round($item->price / 100 * (100 - $item->sale), 2);
-                            @endphp
-
-                            <h2>{{$new_price}} €</h2>
-                            @if($new_price != $item->price)
-                                <s>{{$item->price}} €</s>
+                            <h2>{{$item->new_price}} €</h2>
+                            @if($item->new_price != $item->old_price)
+                                <s>{{$item->old_price}} €</s>
                             @endif
                         </div>
                         <div class="button_grid">

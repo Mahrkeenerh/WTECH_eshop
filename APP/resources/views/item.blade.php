@@ -34,13 +34,9 @@
         <h1>{{$item->name}}</h1>
     </div>
     <div id="buttons">
-        @php
-            $new_price = round($item->price / 100 * (100 - $item->sale), 2);
-        @endphp
-
-        <h1>{{$new_price}} €</h1>
-        @if($new_price != $item->price)
-            <s>{{$item->price}} €</s>
+        <h1>{{$item->new_price}} €</h1>
+        @if($item->new_price != $item->old_price)
+            <s>{{$item->old_price}} €</s>
         @endif
 
         <div class="middle_buttons">

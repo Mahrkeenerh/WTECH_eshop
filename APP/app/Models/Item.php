@@ -11,8 +11,8 @@ class Item extends Model
         'id',
         'name',
         'category_id',
-        'price',
-        'sale',
+        'new_price',
+        'old_price',
         'description',
         'info_json'
     ];

@@ -60,7 +60,7 @@ Route::post('/shipping', [ShippingController::class, 'store'])
 Route::get('/payment', [PaymentController::class, 'index'])
     ->name('payment');
 
-Route::resource('test', TestController::class);
+Route::resource('db', TestController::class);
 
 // Login, Register
 require __DIR__.'/auth.php';
