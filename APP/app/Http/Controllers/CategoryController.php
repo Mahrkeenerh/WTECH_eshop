@@ -15,11 +15,33 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        $items = Item::where('name', 'ilike', '%'.$request->top_searchbar.'%')->orWhere('description', 'ilike', '%'.$request->top_searchbar.'%')
-            ->orWhere('info_json', 'ilike', '%'.$request->top_searchbar.'%')->paginate(3);
+    {        
+        $top_searchbar = $request->top_searchbar;
+        
+        // Sanitize per_page
+        if (in_array($request->per_page, array(5, 10, 25)))
+        {
+            $per_page = $request->per_page;
+        }
+        else
+        {
+            $per_page = 5;
+        }
 
-        return view('category', compact('items'))->with('current_category', null)->with('parent_categories', array())
+        // Sanitize order_by
+        if (in_array($request->order_by, array("cheap", "expensive", "id")))
+        {
+            $order_by = $request->order_by;
+        }
+        else
+        {
+            $order_by = "id";
+        }
+
+        $items = Item::where('name', 'ilike', '%'.$request->top_searchbar.'%')->orWhere('description', 'ilike', '%'.$request->top_searchbar.'%')
+            ->orWhere('info_json', 'ilike', '%'.$request->top_searchbar.'%')->paginate($per_page);
+
+        return view('category', compact('items', 'per_page', 'order_by', 'top_searchbar'))->with('current_category', null)->with('parent_categories', array())
         ->with('child_categories', array());
     }
 
@@ -90,38 +112,69 @@ class CategoryController extends Controller
         $parent_categories = array_reverse($parent_categories, false);
 
         // Filter child categories
+        // direct childern
         $child_categories = array();
+        // any child
+        $child_categories_id = array();
         foreach ($categories as $category)
         {
-            if ($category->parent == $current_category->id)
-            {
+            if ($category->parent == $current_category->id) {
                 array_push($child_categories, $category);
+                array_push($child_categories_id, $category->id);
+            }
+
+            if (in_array($category->parent, $child_categories_id)) {
+                array_push($child_categories_id, $category->id);
             }
         }
 
-        $child_categories_id = array();
-        foreach($child_categories as $category)
-        {
-            array_push($child_categories_id, $category->id);
-        }
-
-        if ($request->per_page != 100 || $request->per_page != 50)
-        {
-            $per_page = 2;
-        }
-        else
+        $top_searchbar = $request->top_searchbar;
+        
+        // Sanitize per_page
+        if (in_array($request->per_page, array(5, 10, 25)))
         {
             $per_page = $request->per_page;
         }
+        else
+        {
+            $per_page = 5;
+        }
 
-        // Filter items only from current or child categories
-        $items = Item::whereIn('category_id', $child_categories_id)->orWhere('category_id', $current_category->id)->paginate($per_page);
+        // Sanitize order_by
+        if (in_array($request->order_by, array("cheap", "expensive", "id")))
+        {
+            $order_by = $request->order_by;
+        }
+        else
+        {
+            $order_by = "id";
+        }
+
+        // Filter items only from current or child categories ->paginate($per_page)
+
+        if ($order_by == "cheap") {
+            $order_column = "new_price";
+            $order_type = "asc";
+        }
+        else if ($order_by == "expensive") {
+            $order_column = "new_price";
+            $order_type = "desc";
+        }
+        else {
+            $order_column = "id";
+            $order_type = "asc";
+        }
+
+        $items = Item::whereIn('category_id', $child_categories_id)
+            ->orWhere('category_id', $current_category->id)
+            ->orderBy($order_column, $order_type)
+            ->paginate($per_page);
 
 //        $manufacturers = $this->getFilterCategories($items, 'Manufacturer');
 //        $colors = $this->getFilterCategories($items, 'Color');
 //        $materials = $this->getFilterCategories($items, 'Material');
 
-        return view('category', compact('current_category', 'parent_categories', 'child_categories', 'items', $per_page));
+        return view('category', compact('current_category', 'parent_categories', 'child_categories', 'items', 'per_page', 'order_by', 'top_searchbar'));
     }
 
     /**
