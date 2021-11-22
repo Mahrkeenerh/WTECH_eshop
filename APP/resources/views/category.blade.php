@@ -22,7 +22,7 @@
                 <input type="text" placeholder="999.99" id="max_price">
             </div>
             <div class="filter_block">
-                <label class="category_title">Manufacturer:</label>
+                <label class="category_title">Brand:</label>
 {{--                @foreach ($manufacturers as $manufacturer)--}}
 {{--                    <input type="checkbox" name="action" id="{{$manufacturer}}">--}}
 {{--                    <label for="{{$manufacturer}}">{{$manufacturer}}</label>--}}
@@ -63,12 +63,6 @@
                 <label for="aluminium">aluminium</label>
                 <input type="checkbox" name="action" id="copper">
                 <label for="copper">copper</label>
-            </div>
-            <div class="filter_block">
-                <label class="category_title">Volume:</label>
-                <input type="text" placeholder="0.01" id="min_volume">
-                <label class="no_break"> - </label>
-                <input type="text" placeholder="999.99" id="max_volume">
             </div>
             <button type="submit">Apply</button>
 {{--            <div class="button_block">--}}

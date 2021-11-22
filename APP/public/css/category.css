@@ -39,12 +39,8 @@
 #sidebar button {
     display: flex;
     justify-content: right;
-    margin: 10px;
-    padding: 7px 10px;
-    font-size: 20px;
-}
-#sidebar input[type=button] {
     cursor: pointer;
+    margin: 10px;
     padding: 7px 10px;
     font-size: 20px;
 }

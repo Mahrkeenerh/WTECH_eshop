@@ -13,6 +13,10 @@ class HomepageController extends Controller
      */
     public function index()
     {
+        Session::put('top_searchbar', "");
+        Session::put('per_page', 5);
+        Session::put('order_by', "id");
+
         return view('homepage');
     }
 

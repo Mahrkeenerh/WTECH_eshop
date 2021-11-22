@@ -94,6 +94,11 @@ class CategoryController extends Controller
         //
     }
 
+    public function filter(Request $request) {
+
+        dump($request->post());
+    }
+
     /**
      * Store a newly created resource in storage.
      *
