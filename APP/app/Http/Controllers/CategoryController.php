@@ -90,38 +90,67 @@ class CategoryController extends Controller
         $parent_categories = array_reverse($parent_categories, false);
 
         // Filter child categories
+        // direct childern
         $child_categories = array();
+        // any child
+        $child_categories_id = array();
         foreach ($categories as $category)
         {
-            if ($category->parent == $current_category->id)
-            {
+            if ($category->parent == $current_category->id) {
                 array_push($child_categories, $category);
+                array_push($child_categories_id, $category->id);
+            }
+
+            if (in_array($category->parent, $child_categories_id)) {
+                array_push($child_categories_id, $category->id);
             }
         }
 
-        $child_categories_id = array();
-        foreach($child_categories as $category)
+        // Sanitize per_page
+        if ($request->per_page != 25 && $request->per_page != 10)
         {
-            array_push($child_categories_id, $category->id);
-        }
-
-        if ($request->per_page != 100 || $request->per_page != 50)
-        {
-            $per_page = 2;
+            $per_page = 5;
         }
         else
         {
             $per_page = $request->per_page;
         }
 
-        // Filter items only from current or child categories
-        $items = Item::whereIn('category_id', $child_categories_id)->orWhere('category_id', $current_category->id)->paginate($per_page);
+        // Sanitize order_by
+        if ($request->order_by != "cheap" && $request->order_by != "expensive")
+        {
+            $order_by = "id";
+        }
+        else
+        {
+            $order_by = $request->order_by;
+        }
+
+        // Filter items only from current or child categories ->paginate($per_page)
+
+        if ($order_by == "cheap") {
+            $order_column = "new_price";
+            $order_type = "asc";
+        }
+        else if ($order_by == "expensive") {
+            $order_column = "new_price";
+            $order_type = "desc";
+        }
+        else {
+            $order_column = "id";
+            $order_type = "asc";
+        }
+
+        $items = Item::whereIn('category_id', $child_categories_id)
+            ->orWhere('category_id', $current_category->id)
+            ->orderBy($order_column, $order_type)
+            ->paginate($per_page);
 
 //        $manufacturers = $this->getFilterCategories($items, 'Manufacturer');
 //        $colors = $this->getFilterCategories($items, 'Color');
 //        $materials = $this->getFilterCategories($items, 'Material');
 
-        return view('category', compact('current_category', 'parent_categories', 'child_categories', 'items', $per_page));
+        return view('category', compact('current_category', 'parent_categories', 'child_categories', 'items', 'per_page', 'order_by'));
     }
 
     /**
