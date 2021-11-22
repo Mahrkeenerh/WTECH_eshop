@@ -13,27 +13,32 @@
 <div id="grid">
 
 {{--    <div id="sidebar">--}}
-    <form id="sidebar" action="{{ route('category.filter') }}">
+    @if (!is_null($current_category->id))
+        <form id="sidebar" action="{{ route('category.filter', ['id'=>$current_category->id]) }}" method="POST">
+    @else
+        <form id="sidebar" action="{{ route('category.filter') }}" method="POST">
+    @endif
+    @csrf
         <div id="big">
             <div class="filter_block">
                 <label class="category_title">Price:</label>
-                <input type="text" placeholder="0.01" id="min_price">
+                <input type="text" placeholder="0.01" name="min_price" id="min_price">
                 <label class="no_break"> - </label>
-                <input type="text" placeholder="999.99" id="max_price">
+                <input type="text" placeholder="999.99" name="max_price" id="max_price">
             </div>
             <div class="filter_block">
-                <label class="category_title">Brand:</label>
+                <label class="category_title" name="brand">Brand:</label>
 {{--                @foreach ($manufacturers as $manufacturer)--}}
 {{--                    <input type="checkbox" name="action" id="{{$manufacturer}}">--}}
 {{--                    <label for="{{$manufacturer}}">{{$manufacturer}}</label>--}}
 {{--                @endforeach--}}
-                <input type="checkbox" name="action" id="abc_inc">
+                <input type="checkbox" name="abc_inc" id="abc_inc">
                 <label for="abc_inc">abc_inc</label>
-                <input type="checkbox" name="action" id="makers">
+                <input type="checkbox" name="makers" id="makers">
                 <label for="makers">makers</label>
-                <input type="checkbox" name="action" id="creators">
+                <input type="checkbox" name="creators" id="creators">
                 <label for="creators">creators</label>
-                <input type="checkbox" name="action" id="aaasus">
+                <input type="checkbox" name="aaasus" id="aaasus">
                 <label for="aaasus">aaasus</label>
             </div>
             <div class="filter_block">
@@ -42,13 +47,13 @@
 {{--                    <input type="checkbox" name="action" id="{{$color}}">--}}
 {{--                    <label for="{{$color}}">{{$color}}</label>--}}
 {{--                @endforeach--}}
-                <input type="checkbox" name="action" id="white">
+                <input type="checkbox" name="white" id="white">
                 <label for="white">white</label>
-                <input type="checkbox" name="action" id="black">
+                <input type="checkbox" name="black" id="black">
                 <label for="black">black</label>
-                <input type="checkbox" name="action" id="orange">
+                <input type="checkbox" name="orange" id="orange">
                 <label for="orange">orange</label>
-                <input type="checkbox" name="action" id="magenta">
+                <input type="checkbox" name="magenta" id="magenta">
                 <label for="magenta">magenta</label>
             </div>
             <div class="filter_block">
@@ -57,17 +62,14 @@
 {{--                    <input type="checkbox" name="action" id="{{$material}}">--}}
 {{--                    <label for="{{$material}}">{{$material}}</label>--}}
 {{--                @endforeach--}}
-                <input type="checkbox" name="action" id="metal">
+                <input type="checkbox" name="metal" id="metal">
                 <label for="metal">metal</label>
-                <input type="checkbox" name="action" id="aluminium">
+                <input type="checkbox" name="aluminium" id="aluminium">
                 <label for="aluminium">aluminium</label>
-                <input type="checkbox" name="action" id="copper">
+                <input type="checkbox" name="copper" id="copper">
                 <label for="copper">copper</label>
             </div>
             <button type="submit">Apply</button>
-{{--            <div class="button_block">--}}
-{{--                <input type=button value="Apply">--}}
-{{--            </div>--}}
         </div>
 
 {{--        Nemazat--}}

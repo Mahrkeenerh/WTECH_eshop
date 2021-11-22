@@ -31,7 +31,9 @@ Route::get('/category', [CategoryController::class, 'index'])
     ->name('category');
 Route::get('/category/{id}', [CategoryController::class, 'show'])
     ->name('category.show');
-Route::post('/category', [CategoryController::class, 'filter'])
+Route::post('/category', [CategoryController::class, 'filter2'])
+    ->name('category.filter2');
+Route::post('/category/{id}', [CategoryController::class, 'filter'])
     ->name('category.filter');
 
 // Item
