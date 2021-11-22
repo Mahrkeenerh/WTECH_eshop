@@ -13,7 +13,7 @@
 <div id="grid">
 
 {{--    <div id="sidebar">--}}
-    <form id="sidebar">
+    <form id="sidebar" action="{{ route('category.filter') }}">
         <div id="big">
             <div class="filter_block">
                 <label class="category_title">Price:</label>
@@ -70,12 +70,13 @@
                 <label class="no_break"> - </label>
                 <input type="text" placeholder="999.99" id="max_volume">
             </div>
-            <button>Apply</button>
+            <button type="submit">Apply</button>
 {{--            <div class="button_block">--}}
 {{--                <input type=button value="Apply">--}}
 {{--            </div>--}}
         </div>
 
+{{--        Nemazat--}}
         <div id="smol">
 
         </div>
@@ -143,7 +144,7 @@
                 @else
                     <a href="{{URL::current()."?top_searchbar=$top_searchbar&&per_page=10&&order_by=$order_by"}}"><h3 class="o" style="font-weight:100;">10</h3></a>
                 @endif
-                
+
                 <h2>/</h2>
 
                 @if ($per_page == 25)

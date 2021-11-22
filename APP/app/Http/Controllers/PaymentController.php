@@ -85,7 +85,7 @@ class PaymentController extends Controller
         }
 
         session()->flush();
-        
+
         return redirect()->route('home');
     }
 

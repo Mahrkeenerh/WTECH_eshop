@@ -46,10 +46,13 @@
                     @endif
                 </div>
                 <div class="button_grid">
-                    <input type=button value="-">
+                    <a href="{{ route('cart.remove_one', ['id' => $stored_item['item']->id]) }}">
+                        <button>-</button>
+                    </a>
                     <label class="item_count">{{$stored_item['qty']}}</label>
-{{--                    <label class="item_count">1</label>--}}
-                    <input type=button value="+">
+                    <a href="{{ route('cart.add', ['id' => $stored_item['item']->id]) }}">
+                        <button>+</button>
+                    </a>
                     <a class="delete" href="{{ route('cart.remove', ['id' => $stored_item['item']->id]) }}">
                         <img class="delete" src="{{URL::asset('icons/delete_smol.png')}}" alt="remove">
                     </a>

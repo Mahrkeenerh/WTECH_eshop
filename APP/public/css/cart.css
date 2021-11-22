@@ -56,11 +56,11 @@
     margin: 5px 10px;
     font-size: 20px;
 }
-.item_buy .button_grid input[type=button] {
-    cursor: pointer;
-    width: 35px;
-    height: 35px;
-    font-size: 15px;
+.item_buy .button_grid button {
+cursor: pointer;
+width: 35px;
+height: 35px;
+font-size: 15px;
 }
 .item_buy .button_grid img {
     width: 32px;
