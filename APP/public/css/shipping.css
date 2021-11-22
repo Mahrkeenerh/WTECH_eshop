@@ -78,13 +78,15 @@
     border: 3px solid orange;
     border-radius: 5px;
 }
-#shipping_info form {
+/*#shipping_info form {*/
+#shipping_info > * {
     padding: 5px;
 }
 #shipping_info input[type=text], #shipping_info input[type=email] {
     border-radius: 5px;
 }
-#shipping_info form > * {
+/*#shipping_info form > * {*/
+#shipping_info > input, #shipping_info > label {
     display: block;
     width: 75%;
 }
@@ -99,7 +101,8 @@
     border: 3px solid orange;
     border-radius: 5px;
 }
-#delivery_options form p {
+/*#delivery_options form p {*/
+#delivery_options p {
     display: grid;
     grid-template-columns: [label]auto [check]30px;
     align-items: center;
@@ -107,14 +110,17 @@
     border-radius: 5px;
     background: #eaeaea;
 }
-#delivery_options form p input:hover, #delivery_options form p label:hover {
+/*#delivery_options form p input:hover, #delivery_options form p label:hover {*/
+#delivery_options p input:hover, #delivery_options p label:hover {
     cursor: pointer;
 }
-#delivery_options form p input {
+/*#delivery_options form p input {*/
+#delivery_options p input {
     grid-column: 2/3;
     grid-row: 1/3;
 }
-#delivery_options form p .price {
+/*#delivery_options form p .price {*/
+#delivery_options p .price {
     grid-column: 1/2;
     grid-row: 2/3;
     width: 50px;
@@ -123,12 +129,14 @@
     text-align: center;
     background: white;
 }
-#delivery_options form p label {
+/*#delivery_options form p label {*/
+#delivery_options p label {
     grid-column: 1/2;
     grid-row: 1/2;
     padding: 3px;
 }
-#delivery_options form fieldset {
+/*#delivery_options form fieldset {*/
+#delivery_options fieldset {
     border: none;
 }
 /*Continue*/

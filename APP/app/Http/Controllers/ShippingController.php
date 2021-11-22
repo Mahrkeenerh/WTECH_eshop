@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
+use App\ShippingInfo;
 use Illuminate\Http\Request;
 
 class ShippingController extends Controller
@@ -34,7 +36,20 @@ class ShippingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shippingInfo = new ShippingInfo(
+            $request->first_name,
+            $request->last_name,
+            $request->email,
+            $request->state,
+            $request->city,
+            $request->street_and_number,
+            $request->postal_code,
+            $request->option
+        );
+
+        session()->put('shippingInfo', $shippingInfo);
+
+        return redirect()->route('payment');
     }
 
     /**

@@ -7,6 +7,10 @@ class Cart
     public $items = null;
     public $totalQty = 0;
     public $totalPrice = 0;
+    public $shippingPrice = 0;
+    public $shippingOption = null;
+    public $paymentPrice = 0;
+    public $paymentOption = null;
 
     public function __construct($oldCart)
     {

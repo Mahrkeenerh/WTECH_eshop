@@ -53,6 +53,8 @@ Route::get('/profile', [ProfileController::class, 'index'])
 // Shipping
 Route::get('/shipping', [ShippingController::class, 'index'])
     ->name('shipping');
+Route::post('/shipping', [ShippingController::class, 'store'])
+    ->name('shipping.store');
 
 // Payment
 Route::get('/payment', [PaymentController::class, 'index'])
