@@ -1,6 +1,7 @@
 <header>
     <h1 class="eshop_name"><a href="{{ route('home') }}">CAR STUFF 4 U</a></h1>
-    <form class="search_bar" action="{{ route('category') }}" method="GET">
+    <form class="search_bar" action="{{ route('category.search') }}" method="POST">
+        @csrf
         <input type="text" id="top_searchbar" name="top_searchbar" placeholder="I'm looking for..." required>
         <button>Search</button>
     </form>

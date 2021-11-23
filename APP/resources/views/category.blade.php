@@ -13,10 +13,10 @@
 <div id="grid">
 
 {{--    <div id="sidebar">--}}
-    @if (!is_null($current_category->id))
-        <form id="sidebar" action="{{ route('category.filter', ['id'=>$current_category->id]) }}" method="POST">
+    @if (!is_null($current_category))
+        <form id="sidebar" action="{{ route('category.filter_category', ['id'=>$current_category->id]) }}" method="POST">
     @else
-        <form id="sidebar" action="{{ route('category.filter') }}" method="POST">
+        <form id="sidebar" action="{{ route('category.filter_search') }}" method="POST">
     @endif
     @csrf
         <div id="big">
@@ -167,7 +167,7 @@
                     <span class="item_text">
                         <h2>{{$item->name}}</h2>
                         @if (strlen($item->description) > 200)
-                            <label>{{substr($item->description, 0, 200)}}...</label>
+                            <label>{{substr($item->description, 0, 197)}}...</label>
                         @else
                             <label>{{$item->description}}</label>
                         @endif

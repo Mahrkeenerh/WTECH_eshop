@@ -31,10 +31,13 @@ Route::get('/category', [CategoryController::class, 'index'])
     ->name('category');
 Route::get('/category/{id}', [CategoryController::class, 'show'])
     ->name('category.show');
-Route::post('/category', [CategoryController::class, 'filter2'])
-    ->name('category.filter2');
-Route::post('/category/{id}', [CategoryController::class, 'filter'])
-    ->name('category.filter');
+Route::post('/category', [CategoryController::class, 'search'])
+    ->name('category.search');
+Route::post('/category/{id}', [CategoryController::class, 'filter_category'])
+    ->name('category.filter_category');
+Route::post('/category', [CategoryController::class, 'filter_search'])
+    ->name('category.filter_search');
+
 
 // Item
 Route::get('/item/{id}', [ItemController::class, 'show'])
