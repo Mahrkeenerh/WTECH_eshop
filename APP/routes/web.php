@@ -29,10 +29,10 @@ Route::get('/', [HomepageController::class, 'index'])
 // Category
 Route::get('/category', [CategoryController::class, 'index'])
     ->name('category');
+Route::get('/category', [CategoryController::class, 'search'])
+    ->name('category.search');
 Route::get('/category/{id}', [CategoryController::class, 'show'])
     ->name('category.show');
-Route::post('/category', [CategoryController::class, 'search'])
-    ->name('category.search');
 Route::post('/category/{id}', [CategoryController::class, 'filter_category'])
     ->name('category.filter_category');
 Route::post('/category', [CategoryController::class, 'filter_search'])

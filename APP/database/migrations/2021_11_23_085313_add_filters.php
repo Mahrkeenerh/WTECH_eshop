@@ -4,6 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+use App\Models\Filter;
+
 class AddFilters extends Migration
 {
     /**
@@ -13,23 +15,35 @@ class AddFilters extends Migration
      */
     public function up()
     {
-        Schema::table('items', function($table) {
-            $table->enum('brand', ['abc_inc', 'makers', 'creators', 'aaasus']);
-            $table->enum('color', ['abc_inc', 'makers', 'creators', 'aaasus']);
-            $table->enum('material', ['abc_inc', 'makers', 'creators', 'aaasus']);
-        });
-
-        // ENUMS
-        Schema::create('enums', function (Blueprint $table) {
+        // Filters
+        Schema::create('filters', function (Blueprint $table) {
             $table->id();
-            // somehow link item enum
-            $table->string('type')->nullable(false);
-            // name string array (treba parsnut na array v controlleri)
+            $table->string('name')->nullable(false);
+            // values string array (treba parsnut na array v controlleri)
             // "white;black;orange;..."
             // new_array = explode(";", string_z_databazy);
-            $table->string('names')->nullable(false);
+            $table->text('values')->nullable(false);
             $table->timestamps();
         });
+
+        // Fill data
+        Filter::create([
+            'id'=>1,
+            'name'=>"Brand",
+            'values'=>"abc_inc;makers;creators;aaasus"
+        ]);
+
+        Filter::create([
+            'id'=>2,
+            'name'=>"Color",
+            'values'=>"white;black;orange;magenta"
+        ]);
+
+        Filter::create([
+            'id'=>3,
+            'name'=>"Material",
+            'values'=>"metal;aluminium;copper"
+        ]);
     }
 
     /**
@@ -39,6 +53,6 @@ class AddFilters extends Migration
      */
     public function down()
     {
-        //
+        Schema::drop('filters');
     }
 }

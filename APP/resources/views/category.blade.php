@@ -32,13 +32,13 @@
 {{--                    <input type="checkbox" name="action" id="{{$manufacturer}}">--}}
 {{--                    <label for="{{$manufacturer}}">{{$manufacturer}}</label>--}}
 {{--                @endforeach--}}
-                <input type="checkbox" name="abc_inc" id="abc_inc">
+                <input type="checkbox" name="brandabc_inc" id="abc_inc">
                 <label for="abc_inc">abc_inc</label>
-                <input type="checkbox" name="makers" id="makers">
+                <input type="checkbox" name="brandmakers" id="makers">
                 <label for="makers">makers</label>
-                <input type="checkbox" name="creators" id="creators">
+                <input type="checkbox" name="brandcreators" id="creators">
                 <label for="creators">creators</label>
-                <input type="checkbox" name="aaasus" id="aaasus">
+                <input type="checkbox" name="brandaaasus" id="aaasus">
                 <label for="aaasus">aaasus</label>
             </div>
             <div class="filter_block">
@@ -47,13 +47,13 @@
 {{--                    <input type="checkbox" name="action" id="{{$color}}">--}}
 {{--                    <label for="{{$color}}">{{$color}}</label>--}}
 {{--                @endforeach--}}
-                <input type="checkbox" name="white" id="white">
+                <input type="checkbox" name="colorwhite" id="white">
                 <label for="white">white</label>
-                <input type="checkbox" name="black" id="black">
+                <input type="checkbox" name="colorblack" id="black">
                 <label for="black">black</label>
-                <input type="checkbox" name="orange" id="orange">
+                <input type="checkbox" name="colororange" id="orange">
                 <label for="orange">orange</label>
-                <input type="checkbox" name="magenta" id="magenta">
+                <input type="checkbox" name="colormagenta" id="magenta">
                 <label for="magenta">magenta</label>
             </div>
             <div class="filter_block">
@@ -62,11 +62,11 @@
 {{--                    <input type="checkbox" name="action" id="{{$material}}">--}}
 {{--                    <label for="{{$material}}">{{$material}}</label>--}}
 {{--                @endforeach--}}
-                <input type="checkbox" name="metal" id="metal">
+                <input type="checkbox" name="materialmetal" id="metal">
                 <label for="metal">metal</label>
-                <input type="checkbox" name="aluminium" id="aluminium">
+                <input type="checkbox" name="materialaluminium" id="aluminium">
                 <label for="aluminium">aluminium</label>
-                <input type="checkbox" name="copper" id="copper">
+                <input type="checkbox" name="materialcopper" id="copper">
                 <label for="copper">copper</label>
             </div>
             <button type="submit">Apply</button>
