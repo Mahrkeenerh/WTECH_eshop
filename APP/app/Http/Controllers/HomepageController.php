@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Session;
 
@@ -14,9 +15,7 @@ class HomepageController extends Controller
      */
     public function index()
     {
-        Session::put('top_searchbar', "");
-        Session::put('per_page', 5);
-        Session::put('order_by', "id");
+        CategoryController::ResetFilters();
 
         return view('homepage');
     }
