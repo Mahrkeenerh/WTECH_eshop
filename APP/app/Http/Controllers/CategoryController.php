@@ -25,7 +25,7 @@ class CategoryController extends Controller
         Session::put('top_searchbar', "");
         Session::put('per_page', 5);
         Session::put('order_by', "id");
-        
+
         $filters = Filter::all();
 
         foreach ($filters as $filter) {
@@ -92,15 +92,6 @@ class CategoryController extends Controller
             $order_type = "asc";
         }
 
-         // direct childern
-         $child_categories = array();
-         foreach ($categories as $category)
-         {
-             if (is_null($category->parent)) {
-                 array_push($child_categories, $category);
-             }
-         }
-
          $items = Item::where(function ($query) use ($top_searchbar) {
             $query->where('name', 'ilike', '%'.$top_searchbar.'%')
                 ->orWhere('description', 'ilike', '%'.$top_searchbar.'%')
@@ -137,9 +128,10 @@ class CategoryController extends Controller
         $items = $items->orderBy($order_column, $order_type)
             ->paginate($per_page);
 
-        return view('category', compact('items', 'per_page', 'order_by', 'top_searchbar', 'child_categories'))
+        return view('category', compact('items', 'per_page', 'order_by', 'top_searchbar'))
             ->with('current_category', null)
-            ->with('parent_categories', array());
+            ->with('parent_categories', array())
+            ->with('child_categories', array());
     }
 
     public function search(Request $request)
@@ -148,7 +140,7 @@ class CategoryController extends Controller
 
         $top_searchbar = $request->top_searchbar;
         Session::put('top_searchbar', $top_searchbar);
-        
+
         return redirect()->route('category');
     }
 
@@ -171,7 +163,7 @@ class CategoryController extends Controller
     public function filter_category(Request $request, $id) {
 
         self::SetFilters($request);
-        return redirect()->route('category.show', ['id']);
+        return redirect()->route('category.show', ['id' => $id]);
     }
 
     /**
