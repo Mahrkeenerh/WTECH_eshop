@@ -34,7 +34,6 @@ header {
     align-content: center;
     height: 100%;
 }
-
 header .eshop_name {
     justify-self: left;
     cursor: pointer;
@@ -43,15 +42,55 @@ header .eshop_name {
     align-self: center;
 }
 
-
 /*Content*/
+a#back {
+    padding: 5px;
+}
+h1#new_product {
+    text-align: center;
+}
+form {
+    display: grid;
+    width: 300px;
+    grid-template-columns: 300px;
+    justify-self: center;
+    justify-items: center;
+    border-radius: 5px;
+}
+textarea {
+    width: 280px;
+    resize: vertical;
+}
+input {
+    width: 280px;
+}
+.block {
+    display: block;
+    margin: 10px 0;
+}
+input, textarea, select {
+    border-radius: 5px;
+}
+button, a[type=button] {
+    padding: 10px;
+    margin: 5px;
+}
+button:hover {
+    cursor: pointer;
+}
+a#delete:hover {
+    border: 2px solid red;
+    background: red;
+    color: white;
+    cursor: pointer;
+}
 
 /* Footer */
 #footer {
     margin-left: 20px;
     margin-top: 50px;
 }
-#footer .footer_link:hover{
+#footer .footer_link:hover {
     cursor: pointer;
     color: #a1e1e2;
 }
