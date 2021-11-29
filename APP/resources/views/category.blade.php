@@ -22,53 +22,33 @@
         <div id="big">
             <div class="filter_block">
                 <label class="category_title">Price:</label>
-                <input type="text" placeholder="0.01" name="min_price" id="min_price">
+                @if (Session::has('min_price'))
+                    <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" value={{Session::get('min_price')}} name="min_price" id="min_price">    
+                @else
+                    <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" placeholder="0.01" name="min_price" id="min_price">
+                @endif
                 <label class="no_break"> - </label>
-                <input type="text" placeholder="999.99" name="max_price" id="max_price">
+                @if (Session::has('max_price'))
+                    <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" value={{Session::get('max_price')}} name="max_price" id="max_price">    
+                @else
+                    <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" placeholder="999.99" name="max_price" id="max_price">
+                @endif
             </div>
-            <div class="filter_block">
-                <label class="category_title" name="brand">Brand:</label>
-{{--                @foreach ($manufacturers as $manufacturer)--}}
-{{--                    <input type="checkbox" name="action" id="{{$manufacturer}}">--}}
-{{--                    <label for="{{$manufacturer}}">{{$manufacturer}}</label>--}}
-{{--                @endforeach--}}
-                <input type="checkbox" name="brandabc_inc" id="abc_inc">
-                <label for="abc_inc">abc_inc</label>
-                <input type="checkbox" name="brandmakers" id="makers">
-                <label for="makers">makers</label>
-                <input type="checkbox" name="brandcreators" id="creators">
-                <label for="creators">creators</label>
-                <input type="checkbox" name="brandaaasus" id="aaasus">
-                <label for="aaasus">aaasus</label>
-            </div>
-            <div class="filter_block">
-                <label class="category_title">Color:</label>
-{{--                @foreach ($colors as $color)--}}
-{{--                    <input type="checkbox" name="action" id="{{$color}}">--}}
-{{--                    <label for="{{$color}}">{{$color}}</label>--}}
-{{--                @endforeach--}}
-                <input type="checkbox" name="colorwhite" id="white">
-                <label for="white">white</label>
-                <input type="checkbox" name="colorblack" id="black">
-                <label for="black">black</label>
-                <input type="checkbox" name="colororange" id="orange">
-                <label for="orange">orange</label>
-                <input type="checkbox" name="colormagenta" id="magenta">
-                <label for="magenta">magenta</label>
-            </div>
-            <div class="filter_block">
-                <label class="category_title">Material:</label>
-{{--                @foreach ($materials as $material)--}}
-{{--                    <input type="checkbox" name="action" id="{{$material}}">--}}
-{{--                    <label for="{{$material}}">{{$material}}</label>--}}
-{{--                @endforeach--}}
-                <input type="checkbox" name="materialmetal" id="metal">
-                <label for="metal">metal</label>
-                <input type="checkbox" name="materialaluminium" id="aluminium">
-                <label for="aluminium">aluminium</label>
-                <input type="checkbox" name="materialcopper" id="copper">
-                <label for="copper">copper</label>
-            </div>
+            @foreach ($filters as $filter)
+                <div class="filter_block">
+                    <label class="category_title" name={{strtolower($filter->name)}}>{{$filter->name}}:</label>
+                    @php $values = explode(";", $filter->values); @endphp
+                    @foreach ($values as $value)
+                        @if (!is_null(Session::get(strtolower($filter->name . $value))))
+                            <input type="checkbox" name={{strtolower($filter->name.$value)}} id={{$value}} checked>
+                            <label for={{$value}}>{{$value}}</label>
+                        @else
+                            <input type="checkbox" name={{strtolower($filter->name.$value)}} id={{$value}}>
+                            <label for={{$value}}>{{$value}}</label>
+                        @endif
+                    @endforeach
+                </div>
+            @endforeach
             <button type="submit">Apply</button>
         </div>
 

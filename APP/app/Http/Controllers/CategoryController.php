@@ -13,6 +13,8 @@ class CategoryController extends Controller
 {
     private function SetFilters(Request $request) {
 
+        self::ResetFilters();
+
         foreach ($request->all() as $key => $value) {
             if ($key != "_token") {
                 Session::put(strtolower($key), $value);
@@ -35,6 +37,43 @@ class CategoryController extends Controller
                 Session::put(strtolower($filter->name) . strtolower($value), null);
             }
         }
+    }
+
+    private function FilterItems() {
+
+        $top_searchbar = Session::get('top_searchbar');
+        
+        $items = Item::where(function ($query) use ($top_searchbar) {
+            $query->where('name', 'ilike', '%'.$top_searchbar.'%')
+                ->orWhere('description', 'ilike', '%'.$top_searchbar.'%')
+                ->orWhere('info_json', 'ilike', '%'.$top_searchbar.'%');
+            });
+        
+        // Apply price
+        if (Session::has('min_price')) $items = $items->where('new_price', '>=', Session::get('min_price'));
+        if (Session::has('max_price')) $items = $items->where('new_price', '<=', Session::get('max_price'));
+
+        // Apply filters from session
+        $filters = Filter::all();
+
+        foreach ($filters as $filter) {
+            $filter_applied = FALSE;
+            $values = explode(";", $filter->values);
+
+            foreach ($values as $value) {
+                if (!is_null(Session::get(strtolower($filter->name . $value)))) {
+                    if ($filter_applied) {
+                        $items = $items->orWhere('info_json', 'ilike', '%' . $value . '%');
+                    }
+                    else {
+                        $items = $items->where('info_json', 'ilike', '%' . $value . '%');
+                        $filter_applied = TRUE;
+                    }
+                }
+            }
+        }
+
+        return $items;
     }
 
     private function ClearInput(Request $request) {
@@ -91,44 +130,14 @@ class CategoryController extends Controller
             $order_column = "id";
             $order_type = "asc";
         }
-
-         $items = Item::where(function ($query) use ($top_searchbar) {
-            $query->where('name', 'ilike', '%'.$top_searchbar.'%')
-                ->orWhere('description', 'ilike', '%'.$top_searchbar.'%')
-                ->orWhere('info_json', 'ilike', '%'.$top_searchbar.'%');
-            });
-
-        // Apply price
-        if (Session::has('min_price')) $items = $items->where('new_price', '>=', Session::get('min_price'));
-        if (Session::has('max_price')) $items = $items->where('new_price', '<=', Session::get('max_price'));
-
-        // Apply filters from session
+        
+        $items = self::FilterItems()
+            ->orderBy($order_column, $order_type)
+            ->paginate($per_page);
+        
         $filters = Filter::all();
 
-        dump(FALSE);
-
-        foreach ($filters as $filter) {
-            $filter_applied = FALSE;
-            $values = explode(";", $filter->values);
-
-            foreach ($values as $value) {
-                if (!is_null(Session::get(strtolower($filter->name) . strtolower($value)))) {
-                    dump(TRUE);
-                    if ($filter_applied) {
-                        $items = $items->orWhere('info_json', 'ilike', '%' . $value . '%');
-                    }
-                    else {
-                        $items = $items->where('info_json', 'ilike', '%' . $value . '%');
-                        $filter_applied = TRUE;
-                    }
-                }
-            }
-        }
-
-        $items = $items->orderBy($order_column, $order_type)
-            ->paginate($per_page);
-
-        return view('category', compact('items', 'per_page', 'order_by', 'top_searchbar'))
+        return view('category', compact('items', 'per_page', 'order_by', 'top_searchbar', 'filters'))
             ->with('current_category', null)
             ->with('parent_categories', array())
             ->with('child_categories', array());
@@ -138,8 +147,7 @@ class CategoryController extends Controller
     {
         self::ResetFilters();
 
-        $top_searchbar = $request->top_searchbar;
-        Session::put('top_searchbar', $top_searchbar);
+        Session::put('top_searchbar', $request->top_searchbar);
 
         return redirect()->route('category');
     }
@@ -260,47 +268,17 @@ class CategoryController extends Controller
         }
 
         // Filter items only from current or child categories
-        $items = Item::where(function ($query) use ($top_searchbar) {
-            $query->where('name', 'ilike', '%'.$top_searchbar.'%')
-                ->orWhere('description', 'ilike', '%'.$top_searchbar.'%')
-                ->orWhere('info_json', 'ilike', '%'.$top_searchbar.'%');
-            })->where(function ($query) use ($child_categories_id, $current_category) {
+        $items = self::FilterItems()
+            ->where(function ($query) use ($child_categories_id, $current_category) {
                 $query->whereIn('category_id', $child_categories_id)
                     ->orWhere('category_id', $current_category->id);
-            }
-        );
-
-        // Apply price
-        if (Session::has('min_price')) $items = $items->where('new_price', '>=', Session::get('min_price'));
-        if (Session::has('max_price')) $items = $items->where('new_price', '<=', Session::get('max_price'));
-
-        // Apply filters from session
+            })
+            ->orderBy($order_column, $order_type)
+            ->paginate($per_page);
+        
         $filters = Filter::all();
 
-        dump(FALSE);
-
-        foreach ($filters as $filter) {
-            $filter_applied = FALSE;
-            $values = explode(";", $filter->values);
-
-            foreach ($values as $value) {
-                if (!is_null(Session::get(strtolower($filter->name) . strtolower($value)))) {
-                    dump(TRUE);
-                    if ($filter_applied) {
-                        $items = $items->orWhere('info_json', 'ilike', '%' . $value . '%');
-                    }
-                    else {
-                        $items = $items->where('info_json', 'ilike', '%' . $value . '%');
-                        $filter_applied = TRUE;
-                    }
-                }
-            }
-        }
-
-        $items = $items->orderBy($order_column, $order_type)
-            ->paginate($per_page);
-
-        return view('category', compact('current_category', 'parent_categories', 'child_categories', 'items', 'per_page', 'order_by', 'top_searchbar'));
+        return view('category', compact('current_category', 'parent_categories', 'child_categories', 'items', 'per_page', 'order_by', 'top_searchbar', 'filters'));
     }
 
     /**
