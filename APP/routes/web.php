@@ -83,7 +83,7 @@ Route::post('/admin/new_item', [AdminController::class, 'store'])
     ->name('create.item');
 Route::get('admin/item/{id}', [AdminController::class, 'show'])
     ->name('show.item');
-Route::get('/admin/update/{id}', [AdminController::class, 'update'])
+Route::post('/admin/update/{id}', [AdminController::class, 'update'])
     ->name('update.item');
 Route::get('/admin/remove/{id}', [AdminController::class, 'remove'])
     ->name('remove.item');

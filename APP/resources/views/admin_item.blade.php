@@ -22,7 +22,11 @@
     <a id="back" href="{{ route('admin') }}" type="button">Back to all items</a>
 </nav>
 
-<form action="{{ route('create.item') }}" method="POST" enctype="multipart/form-data">
+@if($item)
+    <form action="{{ route('update.item', ['id' => $item->id]) }}" method="POST" enctype="multipart/form-data">
+@else
+    <form action="{{ route('create.item') }}" method="POST" enctype="multipart/form-data">
+@endif
 @csrf
     <div id="inputs">
         <!--Product name-->
@@ -128,16 +132,12 @@
         <!--Image-->
         <div class="block">
             <label for="image">Select image:</label>
-            <input type="file" id="image" name="image" accept="image/*" required>
+            @if($item)
+                <input type="file" id="image" name="image" accept="image/*">
+            @else
+                <input type="file" id="image" name="image" accept="image/*" required>
+            @endif
         </div>
-{{--        <div class="block">--}}
-{{--            <label for="img_200">Select 200x200 image:</label>--}}
-{{--            <input type="file" id="img_200" name="img_200" accept="image/*">--}}
-{{--        </div>--}}
-{{--        <div class="block">--}}
-{{--            <label for="img_100">Select 100x100 image:</label>--}}
-{{--            <input type="file" id="img_100" name="img_100" accept="image/*">--}}
-{{--        </div>--}}
     </div>
 
     <div class="block">
