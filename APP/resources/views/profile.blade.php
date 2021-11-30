@@ -40,6 +40,7 @@
         </form>
 
         <button id="change password">Change password</button>
+        <a id="admin" href="{{ route('admin') }}" type="button">Admin mode</a>
 
     </div>
 

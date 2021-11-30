@@ -22,16 +22,16 @@
     <a id="back" href="{{ route('admin') }}" type="button">Back to all items</a>
 </nav>
 
-<form>
-
+<form action="{{ route('create.item') }}" method="POST" enctype="multipart/form-data">
+@csrf
     <div id="inputs">
         <!--Product name-->
         <div class="block">
             <label for="product_name">Product name:</label>
             @if($item)
-                <input id="product_name" value="{{ $item->name }}"/>
+                <input id="product_name" name="product_name" required value="{{ $item->name }}"/>
             @else
-                <input id="product_name"/>
+                <input id="product_name" name="product_name" required/>
             @endif
         </div>
 
@@ -39,9 +39,9 @@
         <div class="block">
             <label for="product_price">Product price:</label>
             @if($item)
-                <input id="product_price" value="{{ $item->new_price }}"/>
+                <input id="product_price" name="product_price" required value="{{ $item->new_price }}"/>
             @else
-                <input id="product_price"/>
+                <input id="product_price" name="product_price" required/>
             @endif
         </div>
     </div>
@@ -53,9 +53,9 @@
             <select name="categories" id="categories">
                 @foreach($categories as $category)
                     @if($item && $item->category_id == $category->id)
-                        <option value="{{ $category->name }}" selected="selected">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}" selected="selected">{{ $category->name }}</option>
                     @else
-                        <option value="{{ $category->name }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endif
                 @endforeach
             </select>
@@ -66,11 +66,11 @@
             <label for="brands">Choose product brand:</label>
             <select name="brands" id="brands">
                 @foreach($brands as $brand)
-{{--                    @if($item && $item->brand_id == $brand->id)--}}
-{{--                        <option value="{{ $brand }}" selected="selected">{{ $brand->name }}</option>--}}
-{{--                    @else--}}
-                        <option value="{{ $brand }}">{{ $brand->name }}</option>
-{{--                    @endif--}}
+                    @if($item && str_contains($item->info_json, $brand))
+                        <option value="{{ $brand }}" selected="selected">{{ $brand }}</option>
+                    @else
+                        <option value="{{ $brand }}">{{ $brand }}</option>
+                    @endif
                 @endforeach
             </select>
         </div>
@@ -83,7 +83,7 @@
 {{--                    @if($item && $item->color_id == $color->id)--}}
 {{--                        <option value="{{ $color }}" selected="selected">{{ $color->name }}</option>--}}
 {{--                    @else--}}
-                        <option value="{{ $color }}">{{ $color->name }}</option>
+                        <option value="{{ $color }}">{{ $color }}</option>
 {{--                    @endif--}}
                 @endforeach
             </select>
@@ -97,7 +97,7 @@
 {{--                    @if($item && $item->material_id == $material->id)--}}
 {{--                        <option value="{{ $material->name }}" selected="selected">{{ $material->id }}</option>--}}
 {{--                    @else--}}
-                        <option value="{{ $material->name }}">{{ $material->id }}</option>
+                        <option value="{{ $material }}">{{ $material }}</option>
 {{--                    @endif--}}
                 @endforeach
             </select>
@@ -108,36 +108,36 @@
         <!--Description-->
         <label for="product_description" class="block">Description:</label>
         @if($item)
-            <textarea id="product_description" class="block">{{ $item->description }}</textarea>
+            <textarea id="product_description" name="product_description" class="block" required>{{ $item->description }}</textarea>
         @else
-            <textarea id="product_description" class="block"></textarea>
+            <textarea id="product_description" name="product_description" class="block" required></textarea>
         @endif
     </div>
 
     <div id="info">
         <!--Info JSON-->
-        <label for="product_info_json" class="block">Product info (key : value):</label>
+        <label for="product_info_json" class="block">Product info ("key" : "value"):</label>
         @if($item)
-            <textarea id="product_info_json" class="block">{{ $item->info_json }}</textarea>
+            <textarea id="product_info_json" name="product_info_json" class="block" required>{{ $item->info_json }}</textarea>
         @else
-            <textarea id="product_info_json" class="block"></textarea>
+            <textarea id="product_info_json" name="product_info_json" class="block" required></textarea>
         @endif
     </div>
 
     <div id="images">
         <!--Image-->
         <div class="block">
-            <label for="img_500">Select 500x500 image:</label>
-            <input type="file" id="img_500" name="img_500" accept="image/*">
+            <label for="image">Select image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
         </div>
-        <div class="block">
-            <label for="img_200">Select 200x200 image:</label>
-            <input type="file" id="img_200" name="img_200" accept="image/*">
-        </div>
-        <div class="block">
-            <label for="img_100">Select 100x100 image:</label>
-            <input type="file" id="img_100" name="img_100" accept="image/*">
-        </div>
+{{--        <div class="block">--}}
+{{--            <label for="img_200">Select 200x200 image:</label>--}}
+{{--            <input type="file" id="img_200" name="img_200" accept="image/*">--}}
+{{--        </div>--}}
+{{--        <div class="block">--}}
+{{--            <label for="img_100">Select 100x100 image:</label>--}}
+{{--            <input type="file" id="img_100" name="img_100" accept="image/*">--}}
+{{--        </div>--}}
     </div>
 
     <div class="block">

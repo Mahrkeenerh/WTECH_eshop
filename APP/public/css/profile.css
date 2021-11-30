@@ -43,6 +43,12 @@
 .info_container input[type=text], .info_container input[type=email] {
     border-radius: 5px;
 }
+a#admin {
+    padding:10px;
+}
+a#admin:hover {
+    cursor: pointer;
+}
 
 /*Personal info*/
 .personal_info form * , .shipping form * {

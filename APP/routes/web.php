@@ -9,6 +9,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
@@ -70,6 +71,20 @@ Route::get('/payment', [PaymentController::class, 'index'])
     ->name('payment');
 Route::post('/payment', [PaymentController::class, 'store'])
     ->name('payment.finish');
+
+// Admin
+Route::get('/admin', [AdminController::class, 'index'])
+    ->name('admin');
+Route::get('/admin/new_item', [AdminController::class, 'new_item'])
+    ->name('new.item');
+Route::post('/admin/new_item', [AdminController::class, 'store'])
+    ->name('create.item');
+Route::get('admin/item/{id}', [AdminController::class, 'show'])
+    ->name('show.item');
+Route::get('/admin/update/{id}', [AdminController::class, 'update'])
+    ->name('update.item');
+Route::get('/admin/remove/{id}', [AdminController::class, 'remove'])
+    ->name('remove.item');
 
 Route::resource('db', TestController::class);
 

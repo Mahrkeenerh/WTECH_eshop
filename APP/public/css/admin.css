@@ -114,7 +114,10 @@ div#products > * {
     position: relative;
 }
 .product .product_name {
-    height: 40px;
+    height: 60px;
+    overflow: hidden;
+    margin-bottom: 0;
+    text-overflow: ellipsis;
 }
 .product h3, .product h4 {
     text-align: center;
