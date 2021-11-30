@@ -13,36 +13,115 @@
     <h1 class="eshop_name"><a href="homepage.html">CAR STUFF 4 U</a></h1>
 </header>
 
+<nav>
+<h1 id="new_product">New product</h1>
+<a id="back" href="admin.html" type="button">Back to all items</a>
+</nav>
+
 <form>
 
-    <label for="product_name">Product name:</label>
-    <textarea id="product_name"></textarea>
+    <div id="inputs">
+        <!--Product name-->
+        <div class="block">
+        <label for="product_name">Product name:</label>
+        <input id="product_name"/>
+        </div>
 
-    <label for="product_price">Product price</label>
-    <textarea id="product_price"></textarea>
+        <!--Product price-->
+        <div class="block">
+        <label for="product_price">Product price:</label>
+        <input id="product_price"/>
+        </div>
+    </div>
 
-    <label for="product_brand">Choose product brand:</label>
-    <textarea id="product_brand"></textarea>
+    <div id="pickers">
+        <!--Category-->
+        <div class="block">
+            <label for="categories">Choose product's category:</label>
+            <select name="categories" id="categories">
+                <option value="category_one" id="category_one">CAT1</option>
+                <option value="category_two" id="category_two">CAT2</option>
+                <option value="category_three" id="category_three">CAT3</option>
+                <option value="category_four" id="category_four">CAT4</option>
+                <option value="category_five" id="category_five">CAT5</option>
+            </select>
+        </div>
 
-    <label for="product_color">Choose product color:</label>
-    <textarea id="product_color"></textarea>
+        <!--Brands-->
+        <div class="block">
+        <label for="brands">Choose product brand:</label>
+        <select name="brands" id="brands">
+            <option value="brandabc_inc" id="abc_inc">abc_inc</option>
+            <option value="brandmakers" id="makers">makers</option>
+            <option value="brandcreators" id="creators">creators</option>
+            <option value="brandaaasus" id="aaasus">aaasus</option>
+        </select>
+        </div>
 
-    <label for="product_material">Choose product material:</label>
-    <textarea id="product_material"></textarea>
+        <!--Colors-->
+        <div class="block">
+        <label for="colors">Choose product color:</label>
+        <select name="colors" id="colors">
+            <option value="colorwhite" id="white">white</option>
+            <option value="colorblack" id="black">black</option>
+            <option value="colororange" id="orange">orange</option>
+            <option value="colormagenta" id="magenta">magenta</option>
+        </select>
+        </div>
 
-    <label for="product_description">Description</label>
-    <textarea id="product_description"></textarea>
+        <!--Materials-->
+        <div class="block">
+        <label for="materials">Choose product material:</label>
+        <select name="materials" id="materials">
+            <option value="materialmetal" id="metal">metal</option>
+            <option value="materialaluminium" id="aluminium">aluminium</option>
+            <option value="materialcopper" id="copper">copper</option>
+        </select>
+        </div>
+    </div>
 
-    <label for="product_info_json">Product info</label>
-    <textarea id="product_info_json"></textarea>
+    <div id="description">
+        <!--Description-->
+        <label for="product_description" class="block">Description:</label>
+        <textarea id="product_description" class="block"></textarea>
+    </div>
+
+    <div id="info">
+        <!--Info JSON-->
+        <label for="product_info_json" class="block">Product info (key : value):</label>
+        <textarea id="product_info_json" class="block"></textarea>
+    </div>
+
+    <div id="images">
+        <!--Image-->
+        <div class="block">
+        <label for="img_500">Select 500x500 image:</label>
+        <input type="file" id="img_500" name="img_500" accept="image/*">
+        </div>
+        <div class="block">
+        <label for="img_200">Select 200x200 image:</label>
+        <input type="file" id="img_200" name="img_200" accept="image/*">
+        </div>
+        <div class="block">
+        <label for="img_100">Select 100x100 image:</label>
+        <input type="file" id="img_100" name="img_100" accept="image/*">
+        </div>
+    </div>
+
+    <div class="block">
+    <button type="submit">Submit</button>
+    <a type="button" id="delete">Delete</a>
+    </div>
 
 </form>
 
 
 <div id="footer">
-    <label class="footer_link"><a href="https://github.com/Mahrkeenerh/WTECH_eshop" class="footer_link">Contact</a></label>
+    <label class="footer_link"><a href="https://github.com/Mahrkeenerh/WTECH_eshop"
+                                  class="footer_link">Contact</a></label>
     <label>|</label>
-    <label class="footer_link"><a href="https://github.com/Mahrkeenerh/WTECH_eshop" class="footer_link">Copyright</a></label>
+    <label class="footer_link"><a href="https://github.com/Mahrkeenerh/WTECH_eshop"
+                                  class="footer_link">Copyright</a></label>
     <label>|</label>
     <label class="footer_link"><a href="https://github.com/Mahrkeenerh/WTECH_eshop" class="footer_link">Info</a></label>
     <label>|</label>
