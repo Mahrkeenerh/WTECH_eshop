@@ -10,29 +10,32 @@
         justify-self: center;
         width: 90%;
     }
-    .info_container form > input {
+    #info_form {
+        justify-self: center;
+    }
+    .info_container div > input {
         width: 90%;
     }
 }
 @media (min-width: 700px) {
     .info_container {
-        grid-template-columns: [personal_info]1fr [address]1fr;
+        grid-template-columns: [personal_info]1fr [shipping]1fr;
     }
-    .info_container form > input {
+    .info_container div > input {
         width: 75%;
     }
 }
 @media (min-width: 1050px) {
     .info_container {
         max-width: 1400px;
-        grid-template-columns: [personal_info]500px [address]500px;
+        grid-template-columns: [personal_info]500px [shipping]500px;
         width: auto;
     }
 }
 .info_container h2 {
     margin: 0;
 }
-.info_container h2, .info_container form {
+.info_container h2, .info_container div {
     padding: 10px;
 }
 .info_container button {
@@ -45,6 +48,11 @@
 }
 
 /*Personal info*/
-.personal_info form * , .shipping form * {
+.personal_info div * , .shipping div * {
     display: block;
+}
+
+#errors {
+    color: red;
+    justify-self: center;
 }

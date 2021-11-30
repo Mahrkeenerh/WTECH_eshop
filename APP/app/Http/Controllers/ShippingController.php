@@ -36,6 +36,22 @@ class ShippingController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'first_name' => ['required', 'regex:/^[a-zA-Z]+$/'],
+            'last_name' => ['required', 'regex:/^[a-zA-Z]+$/'],
+            'state' => ['required', 'not_regex:/[0-9]/'],
+            'city' => ['required', 'regex:/^[a-zA-Z]+$/'],
+            'street_and_num' => 'required',
+            'postal_code' => ['required', 'regex:/^[0-9]{5}$/'],
+        ],
+        [
+            'first_name.regex' => 'First name must contain only letters.',
+            'last_name.regex' => 'Last name must contain only letters.',
+            'state.regex' => 'State can\'t contain digits.',
+            'city.regex' => 'City must contain only letters.',
+            'postal_code.regex' => 'Postal code must contain 5 digits.',
+        ]);
+
         $cart = session()->get('cart');
         $shippingInfo = new ShippingInfo(
             $request->first_name,
