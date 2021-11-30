@@ -26,49 +26,49 @@
         @auth
             <input type="text" id="first_name" name="first_name" required value="{{ Auth::user()->first_name }}">
         @else
-            <input type="text" id="first_name" name="first_name" required>
+            <input type="text" id="first_name" name="first_name" required value="{{ old('first_name') }}">
         @endauth
 
         <label for="last_name">Last name:</label>
         @auth
             <input type="text" id="last_name" name="last_name" required value="{{ Auth::user()->last_name }}">
         @else
-            <input type="text" id="last_name" name="last_name" required>
+            <input type="text" id="last_name" name="last_name" required value="{{ old('last_name') }}">
         @endauth
 
         <label for="email_address">Email address:</label>
         @auth
             <input type="email" id="email" name="email" required value="{{ Auth::user()->email }}">
         @else
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" required value="{{ old('email') }}">
         @endauth
 
         <label for="state">State:</label>
         @auth
             <input type="text" id="state" name="state" required value="{{ Auth::user()->state }}">
         @else
-            <input type="text" id="state" name="state" required>
+            <input type="text" id="state" name="state" required value="{{ old('state') }}">
         @endauth
 
         <label for="city">City:</label>
         @auth
             <input type="text" id="city" name="city" required value="{{ Auth::user()->city }}">
         @else
-            <input type="text" id="city" name="city" required>
+            <input type="text" id="city" name="city" required value="{{ old('city') }}">
         @endauth
 
         <label for="street_and_num">Street and number:</label>
         @auth
             <input type="text" id="street_and_num" name="street_and_num" required value="{{ Auth::user()->street_and_number }}">
         @else
-            <input type="text" id="street_and_num" name="street_and_num" required>
+            <input type="text" id="street_and_num" name="street_and_num" required value="{{ old('street_and_num') }}">
         @endauth
 
         <label for="postal_code">Postal code:</label>
         @auth
             <input type="text" id="postal_code" name="postal_code" required value="{{ Auth::user()->postal_code }}">
         @else
-            <input type="text" id="postal_code" name="postal_code" required>
+            <input type="text" id="postal_code" name="postal_code" required value="{{ old('postal_code') }}">
         @endauth
 
         <a href="{{ route('cart') }}">
@@ -115,6 +115,18 @@
     </div>
 
 </form>
+
+<div id="errors">
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+</div>
 
 <!--Footer-->
 @include('layout.partials.footer')

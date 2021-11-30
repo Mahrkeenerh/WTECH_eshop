@@ -59,6 +59,8 @@ Route::get('/cart/remove_one/{id}', [CartController::class, 'removeOne'])
 // Profile
 Route::get('/profile', [ProfileController::class, 'index'])
     ->name('profile');
+Route::post('/profile', [ProfileController::class, 'store'])
+    ->name('profile.store');
 
 // Shipping
 Route::get('/shipping', [ShippingController::class, 'index'])
