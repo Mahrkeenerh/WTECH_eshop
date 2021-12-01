@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\CategoryController;
+use App\Models\Item;
+use App\Models\OrderItem;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 class HomepageController extends Controller
@@ -17,7 +21,23 @@ class HomepageController extends Controller
     {
         CategoryController::ResetFilters();
 
-        return view('homepage');
+        $item_ids = DB::table('order_items')->select(['item_id', DB::raw('sum(amount) as top')])
+            ->groupBy('item_id')->orderBy('top', 'desc')->limit(4)->pluck('item_id');
+
+        $best_sellers = DB::table('items')->whereIn('id', $item_ids)->get();
+
+
+        $new_products = Item::orderBy('id', 'desc')->limit(4)->get();
+
+        $top_discount = DB::table('items')->select(['*', DB::raw('cast(old_price as float) - cast(new_price as float) as discount')])
+            ->orderBy('discount', 'desc')->limit(4)->get();
+
+
+        $offset = Carbon::today()->day % (Item::get()->count() - 4);
+
+        $season_products = Item::skip($offset)->limit(4)->get();
+
+        return view('homepage', compact('best_sellers', 'new_products', 'top_discount', 'season_products'));
     }
 
     /**

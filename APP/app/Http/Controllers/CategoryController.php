@@ -27,6 +27,8 @@ class CategoryController extends Controller
         Session::put('top_searchbar', "");
         Session::put('per_page', 5);
         Session::put('order_by', "id");
+        Session::forget('min_price');
+        Session::forget('max_price');
 
         $filters = Filter::all();
 
@@ -42,13 +44,13 @@ class CategoryController extends Controller
     private function FilterItems() {
 
         $top_searchbar = Session::get('top_searchbar');
-        
+
         $items = Item::where(function ($query) use ($top_searchbar) {
             $query->where('name', 'ilike', '%'.$top_searchbar.'%')
                 ->orWhere('description', 'ilike', '%'.$top_searchbar.'%')
                 ->orWhere('info_json', 'ilike', '%'.$top_searchbar.'%');
             });
-        
+
         // Apply price
         if (Session::has('min_price')) $items = $items->where('new_price', '>=', Session::get('min_price'));
         if (Session::has('max_price')) $items = $items->where('new_price', '<=', Session::get('max_price'));
@@ -130,11 +132,11 @@ class CategoryController extends Controller
             $order_column = "id";
             $order_type = "asc";
         }
-        
+
         $items = self::FilterItems()
             ->orderBy($order_column, $order_type)
             ->paginate($per_page);
-        
+
         $filters = Filter::all();
 
         return view('category', compact('items', 'per_page', 'order_by', 'top_searchbar', 'filters'))
@@ -275,7 +277,7 @@ class CategoryController extends Controller
             })
             ->orderBy($order_column, $order_type)
             ->paginate($per_page);
-        
+
         $filters = Filter::all();
 
         return view('category', compact('current_category', 'parent_categories', 'child_categories', 'items', 'per_page', 'order_by', 'top_searchbar', 'filters'));
