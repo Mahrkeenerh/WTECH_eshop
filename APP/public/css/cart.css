@@ -15,6 +15,9 @@
 }
 
 /* Main */
+#empty_cart {
+    text-align: center;
+}
 /*body grid*/
 #grid {
     display: grid;

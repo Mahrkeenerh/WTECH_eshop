@@ -37,6 +37,7 @@ header {
 header .eshop_name {
     justify-self: left;
     cursor: pointer;
+    width:216px;
     margin-top: 13.5px;
     margin-left: 10px;
     align-self: center;

@@ -31,8 +31,9 @@
         </div>
 
         <button id="change password">Change password</button>
-        <a id="admin" href="{{ route('admin') }}" type="button">Admin mode</a>
-
+        @can('create', App\Models\Item::class)
+            <a id="admin" href="{{ route('admin') }}" type="button">Admin mode</a>
+        @endcan
     </div>
 
     <!--Shipping address-->

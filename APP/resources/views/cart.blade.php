@@ -72,7 +72,7 @@
     </div>
 </div>
 @else
-    <h1>Empty cart</h1>
+    <h1 id="empty_cart">You have empty cart :'(</h1>
 @endif
 
 

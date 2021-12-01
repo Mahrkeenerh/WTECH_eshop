@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Item extends Model
 {
@@ -17,6 +18,7 @@ class Item extends Model
         'info_json'
     ];
     use HasFactory;
+    use SoftDeletes;
 
     public function category()
     {

@@ -84,11 +84,11 @@
             <label for="colors">Choose product color:</label>
             <select name="colors" id="colors">
                 @foreach($colors as $color)
-{{--                    @if($item && $item->color_id == $color->id)--}}
-{{--                        <option value="{{ $color }}" selected="selected">{{ $color->name }}</option>--}}
-{{--                    @else--}}
+                    @if($item && str_contains($item->info_json, $color))
+                        <option value="{{ $color }}" selected="selected">{{ $color }}</option>
+                    @else
                         <option value="{{ $color }}">{{ $color }}</option>
-{{--                    @endif--}}
+                    @endif
                 @endforeach
             </select>
         </div>
@@ -98,11 +98,11 @@
             <label for="materials">Choose product material:</label>
             <select name="materials" id="materials">
                 @foreach($materials as $material)
-{{--                    @if($item && $item->material_id == $material->id)--}}
-{{--                        <option value="{{ $material->name }}" selected="selected">{{ $material->id }}</option>--}}
-{{--                    @else--}}
+                    @if($item && str_contains($item->info_json, $material))
+                        <option value="{{ $material }}" selected="selected">{{ $material }}</option>
+                    @else
                         <option value="{{ $material }}">{{ $material }}</option>
-{{--                    @endif--}}
+                    @endif
                 @endforeach
             </select>
         </div>
@@ -112,9 +112,9 @@
         <!--Description-->
         <label for="product_description" class="block">Description:</label>
         @if($item)
-            <textarea id="product_description" name="product_description" class="block" required>{{ $item->description }}</textarea>
+            <textarea id="product_description" name="product_description" class="block" required rows="10">{{ $item->description }}</textarea>
         @else
-            <textarea id="product_description" name="product_description" class="block" required></textarea>
+            <textarea id="product_description" name="product_description" class="block" required rows="10"></textarea>
         @endif
     </div>
 
@@ -122,9 +122,9 @@
         <!--Info JSON-->
         <label for="product_info_json" class="block">Product info ("key" : "value"):</label>
         @if($item)
-            <textarea id="product_info_json" name="product_info_json" class="block" required>{{ $item->info_json }}</textarea>
+            <textarea id="product_info_json" name="product_info_json" class="block" required rows="10">{{ $item->info_json }}</textarea>
         @else
-            <textarea id="product_info_json" name="product_info_json" class="block" required></textarea>
+            <textarea id="product_info_json" name="product_info_json" class="block" required rows="10"></textarea>
         @endif
     </div>
 
@@ -142,7 +142,11 @@
 
     <div class="block">
         <button type="submit">Submit</button>
-        <a type="button" id="delete">Delete</a>
+        @if($item)
+            <a id="delete" href="{{ route('remove.item', ['id' => $item->id]) }}" type="button">Delete</a>
+        @else
+            <a id="delete" href="{{ route('admin') }}" type="button">Cancel</a>
+        @endif
     </div>
 
 </form>

@@ -10,8 +10,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShippingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,16 +74,22 @@ Route::post('/payment', [PaymentController::class, 'store'])
 
 // Admin
 Route::get('/admin', [AdminController::class, 'index'])
+    ->middleware(['can:create,' . \App\Models\Item::class])
     ->name('admin');
 Route::get('/admin/new_item', [AdminController::class, 'new_item'])
+    ->middleware(['can:create,' . \App\Models\Item::class])
     ->name('new.item');
 Route::post('/admin/new_item', [AdminController::class, 'store'])
+    ->middleware(['can:create,' . \App\Models\Item::class])
     ->name('create.item');
 Route::get('admin/item/{id}', [AdminController::class, 'show'])
+    ->middleware(['can:create,' . \App\Models\Item::class])
     ->name('show.item');
 Route::post('/admin/update/{id}', [AdminController::class, 'update'])
+    ->middleware(['can:create,' . \App\Models\Item::class])
     ->name('update.item');
-Route::get('/admin/remove/{id}', [AdminController::class, 'remove'])
+Route::get('/admin/remove/{id}', [AdminController::class, 'destroy'])
+    ->middleware(['can:create,' . \App\Models\Item::class])
     ->name('remove.item');
 
 Route::resource('db', TestController::class);

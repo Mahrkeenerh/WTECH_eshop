@@ -71,7 +71,7 @@ class AdminController extends Controller
             . '", '.$request->product_info_json
             . ' }';
 
-        $id = Item::orderBy('id', 'desc')->first()->id + 1;
+        $id = Item::withTrashed()->orderBy('id', 'desc')->first()->id + 1;
 
         $item = Item::create([
             'id' => $id,
@@ -211,6 +211,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Item::destroy($id);
+        return redirect()->route('admin');
     }
 }
