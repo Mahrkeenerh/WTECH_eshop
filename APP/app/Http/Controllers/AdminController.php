@@ -17,14 +17,14 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $items = Item::orderBy('name', 'asc')->get();
         return view('admin', compact('items'));
     }
 
 
     public function new_item()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('name', 'asc')->get();
 
         $brands = Filter::where('name', 'like', 'Brand')->first();
         $brands = explode(";", $brands->values);
@@ -68,10 +68,10 @@ class AdminController extends Controller
         $info_json = '{ "brand" : "'.$request->brands
             . '", "color" : "'. $request->colors
             . '", "material" : "'.$request->materials
-            . '", '.$request->product_info_json
-            . ' }';
+            . '" }';
 
-        $id = Item::withTrashed()->orderBy('id', 'desc')->first()->id + 1;
+        $id = Item::withTrashed()->orderBy('id', 'desc')->first();
+        $id = $id == null ? 1 : $id->id + 1;
 
         $item = Item::create([
             'id' => $id,
@@ -119,7 +119,7 @@ class AdminController extends Controller
     public function show($id)
     {
         $item = Item::where('id', $id)->first();
-        $categories = Category::all();
+        $categories = Category::orderBy('name', 'asc')->get();
 
         $brands = Filter::where('name', 'like', 'Brand')->first();
         $brands = explode(";", $brands->values);
@@ -157,21 +157,24 @@ class AdminController extends Controller
         ]);
         $rounded_price = round($request->product_price, 2);
 
-        $info_json = '"brand" : "'.$request->brands
+        $info_json = '{ "brand" : "'.$request->brands
             . '", "color" : "'. $request->colors
             . '", "material" : "'.$request->materials
-            . '", '.$request->product_info_json;
+            . '" }';
 
-        $info_json = str_replace('{', ' ', $info_json);
-        $info_json = str_replace('}', ' ', $info_json);
+        $old_item = Item::where('id', $id)->first();
 
-        $info_json = '{'.$info_json.'}';
+        if ($rounded_price == $old_item->new_price) {
+            $old_price = $old_item->old_price;
+        } else {
+          $old_price = $old_item->new_price;
+        }
 
         Item::where('id', $id)->update([
             'name'=> $request->product_name,
             'category_id'=> $request->categories,
             'new_price' => $rounded_price,
-            'old_price' => $rounded_price,
+            'old_price' => $old_price,
             'description' => $request->product_description,
             'info_json' => $info_json
         ]);

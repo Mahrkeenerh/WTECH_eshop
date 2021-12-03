@@ -106,6 +106,8 @@ div#products > * {
 }
 
 .product {
+    display: grid;
+    grid-template-rows: 60px 110px 40px 30px 40px;
     width: 180px;
     height: 280px;
     margin: 10px;
@@ -122,6 +124,13 @@ div#products > * {
 }
 .product h3, .product h4 {
     text-align: center;
+}
+.product_price {
+    margin-bottom: 0;
+}
+.product s {
+    font-weight: bold;
+    color: red;
 }
 .product img {
     display: block;

@@ -47,7 +47,9 @@
     border-radius: 5px;
 }
 a#admin {
+    display: inline-block;
     padding:10px;
+    margin-left: 10px
 }
 a#admin:hover {
     cursor: pointer;

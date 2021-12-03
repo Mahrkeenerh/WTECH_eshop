@@ -22,6 +22,9 @@
         <h3 class="product_name">{{ $item->name }}</h3>
         <img class="product_image" src="{{ URL::asset('images/items_100/' . $item->id . '.jpg') }}" alt="product image">
         <h4 class="product_price">{{ $item->new_price }} €</h4>
+        @if($item->new_price < $item->old_price)
+            <s class="product_price">{{ $item->old_price }} €</s>
+        @endif
         <a class="update" href="{{ route('show.item', ['id' => $item->id]) }}" type="button">Change</a>
         <a class="remove" href="{{ route('remove.item', ['id' => $item->id]) }}" type="button">Delete</a>
     </div>

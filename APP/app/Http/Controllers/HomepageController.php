@@ -33,7 +33,9 @@ class HomepageController extends Controller
             ->orderBy('discount', 'desc')->limit(4)->get();
 
 
-        $offset = Carbon::today()->day % (Item::get()->count() - 4);
+        $temp = Item::get()->count() - 4;
+        $temp = $temp == 0 ? 1 : $temp;
+        $offset = Carbon::now()->second % $temp;
 
         $season_products = Item::skip($offset)->limit(4)->get();
 

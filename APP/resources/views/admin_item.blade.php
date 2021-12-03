@@ -118,16 +118,6 @@
         @endif
     </div>
 
-    <div id="info">
-        <!--Info JSON-->
-        <label for="product_info_json" class="block">Product info ("key" : "value"):</label>
-        @if($item)
-            <textarea id="product_info_json" name="product_info_json" class="block" required rows="10">{{ $item->info_json }}</textarea>
-        @else
-            <textarea id="product_info_json" name="product_info_json" class="block" required rows="10"></textarea>
-        @endif
-    </div>
-
     <div id="images">
         <!--Image-->
         <div class="block">
