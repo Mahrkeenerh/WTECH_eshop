@@ -11,7 +11,7 @@
 @include('layout.partials.header')
 
 @if(Auth::user())
-    @if($cart != [])
+    @if($contents != [])
     <!--Order process-->
     <div id="order_process">
         <h3 class="content">Confirm cart contents </h3>
