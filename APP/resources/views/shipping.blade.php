@@ -106,10 +106,12 @@
     <!--Continue to payment-->
     <div id="continue">
         <h2>Total:</h2>
-        @if (session()->has('cart'))
-        <h2>{{ session()->get('cart')->totalPrice}} €</h2>
+        @if(Auth::user())
+            <h2>{{ $total_price }} €</h2>
+        @elseif (session()->has('cart'))
+            <h2>{{ session()->get('cart')->totalPrice}} €</h2>
         @else
-        <h2>0.00 €</h2>
+            <h2>0.00 €</h2>
         @endif
             <button id="continue_to_payment" type="submit">Continue to payment</button>
     </div>

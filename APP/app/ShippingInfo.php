@@ -38,7 +38,7 @@ class ShippingInfo
                 $this->shippingPrice = 2.90;
                 break;
             default:
-                $this->shippingPrice = 10000;
+                $this->shippingPrice = 0;
         }
     }
 

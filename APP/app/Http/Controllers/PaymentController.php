@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\User;
@@ -17,6 +19,28 @@ class PaymentController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        // No user is logged in
+        if (is_null($user)) {
+
+            return view('payment');
+        }
+        else
+        {
+            $cart = \App\Models\Cart::where('user_id', $user->id)->first();
+            $contents = json_decode($cart->contents_json, true);
+            $items = Item::all();
+
+            $total_price = 0;
+            foreach ($contents as $item_id => $amount)
+            {
+                $item = $items->where('id', $item_id)->first();
+                $total_price += $item->new_price * $amount;
+            }
+            $total_price += session()->get('shipping_price');
+
+            return view('payment', compact('total_price'));
+        }
         return view('payment');
     }
 
@@ -38,25 +62,52 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        if (!session()->has('cart') || !session()->has('shippingInfo') || $request->payment_option == null)
-        {
-            return redirect()->route('home');
-        }
-        $cart = session()->get('cart');
-        $shippingInfo = session()->get('shippingInfo');
-        $shippingInfo->addPaymentOption($request->payment_option);
+        $user = Auth::user();
 
-        if (Auth::user())
+        if ($user)
         {
             $order = Order::create([
-                'user_id' => Auth::user()->id,
-                'shipping_type' => $shippingInfo->shippingOption,
-                'shipping_price' => $shippingInfo->shippingPrice,
-                'payment_type' => $shippingInfo->paymentOption
+                'user_id' => $user->id,
+                'shipping_type' => session()->get('shipping_type'),
+                'shipping_price' => session()->get('shipping_price') + $this->getPaymentPrice($request->payment_option),
+                'payment_type' => $request->payment_option
             ]);
+
+            $cart = \App\Models\Cart::where('user_id', $user->id)->first();
+            $contents = json_decode($cart->contents_json, true);
+            $items = Item::all();
+
+            foreach ($contents as $item_id => $amount)
+            {
+                $item = $items->where('id', $item_id)->first();
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'amount' => $amount,
+                    'unit_price' => $item->new_price,
+                    'item_id' => $item_id,
+                ]);
+            }
+
+            session()->forget('shipping_type');
+            session()->forget('shipping_price');
+
+            Cart::where('user_id', $user->id)->update([
+                'contents_json' => json_encode(json_decode ("{}"))
+            ]);
+
+            return redirect()->route('home');
         }
+
         else
         {
+            if (!session()->has('cart') || !session()->has('shippingInfo') || $request->payment_option == null)
+            {
+                return redirect()->route('home');
+            }
+            $cart = session()->get('cart');
+            $shippingInfo = session()->get('shippingInfo');
+            $shippingInfo->addPaymentOption($request->payment_option);
+
             $user = User::create([
                 'first_name' => $shippingInfo->first_name,
                 'last_name' => $shippingInfo->last_name,
@@ -70,24 +121,40 @@ class PaymentController extends Controller
             $order = Order::create([
                 'user_id' => $user->id,
                 'shipping_type' => $shippingInfo->shippingOption,
-                'shipping_price' => $shippingInfo->shippingPrice,
+                'shipping_price' => $shippingInfo->shippingPrice + $shippingInfo->paymentPrice,
                 'payment_type' => $shippingInfo->paymentOption
             ]);
+
+            foreach ($cart->items as $storedItem)
+            {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'amount' => $storedItem['qty'],
+                    'unit_price' => $storedItem['price'],
+                    'item_id' => $storedItem['item']->id
+                ]);
+            }
+
+            session()->forget('cart');
+            session()->forget('shippingInfo');
+
+            return redirect()->route('home');
         }
-        foreach ($cart->items as $storedItem)
+    }
+
+    private function getPaymentPrice($payment_option)
+    {
+        switch ($payment_option)
         {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'amount' => $storedItem['qty'],
-                'unit_price' => $storedItem['price'],
-                'item_id' => $storedItem['item']->id
-            ]);
+            case 'debit_card':
+                return 0;
+            case 'cash':
+                return 3.50;
+            case 'account_transfer':
+                return 0.50;
+            default:
+                return 0.00;
         }
-
-        session()->forget('cart');
-        session()->forget('shippingInfo');
-
-        return redirect()->route('home');
     }
 
     /**

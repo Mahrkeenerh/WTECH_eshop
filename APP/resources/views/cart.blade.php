@@ -21,13 +21,9 @@
 
     <div id="grid">
         <div id="items">
-            @php
-                $total_price = 0;
-            @endphp
             @foreach($contents as $item_id => $amount)
             @php
                 $item = $items->where('id', $item_id)->first();
-                $total_price += $item->new_price * $amount;
             @endphp
             <div class="item">
                 <a href="{{ route('item.show', ['id' => $item_id]) }}">
@@ -72,7 +68,6 @@
         <div id="buttons">
             <h2>Total:</h2>
             <h2>{{$total_price}} €</h2>
-    {{--        <h2>12345.67 €</h2>--}}
             <a href="{{ route('shipping') }}">
                 <button>Continue to shipping</button>
             </a>
@@ -138,7 +133,6 @@
             <div id="buttons">
                 <h2>Total:</h2>
                 <h2>{{$cart->totalPrice}} €</h2>
-        {{--        <h2>12345.67 €</h2>--}}
                 <a href="{{ route('shipping') }}">
                     <button>Continue to shipping</button>
                 </a>

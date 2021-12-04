@@ -29,7 +29,14 @@ class CartController extends Controller
             $contents = json_decode($cart->contents_json, true);
             $items = Item::all();
 
-            return view('cart', compact('cart', 'contents', 'items'));
+            $total_price = 0;
+            foreach ($contents as $item_id => $amount)
+            {
+                $item = $items->where('id', $item_id)->first();
+                $total_price += $item->new_price * $amount;
+            }
+
+            return view('cart', compact('cart', 'contents', 'items', 'total_price'));
         }
     }
 
@@ -62,7 +69,7 @@ class CartController extends Controller
                 'contents_json' => json_encode($contents)
             ]);
         }
-        
+
         return redirect()->route('cart');
     }
 
@@ -105,7 +112,7 @@ class CartController extends Controller
                 'contents_json' => json_encode($contents)
             ]);
         }
-        
+
         return redirect()->route('cart');
     }
 
@@ -138,7 +145,7 @@ class CartController extends Controller
                 'contents_json' => json_encode($contents)
             ]);
         }
-        
+
         return redirect()->route('cart');
     }
 
@@ -175,7 +182,7 @@ class CartController extends Controller
                 'contents_json' => json_encode($contents)
             ]);
         }
-        
+
         return redirect()->route('cart');
     }
 

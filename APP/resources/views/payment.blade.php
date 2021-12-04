@@ -17,7 +17,6 @@
     <h3 class="payment">/ Payment</h3>
 </div>
 
-{{--<div id="content">--}}
 
         <form id="content" action="{{ route('payment.finish') }}" method="POST">
             @csrf
@@ -51,7 +50,9 @@
     <!--Continue to payment-->
     <div id="finish">
         <h2>Total:</h2>
-        @if (session()->has('cart'))
+        @if (Auth::user())
+            <h2>{{ $total_price}} €</h2>
+        @elseif (session()->has('cart'))
             <h2>{{ session()->get('cart')->totalPrice}} €</h2>
         @else
             <h2>0.00 €</h2>
@@ -59,7 +60,6 @@
         <button id="pay_n_finish">Pay and finish</button>
     </div>
         </form>
-{{--</div>--}}
 
 <!--Footer-->
 @include('layout.partials.footer')
