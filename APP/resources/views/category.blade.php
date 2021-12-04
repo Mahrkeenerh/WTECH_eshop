@@ -163,7 +163,7 @@
                         </div>
                         <div class="button_grid">
                             <form action="{{ route('cart.add', ['id' => $item->id]) }}" method="GET">
-                                <button type="submit">Add to cart</button>
+                                <button type="submit">Add to cart</button>  
 {{--                            <input type=button value="Add to cart">--}}
                             </form>
 {{--                            <a href="/cart/add_to_cart/{{$item->id}}">--}}
@@ -173,35 +173,6 @@
                     </div>
                 </div>
             @endforeach
-
-            {{-- @for($i = 0; $i < 7; $i++)
-                <div class="item">
-                    <a href="item">
-                    <span class="item_image">
-                        <img src="{{URL::asset('icons/items/brakepads_200.jpg')}}" alt="brakepads"
-                             srcset="{{URL::asset('icons/items/brakepads_100.jpg')}} 100w,
-                             {{URL::asset('icons/items/brakepads_200.jpg')}} 200w"
-                             sizes="(min-width: 850px) 200px, 100px">
-                    </span>
-                    </a>
-                    <a href="item">
-                    <span class="item_text">
-                        <h2>BRUMBO FRONT VENTED BRAKE DISCS - 291MM DIAMETER</h2>
-                    <label>Brand -	BRUMBO, Height [mm] -	39.5, Fitting Position	- Front Axle, Diameter [mm] -	291, Brake Disc Type -	Solid, Brake Disc Thickness [mm]	- 10, Minimum Thickness [mm]	- 8, Number of...</label>
-                    </span>
-                    </a>
-                    <div class="item_buy">
-                        <div class="text_grid">
-                            <h2>192.90 €</h2>
-                            <s>220.50 €</s>
-                        </div>
-                        <div class="button_grid">
-                            <input type=button value="Add to cart">
-                        </div>
-                    </div>
-                </div>
-            @endfor --}}
-
         </div>
 
         <div id="pageing_parent">

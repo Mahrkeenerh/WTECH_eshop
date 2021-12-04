@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Cart;
 use App\Models\Item;
 use Illuminate\Http\Request;
@@ -15,19 +16,53 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = session()->get('cart');
+        $user = Auth::user();
+        // No user is logged in
+        if (is_null($user)) {
+            $cart = session()->get('cart');
 
-        return view('cart', compact('cart'));
+            return view('cart', compact('cart'));
+        }
+        // User is logged in -> write to db
+        else {
+            $cart = \App\Models\Cart::where('user_id', $user->id)->first();
+            $contents = json_decode($cart->contents_json, true);
+            $items = Item::all();
+
+            return view('cart', compact('cart', 'contents', 'items'));
+        }
     }
 
     public function addToCart (Request $request, $id)
     {
-        $item = Item::find($id);
-        $oldCart = session()->has('cart') ? session()->get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($item, $item->id);
+        $user = Auth::user();
+        // No user is logged in
+        if (is_null($user)) {
+            $item = Item::find($id);
+            $oldCart = session()->has('cart') ? session()->get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->add($item, $item->id);
 
-        session()->put('cart', $cart);
+            session()->put('cart', $cart);
+        }
+        // User is logged in -> write to db
+        else {
+            $cart = \App\Models\Cart::where('user_id', $user->id)->first();
+            $contents = json_decode($cart->contents_json, true);
+
+            // Item already exists inside cart
+            if (in_array($id, array_keys($contents))) {
+                $contents[$id] = intval($contents[$id]) + 1;
+            }
+            else {
+                $contents[$id] = 1;
+            }
+
+            $cart->update([
+                'contents_json' => json_encode($contents)
+            ]);
+        }
+        
         return redirect()->route('cart');
     }
 
@@ -35,50 +70,112 @@ class CartController extends Controller
     {
         if ($request->item_amount == null)
         {
-            return redirect()->route('item', ['id' => $id]);
+            return redirect()->route('item.show', ['id' => $id]);
         }
+
         $item = Item::find($id);
-        $oldCart = session()->has('cart') ? session()->get('cart') : null;
-        $cart = new Cart($oldCart);
 
-        for($i = 0; $i < $request->item_amount; $i++)
-        {
-            $cart->add($item, $item->id);
+        $user = Auth::user();
+        // No user is logged in
+        if (is_null($user)) {
+            $oldCart = session()->has('cart') ? session()->get('cart') : null;
+            $cart = new Cart($oldCart);
+
+            for($i = 0; $i < $request->item_amount; $i++)
+            {
+                $cart->add($item, $item->id);
+            }
+
+            session()->put('cart', $cart);
         }
+        // User is logged in -> write to db
+        else {
+            $cart = \App\Models\Cart::where('user_id', $user->id)->first();
+            $contents = json_decode($cart->contents_json, true);
 
-        session()->put('cart', $cart);
+            // Item already exists inside cart
+            if (in_array($id, array_keys($contents))) {
+                $contents[$id] = intval($contents[$id]) + $request->item_amount;
+            }
+            else {
+                $contents[$id] = $request->item_amount;
+            }
+
+            $cart->update([
+                'contents_json' => json_encode($contents)
+            ]);
+        }
+        
         return redirect()->route('cart');
     }
 
     public function removeFromCart (Request $request, $id)
     {
         $item = Item::find($id);
-        $oldCart = session()->has('cart') ? session()->get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->remove($item, $id);
 
-        if ($cart->totalQty == 0)
-        {
-            $cart = null;
+        $user = Auth::user();
+        // No user is logged in
+        if (is_null($user)) {
+            $oldCart = session()->has('cart') ? session()->get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->remove($item, $id);
+
+            if ($cart->totalQty == 0)
+            {
+                $cart = null;
+            }
+
+            session()->put('cart', $cart);
         }
+        // User is logged in -> write to db
+        else {
+            $cart = \App\Models\Cart::where('user_id', $user->id)->first();
+            $contents = json_decode($cart->contents_json, true);
 
-        session()->put('cart', $cart);
+            unset($contents[$id]);
+
+            $cart->update([
+                'contents_json' => json_encode($contents)
+            ]);
+        }
+        
         return redirect()->route('cart');
     }
 
     public function removeOne (Request $request, $id)
     {
         $item = Item::find($id);
-        $oldCart = session()->has('cart') ? session()->get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->removeOne($item, $id);
 
-        if ($cart->totalQty == 0)
-        {
-            $cart = null;
+        $user = Auth::user();
+        // No user is logged in
+        if (is_null($user)) {
+            $oldCart = session()->has('cart') ? session()->get('cart') : null;
+            $cart = new Cart($oldCart);
+            $cart->removeOne($item, $id);
+
+            if ($cart->totalQty == 0)
+            {
+                $cart = null;
+            }
+
+            session()->put('cart', $cart);
         }
+        // User is logged in -> write to db
+        else {
+            $cart = \App\Models\Cart::where('user_id', $user->id)->first();
+            $contents = json_decode($cart->contents_json, true);
 
-        session()->put('cart', $cart);
+            $contents[$id] -= 1;
+
+            if ($contents[$id] == 0) {
+                unset($contents[$id]);
+            }
+
+            $cart->update([
+                'contents_json' => json_encode($contents)
+            ]);
+        }
+        
         return redirect()->route('cart');
     }
 

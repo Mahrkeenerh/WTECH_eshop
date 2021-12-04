@@ -51,6 +51,12 @@ class RegisteredUserController extends Controller
 //            'postal_code'
         ]);
 
+        \App\Models\Cart::create([
+            'id' => \App\Models\Cart::max('id') + 1,
+            'user_id' => $user->id,
+            'contents_json' => json_encode(json_decode ("{}"))
+        ]);
+
         event(new Registered($user));
 
         Auth::login($user);
