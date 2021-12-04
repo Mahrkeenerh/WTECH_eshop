@@ -59,20 +59,39 @@ class CategoryController extends Controller
         $filters = Filter::all();
 
         foreach ($filters as $filter) {
-            $filter_applied = FALSE;
             $values = explode(";", $filter->values);
 
-            foreach ($values as $value) {
-                if (!is_null(Session::get(strtolower($filter->name . $value)))) {
-                    if ($filter_applied) {
-                        $items = $items->orWhere('info_json', 'ilike', '%' . $value . '%');
-                    }
-                    else {
-                        $items = $items->where('info_json', 'ilike', '%' . $value . '%');
-                        $filter_applied = TRUE;
+            // OLD SORTING
+            // foreach ($values as $value) {
+            //     if (!is_null(Session::get(strtolower($filter->name . $value)))) {
+            //         if ($filter_applied) {
+            //             $items = $items->orWhere('info_json', 'ilike', '%' . $value . '%');
+            //         }
+            //         else {
+            //             $items = $items->where('info_json', 'ilike', '%' . $value . '%');
+            //             $filter_applied = TRUE;
+            //         }
+            //     }
+            // }
+
+            // NEW FANCY FUNCTION QUERY SORTING
+            $items = $items->where(function ($query) use ($values, $filter) {
+                $filter_applied = FALSE;
+
+                foreach ($values as $value) {
+                    if (!is_null(Session::get(strtolower($filter->name . $value)))) {
+                        if ($filter_applied) {
+                            $query = $query->orWhere('info_json', 'ilike', '%' . $value . '%');
+                        }
+                        else {
+                            $query = $query->where('info_json', 'ilike', '%' . $value . '%');
+                            $filter_applied = TRUE;
+                        }
                     }
                 }
-            }
+
+                $query;
+            });
         }
 
         return $items;
