@@ -23,12 +23,23 @@ class PaymentController extends Controller
         // No user is logged in
         if (is_null($user)) {
 
-            return view('payment');
+            if(session()->has('cart'))
+            {
+                if (session()->get('cart')->totalPrice == 0)
+                    return redirect()->route('cart');
+                else
+                    return view('payment');
+            }
+            else
+            {
+                return redirect()->route('cart');
+            }
         }
         else
         {
             $cart = \App\Models\Cart::where('user_id', $user->id)->first();
             $contents = json_decode($cart->contents_json, true);
+            if($contents == []) return redirect()->route('cart');
             $items = Item::all();
 
             $total_price = 0;
@@ -66,16 +77,17 @@ class PaymentController extends Controller
 
         if ($user)
         {
+            $cart = \App\Models\Cart::where('user_id', $user->id)->first();
+            $contents = json_decode($cart->contents_json, true);
+            if($contents == []) { return redirect()->route('cart'); }
+            $items = Item::all();
+
             $order = Order::create([
                 'user_id' => $user->id,
                 'shipping_type' => session()->get('shipping_type'),
                 'shipping_price' => session()->get('shipping_price') + $this->getPaymentPrice($request->payment_option),
                 'payment_type' => $request->payment_option
             ]);
-
-            $cart = \App\Models\Cart::where('user_id', $user->id)->first();
-            $contents = json_decode($cart->contents_json, true);
-            $items = Item::all();
 
             foreach ($contents as $item_id => $amount)
             {
@@ -100,6 +112,16 @@ class PaymentController extends Controller
 
         else
         {
+            if(session()->has('cart'))
+            {
+                if (session()->get('cart')->totalPrice == 0)
+                    return redirect()->route('cart');
+            }
+            else
+            {
+                return redirect()->route('cart');
+            }
+
             if (!session()->has('cart') || !session()->has('shippingInfo') || $request->payment_option == null)
             {
                 return redirect()->route('home');

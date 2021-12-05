@@ -33,6 +33,10 @@
 
 </div>
 
+<div id="paging">
+    {{$items->links('pagination::bootstrap-4')}}
+</div>
+
 <!--Footer-->
 @include('layout.partials.footer')
 

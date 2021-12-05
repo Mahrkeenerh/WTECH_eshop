@@ -185,7 +185,9 @@ class CategoryController extends Controller
 
     public function filter_search(Request $request)
     {
+        $search = Session::get('top_searchbar');
         self::SetFilters($request);
+        Session::put('top_searchbar', $search);
         return redirect()->route('category');
     }
 

@@ -159,6 +159,15 @@ div#products > * {
     background: red;
     color: white;
 }
+#paging {
+    justify-self: center;
+}
+
+ul.pagination li.page-item {
+    display: inline;
+}
+
+
 
 /* Footer */
 #footer {

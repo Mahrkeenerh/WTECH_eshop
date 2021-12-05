@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Category;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
@@ -17,7 +18,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $items = Item::orderBy('name', 'asc')->get();
+        $items = Item::orderBy('name', 'asc')->paginate(20);
         return view('admin', compact('items'));
     }
 
@@ -215,6 +216,12 @@ class AdminController extends Controller
     public function destroy($id)
     {
         Item::destroy($id);
+
+        File::delete(public_path('images/items_' . 500 . '/' . $id . '.jpg'));
+        File::delete(public_path('images/items_' . 200 . '/' . $id . '.jpg'));
+        File::delete(public_path('images/items_' . 100 . '/' . $id . '.jpg'));
+
+        //vymazat obrazky
         return redirect()->route('admin');
     }
 }

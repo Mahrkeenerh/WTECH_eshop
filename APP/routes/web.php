@@ -28,7 +28,7 @@ Route::get('/', [HomepageController::class, 'index'])
 // Category
 Route::get('/category', [CategoryController::class, 'index'])
     ->name('category');
-Route::get('/category/search', [CategoryController::class, 'search'])
+Route::post('/category/search', [CategoryController::class, 'search'])
     ->name('category.search');
 Route::get('/category/{id}', [CategoryController::class, 'show'])
     ->name('category.show');

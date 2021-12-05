@@ -22,12 +22,23 @@ class ShippingController extends Controller
         // No user is logged in
         if (is_null($user)) {
 
-            return view('shipping');
+            if(session()->has('cart'))
+            {
+                if (session()->get('cart')->totalPrice == 0)
+                    return redirect()->route('cart');
+                else
+                    return view('shipping');
+            }
+            else
+            {
+                return redirect()->route('cart');
+            }
         }
         // User is logged in -> write to db
         else {
             $cart = \App\Models\Cart::where('user_id', $user->id)->first();
             $contents = json_decode($cart->contents_json, true);
+            if($contents == []) return redirect()->route('cart');
             $items = Item::all();
 
             $total_price = 0;
