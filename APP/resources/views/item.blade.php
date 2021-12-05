@@ -35,7 +35,7 @@
     </div>
     <div id="buttons">
         <h1>{{$item->new_price}} €</h1>
-        @if($item->new_price != $item->old_price)
+        @if($item->new_price < $item->old_price)
             <s>{{$item->old_price}} €</s>
         @endif
         <form action="{{ route('cart.add.quantity', ['id' => $item->id]) }}" method="POST">

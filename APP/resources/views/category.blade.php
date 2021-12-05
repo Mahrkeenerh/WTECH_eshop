@@ -23,13 +23,13 @@
             <div class="filter_block">
                 <label class="category_title">Price:</label>
                 @if (Session::has('min_price'))
-                    <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" value={{Session::get('min_price')}} name="min_price" id="min_price">    
+                    <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" value={{Session::get('min_price')}} name="min_price" id="min_price">
                 @else
                     <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" placeholder="0.01" name="min_price" id="min_price">
                 @endif
                 <label class="no_break"> - </label>
                 @if (Session::has('max_price'))
-                    <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" value={{Session::get('max_price')}} name="max_price" id="max_price">    
+                    <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" value={{Session::get('max_price')}} name="max_price" id="max_price">
                 @else
                     <input type="text" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" placeholder="999.99" name="max_price" id="max_price">
                 @endif
@@ -157,13 +157,13 @@
                     <div class="item_buy">
                         <div class="text_grid">
                             <h2>{{$item->new_price}} €</h2>
-                            @if($item->new_price != $item->old_price)
+                            @if($item->new_price < $item->old_price)
                                 <s>{{$item->old_price}} €</s>
                             @endif
                         </div>
                         <div class="button_grid">
                             <form action="{{ route('cart.add', ['id' => $item->id]) }}" method="GET">
-                                <button type="submit">Add to cart</button>  
+                                <button type="submit">Add to cart</button>
 {{--                            <input type=button value="Add to cart">--}}
                             </form>
 {{--                            <a href="/cart/add_to_cart/{{$item->id}}">--}}
